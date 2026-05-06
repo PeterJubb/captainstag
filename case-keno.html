@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Keno — Case File 002 / Peter Jubb</title>
+  <meta name="description" content="UX redesign of BCLC's Keno game, doubling engagement and lifting revenue 68%."/>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230d0d0c'/%3E%3Ccircle cx='50' cy='50' r='14' fill='%23ff4d1f'/%3E%3C/svg%3E"/>
+</head>
+<body>
+
+  <div class="systembar" aria-hidden="true">
+    <div class="wrap">
+      <div class="sys-left">
+        <span><span class="sys-dot"></span> <span class="sys-online">CASE FILE 002</span></span>
+        <span>STATUS: ARCHIVED · SUCCESS</span>
+      </div>
+      <div class="sys-right">
+        <span>BCLC / 2017</span>
+      </div>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <div class="wrap">
+      <div class="topbarInner">
+        <a href="index.html" class="brand">
+          <img src="assets/images/Me.png" alt="" class="brand-mark"/>
+          <div>
+            <div class="brand-name">Peter Jubb</div>
+            <div class="brand-role">Design Director · Product / UX</div>
+          </div>
+        </a>
+        <nav class="primary" aria-label="Primary">
+          <a href="index.html#work"><small>↩</small> Index</a>
+          <a href="index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="cs-hero">
+      <div class="wrap">
+        <a href="index.html#work" class="cs-back">← Return to index</a>
+
+        <div class="cs-fileno">CASE FILE 002 / GAME REDESIGN</div>
+        <h1 class="cs-title">Keno — pacing, clarity, and the rhythm of a <em>four-minute draw</em>.</h1>
+        <p class="cs-summary">
+          A legacy lottery game with deeply loyal players and a UX stuck in 2008. The challenge was to lift
+          engagement without breaking the things existing players already trusted — and to do it inside a
+          four-minute draw cycle that runs all day, every day.
+        </p>
+
+        <div class="cs-meta">
+          <div><span class="label">Client</span>BCLC</div>
+          <div><span class="label">Role</span>UX Lead / Visual Direction</div>
+          <div><span class="label">Timeline</span>2017</div>
+          <div><span class="label">Outcome</span><span class="signal">+68% revenue · 2× engagement</span></div>
+        </div>
+      </div>
+    </section>
+
+    <figure class="cs-imageblock">
+      <img src="assets/images/keno5.webp" alt="Keno game interface redesign"/>
+    </figure>
+    <div class="wrap">
+      <div class="cs-caption">FIG. 2.1 — The redesigned Keno surface. Live draw + bet construction in one continuous frame.</div>
+    </div>
+
+    <section class="cs-body">
+      <div class="wrap" style="display:contents;">
+      <aside>
+        <h6>Project</h6>
+        <div class="item"><strong>Game type</strong> Live-draw lottery</div>
+        <div class="item"><strong>Cycle</strong> Every 4 minutes</div>
+        <div class="item"><strong>Players</strong> Existing loyal base</div>
+
+        <h6>Outcomes</h6>
+        <div class="item"><strong>+68%</strong> revenue lift</div>
+        <div class="item"><strong>2×</strong> engagement</div>
+        <div class="item"><strong>−24%</strong> support tickets</div>
+
+        <h6>Players Said</h6>
+        <div class="item">"Now I can actually see when the draw is starting."</div>
+      </aside>
+
+      <article>
+        <h4>01 / The Game's Real Surface</h4>
+        <p>
+          Keno's true UX isn't a screen — it's a <strong>tempo</strong>. A new draw fires every four minutes, all day, every day.
+          The product has to make picking numbers, watching the draw, checking results, and deciding whether to play
+          again all feel like one continuous loop. The original design treated each step as a separate page,
+          breaking the rhythm and losing players at every transition.
+        </p>
+
+        <h4>02 / Research with Loyal Players</h4>
+        <p>
+          We sat with players in their homes — most of them in their 50s and 60s — and watched how they actually played.
+          Almost all of them had a phone in one hand and a TV in the other. They wanted to half-watch the draw, with
+          the option to lean in for the moments that mattered. Most didn't want a "modern" gambling app aesthetic.
+          They wanted a tool that respected their pace.
+        </p>
+
+        <div class="cs-pull">
+          "The players didn't want excitement engineered into the screen. They wanted the screen to get out of the way."
+        </div>
+
+        <h4>03 / Designing the Loop, Not the Page</h4>
+        <p>
+          We collapsed pick → confirm → watch → result into a single visual frame. The number grid, the live draw,
+          and the result state share the same canvas — the interface transforms in place rather than cutting between
+          screens. A clear countdown sits above every action. You always know exactly how much of the cycle is left.
+        </p>
+        <p>
+          For loyal players, we kept the option to favourite numbers and replay sets — the digital equivalent of a
+          worn paper play-slip. For new players, we added a one-tap "Quick Pick + Auto-Play 5 draws" flow that
+          dramatically lowered the cognitive cost of trying the game once.
+        </p>
+
+        <h4>04 / Transparent Pacing</h4>
+        <p>
+          A live progress meter shows the cycle. The brand voice in microcopy never tries to manufacture suspense;
+          the suspense is the draw itself. Limits and time-spent indicators are visible but not nagging — part of the
+          environment, not the interruption. When a player closes the game, the app tells them how long they played
+          and how many draws they entered. No surprises, no shame.
+        </p>
+
+        <h4>05 / What Shipped</h4>
+        <ul>
+          <li><strong>Single-frame loop.</strong> No page reloads between pick → draw → result.</li>
+          <li><strong>Favorite sets.</strong> Saved number combinations replay in two taps.</li>
+          <li><strong>Auto-Play.</strong> Run the same play across 5, 10, or 25 consecutive draws.</li>
+          <li><strong>Visible cadence.</strong> Countdown ring, transparent draw status, calm result animation.</li>
+          <li><strong>Responsible play, in-frame.</strong> Spend tracker visible without being shouted.</li>
+        </ul>
+
+        <h4>06 / The Result</h4>
+        <p>
+          Engagement doubled within three months of launch. Revenue lifted 68% year-over-year — and the support team's
+          "I don't know what's happening" tickets dropped by nearly a quarter. The same players, on the same game,
+          treated differently — and they responded.
+        </p>
+      </article>
+      </div>
+    </section>
+
+    <div class="wrap cs-next">
+      <span class="status">END OF FILE 002 · STATUS: ARCHIVED</span>
+      <a href="case-terminal.html">Next file · Retail Terminal [003]</a>
+    </div>
+
+  </main>
+
+  <footer class="endbar">
+    <div class="wrap">
+      <span class="wink">© <span id="y"></span> Peter Jubb · <em>hand-coded in Vancouver.</em></span>
+      <span>FILE 002  / 004</span>
+    </div>
+  </footer>
+
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+</body>
+</html>

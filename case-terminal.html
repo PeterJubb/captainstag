@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Retail Terminal — Case File 003 / Peter Jubb</title>
+  <meta name="description" content="Province-wide redesign of the BCLC lottery retail terminal — 4,200 devices, faster transactions, lower training load."/>
+  <link rel="stylesheet" href="styles.css"/>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230d0d0c'/%3E%3Ccircle cx='50' cy='50' r='14' fill='%23ff4d1f'/%3E%3C/svg%3E"/>
+</head>
+<body>
+
+  <div class="systembar" aria-hidden="true">
+    <div class="wrap">
+      <div class="sys-left">
+        <span><span class="sys-dot"></span> <span class="sys-online">CASE FILE 003</span></span>
+        <span>STATUS: ARCHIVED · DEPLOYED</span>
+      </div>
+      <div class="sys-right">
+        <span>BCLC / 2018 — 2020</span>
+      </div>
+    </div>
+  </div>
+
+  <header class="topbar">
+    <div class="wrap">
+      <div class="topbarInner">
+        <a href="index.html" class="brand">
+          <img src="assets/images/Me.png" alt="" class="brand-mark"/>
+          <div>
+            <div class="brand-name">Peter Jubb</div>
+            <div class="brand-role">Design Director · Product / UX</div>
+          </div>
+        </a>
+        <nav class="primary" aria-label="Primary">
+          <a href="index.html#work"><small>↩</small> Index</a>
+          <a href="index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="cs-hero">
+      <div class="wrap">
+        <a href="index.html#work" class="cs-back">← Return to index</a>
+
+        <div class="cs-fileno">CASE FILE 003 / SERVICE + POS</div>
+        <h1 class="cs-title">The unglamorous UX <em>everyone</em> touches.</h1>
+        <p class="cs-summary">
+          A complete redesign of the BCLC lottery retail terminal — the point-of-sale software running on every
+          gas station, convenience store, and grocery counter in British Columbia. 4,200 devices, hundreds of
+          thousands of transactions per day, and a real person on each side of the screen.
+        </p>
+
+        <div class="cs-meta">
+          <div><span class="label">Client</span>BCLC</div>
+          <div><span class="label">Role</span>UX Lead / Service Designer</div>
+          <div><span class="label">Timeline</span>2018 — 2020</div>
+          <div><span class="label">Scale</span><span class="signal">4,200 devices · province-wide</span></div>
+        </div>
+      </div>
+    </section>
+
+    <figure class="cs-imageblock">
+      <img src="assets/images/terminal.png" alt="Lottery retail terminal interface"/>
+    </figure>
+    <div class="wrap">
+      <div class="cs-caption">FIG. 3.1 — The new retail terminal. Designed for the cashier first, the customer second.</div>
+    </div>
+
+    <section class="cs-body">
+      <div class="wrap" style="display:contents;">
+      <aside>
+        <h6>Context</h6>
+        <div class="item"><strong>Devices</strong> 4,200 across BC</div>
+        <div class="item"><strong>Operators</strong> ~12,000 cashiers</div>
+        <div class="item"><strong>Hardware</strong> Touch + barcode + receipt</div>
+
+        <h6>Outcomes</h6>
+        <div class="item"><strong>−38%</strong> avg. transaction time</div>
+        <div class="item"><strong>−52%</strong> training hours</div>
+        <div class="item"><strong>+22%</strong> first-day operator confidence (survey)</div>
+
+        <h6>Constraint</h6>
+        <div class="item">Couldn't change a single piece of hardware.</div>
+      </aside>
+
+      <article>
+        <h4>01 / The Counter is the Product</h4>
+        <p>
+          People don't see the lottery terminal as a piece of software. They see a cashier, a screen, a printer,
+          and a line behind them. The product surface isn't the screen alone — it's the interaction between two
+          people, mediated by hardware, with a queue applying steady pressure. That reframe changed everything
+          about how we approached the redesign.
+        </p>
+        <p>
+          The old terminal was a Windows application from another era — dense, modal, and built around the database
+          schema rather than the cashier's workflow. New hires took two weeks to feel comfortable. Mid-shift mistakes
+          were expensive: reprints, refunds, frustrated customers, and a queue that never stopped.
+        </p>
+
+        <h4>02 / Field Research at the Counter</h4>
+        <p>
+          We rode along on retail visits across BC — Tim Hortons in Prince George, gas stations in Surrey, grocery
+          stores in Vancouver. We watched the same handful of mistakes happen over and over again: misreading a
+          play-slip orientation, scanning the wrong section of a winning ticket, fumbling between cash and card
+          while a customer corrected their numbers.
+        </p>
+        <p>
+          Almost every mistake came from the screen demanding attention at the wrong moment — a modal popup
+          while the cashier was looking at the customer, a confirmation step buried two screens deep, a status
+          indicator that didn't change colour fast enough.
+        </p>
+
+        <div class="cs-pull">
+          "The cashier never gets to look at the screen for more than a second at a time. Design for that second."
+        </div>
+
+        <h4>03 / Design Principles</h4>
+        <ul>
+          <li><strong>One-glance status.</strong> Every screen tells you what to do next without reading.</li>
+          <li><strong>Forgiving inputs.</strong> Wrong-orientation play-slip? The terminal figures it out.</li>
+          <li><strong>No confirmation theatre.</strong> Reversible by default; confirm only when reversal is impossible.</li>
+          <li><strong>High-contrast surfaces.</strong> The terminal lives under fluorescent light; the UI has to survive glare.</li>
+          <li><strong>Audio cues that mean something.</strong> A different sound for "scan failed" vs. "winning ticket detected."</li>
+        </ul>
+
+        <h4>04 / Training & Rollout</h4>
+        <p>
+          We knew the new terminal would only succeed if we trained 12,000 part-time cashiers across thousands of
+          retail partners. So we designed the UI to be its own onboarding: contextual hints in the first 50
+          transactions, a "show me the keys" overlay, and an opt-in slow-mode for new operators. Training time
+          dropped by more than half. First-day confidence — measured via a brief in-app survey — went up by 22%.
+        </p>
+
+        <h4>05 / What Shipped</h4>
+        <p>
+          A complete rebuild of the terminal interface, deployed to all 4,200 devices over a six-month staggered
+          rollout. Average transaction time dropped 38%. Cashier-reported confidence climbed sharply. And the queue
+          behind the counter moved a little faster, which is the only metric that ever really mattered.
+        </p>
+      </article>
+      </div>
+    </section>
+
+    <div class="wrap cs-next">
+      <span class="status">END OF FILE 003 · STATUS: ARCHIVED</span>
+      <a href="case-lastknown.html">Next file · LastKnown [004]</a>
+    </div>
+
+  </main>
+
+  <footer class="endbar">
+    <div class="wrap">
+      <span class="wink">© <span id="y"></span> Peter Jubb · <em>hand-coded in Vancouver.</em></span>
+      <span>FILE 003  / 004</span>
+    </div>
+  </footer>
+
+  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+</body>
+</html>
