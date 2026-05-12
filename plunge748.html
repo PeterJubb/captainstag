@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Onsen — A Build Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #ECE5D8;
+    --paper-warm: #E4DAC6;
+    --ink: #15110D;
+    --ink-soft: #3A332B;
+    --walnut: #3F2412;
+    --honey: #C18854;
+    --honey-pale: #E2C8A8;
+    --sage: #4D5B47;
+    --concrete: #B8B0A4;
+    --hairline: rgba(21, 17, 13, 0.15);
+    --hairline-soft: rgba(21, 17, 13, 0.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Manrope', sans-serif;
+    font-weight: 400;
+    line-height: 1.55;
+    font-size: 15px;
+    overflow-x: hidden;
+  }
+  .grain {
+    position: fixed; inset: 0;
+    pointer-events: none;
+    opacity: 0.4;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0.15 0 0 0 0 0.12 0 0 0 0 0.08 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    z-index: 100;
+  }
+  .container { max-width: 1320px; margin: 0 auto; padding: 0 56px; }
+  @media (max-width: 768px) { .container { padding: 0 24px; } }
+
+  /* ===== TOP RULE ===== */
+  .top-rule {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 22px 0;
+    border-bottom: 1px solid var(--hairline);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .top-rule .dot { width: 6px; height: 6px; background: var(--honey); border-radius: 50%; display: inline-block; margin-right: 8px; vertical-align: middle; }
+
+  /* ===== SHEET MARKER ===== */
+  .sheet-marker {
+    position: absolute;
+    top: 28px; right: 0;
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--concrete);
+  }
+  .sheet-marker .num {
+    display: block;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 56px;
+    line-height: 0.9;
+    color: var(--walnut);
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+
+  /* ===== SHEET ===== */
+  .sheet {
+    position: relative;
+    padding: 120px 0 100px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .sheet:last-child { border-bottom: none; }
+
+  /* ===== COVER ===== */
+  .cover {
+    min-height: 100vh;
+    padding: 80px 0 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .cover-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(80px, 14vw, 220px);
+    line-height: 0.88;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    margin-top: 60px;
+  }
+  .cover-title em {
+    font-style: italic;
+    font-weight: 300;
+    color: var(--walnut);
+  }
+  .cover-sub {
+    margin-top: 32px;
+    max-width: 640px;
+    font-size: 19px;
+    line-height: 1.5;
+    color: var(--ink-soft);
+  }
+  .cover-meta {
+    margin-top: 80px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+    padding-top: 28px;
+    border-top: 1px solid var(--hairline);
+  }
+  .cover-meta .item .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--concrete);
+    margin-bottom: 6px;
+  }
+  .cover-meta .item .val {
+    font-family: 'Fraunces', serif;
+    font-size: 19px;
+    color: var(--ink);
+  }
+  @media (max-width: 768px) {
+    .cover-meta { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ===== SECTION HEAD ===== */
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--honey);
+    margin-bottom: 18px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(44px, 6vw, 76px);
+    line-height: 0.95;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    margin-bottom: 36px;
+    max-width: 900px;
+  }
+  .section-title em {
+    font-style: italic;
+    color: var(--walnut);
+  }
+  .lede {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+    max-width: 720px;
+    margin-bottom: 48px;
+  }
+  .lede em { font-style: italic; color: var(--walnut); }
+
+  /* ===== AT A GLANCE ===== */
+  .glance-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+    margin: 40px 0;
+  }
+  .glance-cell {
+    padding: 36px 28px;
+    border-right: 1px solid var(--hairline);
+  }
+  .glance-cell:last-child { border-right: none; }
+  .glance-cell .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--concrete);
+    margin-bottom: 12px;
+  }
+  .glance-cell .big {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 42px;
+    line-height: 1;
+    color: var(--walnut);
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+  .glance-cell .big em { font-style: italic; }
+  .glance-cell .desc {
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.45;
+  }
+  @media (max-width: 768px) {
+    .glance-grid { grid-template-columns: 1fr; }
+    .glance-cell { border-right: none; border-bottom: 1px solid var(--hairline); }
+    .glance-cell:last-child { border-bottom: none; }
+  }
+
+  /* ===== PREP CHECKLIST ===== */
+  .prep-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--hairline);
+    border: 1px solid var(--hairline);
+    margin: 30px 0;
+  }
+  .prep-cell {
+    background: var(--paper);
+    padding: 28px 24px;
+    position: relative;
+  }
+  .prep-cell .num {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 28px;
+    color: var(--honey);
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+  .prep-cell h4 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 20px;
+    color: var(--ink);
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+  .prep-cell p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  @media (max-width: 768px) { .prep-grid { grid-template-columns: 1fr; } }
+
+  /* ===== DRAWING FRAME ===== */
+  .drawing {
+    background: var(--paper-warm);
+    border: 1px solid var(--hairline);
+    padding: 40px;
+    position: relative;
+    margin: 40px 0;
+    background-image:
+      linear-gradient(rgba(21,17,13,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(21,17,13,0.025) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .drawing-title-block {
+    position: absolute;
+    bottom: 0; left: 0;
+    background: var(--paper);
+    padding: 14px 22px;
+    border-top: 1px solid var(--hairline);
+    border-right: 1px solid var(--hairline);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .drawing-title-block strong { color: var(--walnut); letter-spacing: 0.18em; }
+  .drawing-scale {
+    position: absolute;
+    top: 18px; right: 22px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--concrete);
+  }
+  .drawing svg { display: block; width: 100%; height: auto; }
+
+  /* ===== TWO COLUMN ===== */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: start;
+    margin: 40px 0;
+  }
+  @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; gap: 40px; } }
+
+  /* ===== TOOLS / SHOPPING LIST ===== */
+  .list-section {
+    margin: 36px 0;
+  }
+  .list-section h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--walnut);
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--hairline);
+    letter-spacing: -0.01em;
+  }
+  .list-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 40px;
+  }
+  @media (max-width: 768px) { .list-grid { grid-template-columns: 1fr; } }
+  .list-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 16px;
+    padding: 12px 0;
+    border-bottom: 1px dotted var(--hairline);
+    font-size: 14px;
+    align-items: baseline;
+  }
+  .list-item .name { color: var(--ink); }
+  .list-item .name .detail { color: var(--concrete); font-size: 12px; display: block; margin-top: 2px; }
+  .list-item .qty {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--walnut);
+    letter-spacing: 0.05em;
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  /* ===== PHASE ===== */
+  .phase {
+    margin: 60px 0;
+    padding-top: 40px;
+    border-top: 1px solid var(--ink);
+    position: relative;
+  }
+  .phase-header {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 24px;
+    align-items: baseline;
+    margin-bottom: 28px;
+  }
+  .phase-num {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 64px;
+    line-height: 0.9;
+    color: var(--honey);
+    letter-spacing: -0.03em;
+  }
+  .phase-title {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 1.1;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .phase-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--concrete);
+    text-align: right;
+    line-height: 1.6;
+  }
+  .phase-meta strong { color: var(--walnut); display: block; font-weight: 500; }
+  .phase-body {
+    margin-left: 104px;
+    max-width: 880px;
+  }
+  @media (max-width: 768px) {
+    .phase-header { grid-template-columns: 56px 1fr; }
+    .phase-num { font-size: 48px; }
+    .phase-title { font-size: 26px; }
+    .phase-meta { grid-column: 1 / -1; text-align: left; margin-top: 8px; }
+    .phase-body { margin-left: 0; }
+  }
+  .phase-intro {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin-bottom: 28px;
+    font-style: italic;
+  }
+  .substeps {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px 36px;
+  }
+  @media (max-width: 768px) { .substeps { grid-template-columns: 1fr; } }
+  .substep {
+    padding: 16px 0;
+    border-top: 1px solid var(--hairline-soft);
+  }
+  .substep .step-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--honey);
+    margin-bottom: 6px;
+  }
+  .substep h5 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 17px;
+    color: var(--ink);
+    margin-bottom: 8px;
+    letter-spacing: -0.005em;
+  }
+  .substep p {
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+
+  /* ===== PRO TIP CALLOUT ===== */
+  .tip {
+    margin: 24px 0;
+    padding: 18px 22px 18px 48px;
+    background: rgba(193, 136, 84, 0.10);
+    border-left: 2px solid var(--walnut);
+    position: relative;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+  }
+  .tip::before {
+    content: "★";
+    position: absolute;
+    left: 18px;
+    top: 16px;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--walnut);
+    font-size: 18px;
+  }
+  .tip strong {
+    color: var(--walnut);
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 500;
+    font-size: 15px;
+    margin-right: 6px;
+  }
+
+  /* ===== CLOSING ===== */
+  .closing {
+    text-align: center;
+    padding: 140px 0 100px;
+  }
+  .closing .mark {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 28px;
+    color: var(--walnut);
+    margin-bottom: 40px;
+  }
+  .closing-text {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(28px, 4vw, 48px);
+    line-height: 1.25;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .closing-text em { font-style: italic; color: var(--walnut); }
+  .colophon {
+    margin-top: 80px;
+    padding-top: 28px;
+    border-top: 1px solid var(--hairline);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--concrete);
+    text-align: center;
+  }
+
+  /* ===== SVG STYLES ===== */
+  .stroke-ink { stroke: var(--ink); fill: none; }
+  .stroke-walnut { stroke: var(--walnut); fill: none; }
+  .stroke-honey { stroke: var(--honey); fill: none; }
+  .stroke-concrete { stroke: var(--concrete); fill: none; }
+  .fill-walnut { fill: var(--walnut); }
+  .fill-honey { fill: var(--honey); }
+  .fill-paper { fill: var(--paper); }
+  .fill-concrete { fill: var(--concrete); }
+  .dim-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    fill: var(--ink-soft);
+    letter-spacing: 0.05em;
+  }
+  .anno-label {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 11px;
+    fill: var(--walnut);
+  }
+  .leader { stroke: var(--ink-soft); stroke-width: 0.4; fill: none; }
+  .dim-line { stroke: var(--ink-soft); stroke-width: 0.5; fill: none; }
+  .dashed { stroke-dasharray: 4 3; }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+
+<div class="container">
+
+  <!-- TOP RULE -->
+  <div class="top-rule">
+    <div><span class="dot"></span>Onsen / Build Set / Rev. 03</div>
+    <div>Vancouver, BC · 49.26°N</div>
+  </div>
+
+  <!-- ===== COVER ===== -->
+  <section class="cover sheet" style="border-bottom: 1px solid var(--hairline);">
+    <div class="sheet-marker">
+      <span class="num">A0</span>
+      Cover · Sheet 1 of 14
+    </div>
+
+    <div>
+      <div class="eyebrow">A backyard pavilion · how to build it</div>
+      <h1 class="cover-title">Onsen,<br><em>by hand.</em></h1>
+      <p class="cover-sub">A complete construction guide for an 11 × 8 outdoor bath pavilion — heavy timber frame, horizontal cedar cladding, a translucent roof for the long winter light, a cold plunge and a hot shower. Built across five weekends with a circular saw, a drill, and one good neighbour.</p>
+    </div>
+
+    <div class="cover-meta">
+      <div class="item"><div class="label">Footprint</div><div class="val">11′-0″ × 8′-0″</div></div>
+      <div class="item"><div class="label">Frame</div><div class="val">Doug Fir 6×6</div></div>
+      <div class="item"><div class="label">Roof</div><div class="val">Polycarbonate / Lattice</div></div>
+      <div class="item"><div class="label">Climate</div><div class="val">Coastal · Zone 4 PNW</div></div>
+    </div>
+  </section>
+
+  <!-- ===== AT A GLANCE ===== -->
+  <section class="sheet">
+    <div class="sheet-marker">
+      <span class="num">A0.1</span>
+      At a Glance
+    </div>
+    <div class="eyebrow">Before you commit · 01</div>
+    <h2 class="section-title">What you're <em>signing up for.</em></h2>
+    <p class="lede">It is a real build. Not hard — but real. Plan on five productive weekends spread across a month or two, plus another two for plumbing, finishes, and the inevitable second trip to the lumberyard.</p>
+
+    <div class="glance-grid">
+      <div class="glance-cell">
+        <div class="label">Difficulty</div>
+        <div class="big"><em>Intermediate</em></div>
+        <div class="desc">If you've built a deck or framed a wall, you have the skills. The trickiest moments are squaring the frame and dropping the polycarbonate sheets cleanly.</div>
+      </div>
+      <div class="glance-cell">
+        <div class="label">Time</div>
+        <div class="big">5<em> weekends</em></div>
+        <div class="desc">Two for the pad and frame, one for the roof, one for cladding, one for plumbing and fit-out. Add a buffer weekend you'll definitely use.</div>
+      </div>
+      <div class="glance-cell">
+        <div class="label">Materials</div>
+        <div class="big">~$4,800<em> CAD</em></div>
+        <div class="desc">Range $3,800–$5,500 depending on lumber grade and whether you splurge on cedar or stay with stained fir. Plunge tub and shower fixtures included.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BEFORE YOU START ===== -->
+  <section class="sheet">
+    <div class="sheet-marker">
+      <span class="num">A0.2</span>
+      Prep Work
+    </div>
+    <div class="eyebrow">Before you commit · 02</div>
+    <h2 class="section-title">Six things to do <em>before lifting a board.</em></h2>
+
+    <div class="prep-grid">
+      <div class="prep-cell">
+        <div class="num">01</div>
+        <h4>Check your setbacks</h4>
+        <p>Vancouver allows accessory structures under 10 m² without a permit in most zones, but rear-yard and side-yard setbacks still apply. Call your district planning desk. Five minutes, saves grief.</p>
+      </div>
+      <div class="prep-cell">
+        <div class="num">02</div>
+        <h4>BC One Call before digging</h4>
+        <p>Free locate service for buried utilities. Three business days' notice. <code style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--walnut);">1-800-474-6886</code> or clickbeforeyoudig.com. Don't skip this for a small pad — gas lines don't care about your project size.</p>
+      </div>
+      <div class="prep-cell">
+        <div class="num">03</div>
+        <h4>Sun and prevailing rain</h4>
+        <p>Plan the open front to face south or southwest. The solid rear wall takes the prevailing winter weather (here, off the ocean, that's southeast). Stand in the proposed footprint at 4 pm in February if you can.</p>
+      </div>
+      <div class="prep-cell">
+        <div class="num">04</div>
+        <h4>Drainage and grading</h4>
+        <p>Pad slopes 1.5% to the shower drain. Around the perimeter, plan for a 12″ river-rock band that catches splash and routes water away. If you can tie into existing storm drainage, do it now while you're already digging.</p>
+      </div>
+      <div class="prep-cell">
+        <div class="num">05</div>
+        <h4>Lead times</h4>
+        <p>Order the plunge tub three weeks out. Polycarbonate sheets often need to be ordered in too. The 6×6 Doug fir posts are usually in stock at any larger yard — but check before you load up the trailer.</p>
+      </div>
+      <div class="prep-cell">
+        <div class="num">06</div>
+        <h4>One helper</h4>
+        <p>Most of this is solo work. But for raising the corner posts and dropping the doubled beams on top, you want a second pair of hands. Schedule that weekend now, not later.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TOOLS ===== -->
+  <section class="sheet">
+    <div class="sheet-marker">
+      <span class="num">A0.3</span>
+      Tools
+    </div>
+    <div class="eyebrow">What you'll need · 03</div>
+    <h2 class="section-title">Tools, <em>by category.</em></h2>
+    <p class="lede">No specialty equipment. A weekend carpenter's kit, plus a couple of plumbing-specific bits you can pick up at the hardware store the morning of phase five.</p>
+
+    <div class="list-section">
+      <div class="two-col" style="margin: 0;">
+        <div>
+          <h3>Layout & cutting</h3>
+          <div class="list-item"><div class="name">Tape measure, 25 ft</div><div class="qty">1</div></div>
+          <div class="list-item"><div class="name">Speed square + framing square</div><div class="qty">1 ea</div></div>
+          <div class="list-item"><div class="name">Chalk line</div><div class="qty">1</div></div>
+          <div class="list-item"><div class="name">4-ft spirit level</div><div class="qty">1</div></div>
+          <div class="list-item"><div class="name">Line laser <span class="detail">helpful but optional</span></div><div class="qty">1</div></div>
+          <div class="list-item"><div class="name">Circular saw, 7¼″</div><div class="qty">1</div></div>
+          <div class="list-item"><div class="name">Miter saw, 10″ or 12″ <span class="detail">rent if you don't own</span></div><div class="qty">1</div></div>
+          <div class="list-item"><div class="name">Jigsaw, for cutouts</div><div class="qty">1</div></div>
+
+          <h3 style="margin-top: 32px;">Concrete & site</h3>
+          <div class="list-item"><div class="name">Round-point shovel + flat shovel</div><div class="qty">1 ea</div></div>
+          <div class="list-item"><div class="name">Wheelbarrow</div><div class="qty">1</div></div>
+          <div class="list-item"><div class="name">Plate compactor <span class="detail">rent — half day</span></div><div class="qty">1</div></div>
+          <div class="list-item"><div class="name">Magnesium float + edger</div><div class="qty">1 ea</div></div>
+          <div class="list-item"><div class="name">Mixing tub or mixer rental</div><div class="qty">1</div></div>
+        </div>
+
+        <div>
+          <h3>Fastening & drilling</h3>
+          <div class="list-item"><div class="name">Impact driver</div><div class="qty">1</div></div>
+          <div class="list-item"><div class="name">Drill / driver, ½″ chuck</div><div class="qty">1</div></div>
+          <div class="list-item"><div class="name">Spade bits + countersink set</div><div class="qty">1 set</div></div>
+          <div class="list-item"><div class="name">Ratchet & socket set</div><div class="qty">1 set</div></div>
+          <div class="list-item"><div class="name">Hammer, framing claw</div><div class="qty">1</div></div>
+          <div class="list-item"><div class="name">Pry bar / cat's paw</div><div class="qty">1</div></div>
+
+          <h3 style="margin-top: 32px;">Plumbing & finishing</h3>
+          <div class="list-item"><div class="name">PEX crimper or expander</div><div class="qty">1</div></div>
+          <div class="list-item"><div class="name">Tubing cutter</div><div class="qty">1</div></div>
+          <div class="list-item"><div class="name">Pipe wrench, 14″</div><div class="qty">1</div></div>
+          <div class="list-item"><div class="name">Caulk gun</div><div class="qty">1</div></div>
+          <div class="list-item"><div class="name">3″ roller + 2½″ brush</div><div class="qty">1 ea</div></div>
+          <div class="list-item"><div class="name">Random orbit sander</div><div class="qty">1</div></div>
+          <div class="list-item"><div class="name">Hearing, eye, dust protection</div><div class="qty">always</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PLAN VIEW ===== -->
+  <section class="sheet">
+    <div class="sheet-marker">
+      <span class="num">A1.0</span>
+      Plan View
+    </div>
+    <div class="eyebrow">Drawings · 04</div>
+    <h2 class="section-title">The <em>floor plan.</em></h2>
+    <p class="lede">Three zones from left to right: the cold plunge against the rear wall, a short transition strip with the step-up bench, and the shower stall on the open east side. The whole pad sits inside a river-rock collar that catches splash and helps with drainage.</p>
+
+    <div class="drawing">
+      <div class="drawing-scale">Scale 1/2″ = 1′-0″ · Plan</div>
+      <svg viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg">
+        <!-- Pad outline -->
+        <rect x="120" y="100" width="660" height="360" class="stroke-ink fill-paper" stroke-width="1.5"/>
+
+        <!-- River rock collar -->
+        <rect x="100" y="80" width="700" height="400" class="stroke-concrete" stroke-width="0.8" stroke-dasharray="3 2"/>
+        <text x="105" y="76" class="dim-label">RIVER ROCK PERIMETER, 12″</text>
+
+        <!-- Posts -->
+        <rect x="115" y="95" width="20" height="20" class="fill-walnut"/>
+        <rect x="765" y="95" width="20" height="20" class="fill-walnut"/>
+        <rect x="115" y="445" width="20" height="20" class="fill-walnut"/>
+        <rect x="765" y="445" width="20" height="20" class="fill-walnut"/>
+
+        <!-- Rear wall (solid) -->
+        <rect x="135" y="105" width="630" height="14" class="fill-walnut" opacity="0.85"/>
+        <text x="450" y="98" class="anno-label" text-anchor="middle">Rear wall — solid T&G</text>
+
+        <!-- Left wall (full) -->
+        <rect x="120" y="119" width="14" height="326" class="fill-walnut" opacity="0.85"/>
+        <text x="108" y="285" class="anno-label" text-anchor="middle" transform="rotate(-90 108 285)">Left wall — full</text>
+
+        <!-- Right wall (partial, behind shower) -->
+        <rect x="766" y="119" width="14" height="170" class="fill-walnut" opacity="0.85"/>
+        <text x="797" y="200" class="anno-label" transform="rotate(90 797 200)">Right — partial</text>
+
+        <!-- Plunge tub -->
+        <rect x="160" y="260" width="220" height="160" class="stroke-walnut" stroke-width="2" fill="none"/>
+        <rect x="170" y="270" width="200" height="140" rx="4" class="stroke-honey" stroke-width="1" fill="rgba(193,136,84,0.08)"/>
+        <text x="270" y="345" class="anno-label" text-anchor="middle">Plunge tub</text>
+        <text x="270" y="362" class="dim-label" text-anchor="middle">5′-6″ × 3′-6″ stock tank</text>
+
+        <!-- Bench step -->
+        <rect x="380" y="380" width="80" height="40" class="stroke-walnut" stroke-width="1.2" fill="rgba(63,36,18,0.1)"/>
+        <text x="420" y="403" class="dim-label" text-anchor="middle">STEP</text>
+
+        <!-- Shower zone -->
+        <rect x="560" y="200" width="200" height="220" class="stroke-honey" stroke-width="1" stroke-dasharray="3 2" fill="rgba(193,136,84,0.05)"/>
+        <text x="660" y="260" class="anno-label" text-anchor="middle">Shower zone</text>
+
+        <!-- Shower fixture -->
+        <circle cx="640" cy="320" r="5" class="fill-walnut"/>
+        <line x1="640" y1="320" x2="640" y2="240" class="stroke-walnut" stroke-width="2"/>
+        <line x1="640" y1="240" x2="680" y2="240" class="stroke-walnut" stroke-width="2"/>
+        <circle cx="685" cy="240" r="6" class="fill-honey"/>
+        <text x="660" y="350" class="dim-label" text-anchor="middle">Black pipe + copper</text>
+
+        <!-- Drain -->
+        <circle cx="700" cy="380" r="8" class="stroke-ink" stroke-width="0.8" fill="none"/>
+        <circle cx="700" cy="380" r="4" class="fill-concrete"/>
+        <text x="720" y="384" class="dim-label">DRAIN</text>
+
+        <!-- Dimensions -->
+        <line x1="120" y1="500" x2="780" y2="500" class="dim-line"/>
+        <line x1="120" y1="495" x2="120" y2="505" class="dim-line"/>
+        <line x1="780" y1="495" x2="780" y2="505" class="dim-line"/>
+        <text x="450" y="515" class="dim-label" text-anchor="middle">11′-0″</text>
+
+        <line x1="60" y1="100" x2="60" y2="460" class="dim-line"/>
+        <line x1="55" y1="100" x2="65" y2="100" class="dim-line"/>
+        <line x1="55" y1="460" x2="65" y2="460" class="dim-line"/>
+        <text x="50" y="285" class="dim-label" text-anchor="middle" transform="rotate(-90 50 285)">8′-0″</text>
+
+        <!-- Open front indicator -->
+        <text x="450" y="478" class="anno-label" text-anchor="middle">— open front —</text>
+        <line x1="200" y1="468" x2="380" y2="468" class="stroke-walnut" stroke-width="0.4" stroke-dasharray="2 3"/>
+        <line x1="520" y1="468" x2="700" y2="468" class="stroke-walnut" stroke-width="0.4" stroke-dasharray="2 3"/>
+
+        <!-- North arrow -->
+        <g transform="translate(840, 510)">
+          <circle r="18" class="stroke-ink" stroke-width="0.6" fill="none"/>
+          <path d="M 0,-14 L 5,8 L 0,4 L -5,8 Z" class="fill-walnut"/>
+          <text x="0" y="-22" class="dim-label" text-anchor="middle">N</text>
+        </g>
+      </svg>
+      <div class="drawing-title-block"><strong>A1.0</strong> &nbsp; Plan view — pad &amp; fixtures</div>
+    </div>
+  </section>
+
+  <!-- ===== ELEVATIONS ===== -->
+  <section class="sheet">
+    <div class="sheet-marker">
+      <span class="num">A1.1</span>
+      Elevations
+    </div>
+    <div class="eyebrow">Drawings · 05</div>
+    <h2 class="section-title">Front & side <em>elevations.</em></h2>
+
+    <div class="drawing">
+      <div class="drawing-scale">Scale 3/8″ = 1′-0″ · Front Elevation</div>
+      <svg viewBox="0 0 900 460" xmlns="http://www.w3.org/2000/svg">
+        <!-- Ground -->
+        <line x1="40" y1="380" x2="860" y2="380" class="stroke-ink" stroke-width="1"/>
+        <pattern id="hatch" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="6" class="stroke-concrete" stroke-width="0.5"/>
+        </pattern>
+        <rect x="40" y="380" width="820" height="14" fill="url(#hatch)"/>
+
+        <!-- Concrete pad -->
+        <rect x="100" y="370" width="700" height="14" class="fill-concrete"/>
+        <text x="450" y="408" class="dim-label" text-anchor="middle">CONCRETE PAD, 4″ ON 4″ COMPACTED GRAVEL</text>
+
+        <!-- Posts -->
+        <rect x="120" y="100" width="22" height="270" class="fill-walnut"/>
+        <rect x="758" y="100" width="22" height="270" class="fill-walnut"/>
+
+        <!-- Doubled beam (front) -->
+        <rect x="100" y="80" width="700" height="22" class="fill-walnut"/>
+        <line x1="100" y1="91" x2="800" y2="91" class="stroke-honey" stroke-width="0.5" opacity="0.5"/>
+
+        <!-- Rafters (visible end) -->
+        <g class="fill-walnut">
+          <rect x="100" y="68" width="14" height="20"/>
+          <rect x="240" y="68" width="14" height="20"/>
+          <rect x="380" y="68" width="14" height="20"/>
+          <rect x="520" y="68" width="14" height="20"/>
+          <rect x="660" y="68" width="14" height="20"/>
+          <rect x="786" y="68" width="14" height="20"/>
+        </g>
+
+        <!-- Lattice slats (perpendicular, shown as horizontal lines on top) -->
+        <g class="stroke-walnut" stroke-width="3">
+          <line x1="100" y1="62" x2="800" y2="62"/>
+          <line x1="100" y1="56" x2="800" y2="56"/>
+          <line x1="100" y1="50" x2="800" y2="50"/>
+        </g>
+
+        <!-- Polycarbonate (translucent) -->
+        <rect x="98" y="44" width="704" height="6" fill="rgba(193,136,84,0.25)" stroke="rgba(193,136,84,0.6)" stroke-width="0.5"/>
+        <text x="820" y="52" class="anno-label">8mm twin-wall PC</text>
+        <line x1="815" y1="49" x2="803" y2="49" class="leader"/>
+
+        <!-- Corner braces -->
+        <line x1="142" y1="105" x2="180" y2="142" class="stroke-walnut" stroke-width="6"/>
+        <line x1="758" y1="142" x2="720" y2="105" class="stroke-walnut" stroke-width="6"/>
+        <text x="200" y="155" class="anno-label">Corner brace, 2×6 @ 45°</text>
+        <line x1="195" y1="148" x2="178" y2="135" class="leader"/>
+
+        <!-- Cladding lines on rear wall (visible behind posts) -->
+        <g class="stroke-honey" stroke-width="0.4" opacity="0.6">
+          <line x1="142" y1="130" x2="758" y2="130"/>
+          <line x1="142" y1="146" x2="758" y2="146"/>
+          <line x1="142" y1="162" x2="758" y2="162"/>
+          <line x1="142" y1="178" x2="758" y2="178"/>
+          <line x1="142" y1="194" x2="758" y2="194"/>
+          <line x1="142" y1="210" x2="758" y2="210"/>
+          <line x1="142" y1="226" x2="758" y2="226"/>
+          <line x1="142" y1="242" x2="758" y2="242"/>
+          <line x1="142" y1="258" x2="758" y2="258"/>
+          <line x1="142" y1="274" x2="758" y2="274"/>
+          <line x1="142" y1="290" x2="758" y2="290"/>
+          <line x1="142" y1="306" x2="758" y2="306"/>
+          <line x1="142" y1="322" x2="758" y2="322"/>
+          <line x1="142" y1="338" x2="758" y2="338"/>
+          <line x1="142" y1="354" x2="758" y2="354"/>
+        </g>
+        <rect x="142" y="115" width="616" height="255" fill="rgba(193,136,84,0.12)"/>
+
+        <!-- Plunge tub silhouette -->
+        <rect x="180" y="270" width="200" height="100" class="stroke-walnut" stroke-width="1.5" fill="rgba(63,36,18,0.4)"/>
+        <rect x="190" y="278" width="180" height="22" fill="rgba(193,136,84,0.25)"/>
+        <text x="280" y="332" class="anno-label" text-anchor="middle" fill="rgba(236,229,216,0.9)">PLUNGE</text>
+
+        <!-- Shower fixture -->
+        <line x1="640" y1="370" x2="640" y2="210" class="stroke-ink" stroke-width="2.5"/>
+        <line x1="640" y1="210" x2="690" y2="210" class="stroke-ink" stroke-width="2.5"/>
+        <circle cx="696" cy="216" r="8" class="fill-honey"/>
+        <line x1="640" y1="290" x2="660" y2="290" class="stroke-ink" stroke-width="2"/>
+        <text x="610" y="270" class="anno-label">Shower</text>
+
+        <!-- String lights -->
+        <path d="M 200 110 Q 350 130 500 110 Q 650 130 750 110" class="stroke-honey" stroke-width="0.5" fill="none" opacity="0.7"/>
+        <g class="fill-honey">
+          <circle cx="280" cy="124" r="2.5"/>
+          <circle cx="360" cy="128" r="2.5"/>
+          <circle cx="450" cy="126" r="2.5"/>
+          <circle cx="540" cy="128" r="2.5"/>
+          <circle cx="620" cy="124" r="2.5"/>
+        </g>
+
+        <!-- Dimensions -->
+        <line x1="100" y1="430" x2="800" y2="430" class="dim-line"/>
+        <line x1="100" y1="425" x2="100" y2="435" class="dim-line"/>
+        <line x1="800" y1="425" x2="800" y2="435" class="dim-line"/>
+        <text x="450" y="445" class="dim-label" text-anchor="middle">11′-0″</text>
+
+        <line x1="60" y1="80" x2="60" y2="370" class="dim-line"/>
+        <line x1="55" y1="80" x2="65" y2="80" class="dim-line"/>
+        <line x1="55" y1="370" x2="65" y2="370" class="dim-line"/>
+        <text x="50" y="225" class="dim-label" text-anchor="middle" transform="rotate(-90 50 225)">8′-0″ FRAME HT.</text>
+      </svg>
+      <div class="drawing-title-block"><strong>A1.1</strong> &nbsp; Front elevation — facing the open side</div>
+    </div>
+  </section>
+
+  <!-- ===== FRAMING ===== -->
+  <section class="sheet">
+    <div class="sheet-marker">
+      <span class="num">A2.0</span>
+      Framing
+    </div>
+    <div class="eyebrow">Drawings · 06</div>
+    <h2 class="section-title">Framing <em>diagram.</em></h2>
+    <p class="lede">Four posts, two doubled beams running the long axis, six rafters spanning between, eleven slats running back across the top of the rafters. The polycarbonate sheets sit on the slats. That's the whole roof system.</p>
+
+    <div class="drawing">
+      <div class="drawing-scale">Iso · NTS</div>
+      <svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg">
+        <!-- Ground -->
+        <line x1="80" y1="440" x2="820" y2="440" class="stroke-concrete" stroke-width="0.8"/>
+
+        <!-- Back posts -->
+        <g class="fill-walnut">
+          <rect x="240" y="120" width="20" height="320"/>
+          <rect x="640" y="120" width="20" height="320"/>
+        </g>
+        <!-- Front posts -->
+        <g class="fill-walnut">
+          <rect x="180" y="160" width="22" height="280"/>
+          <rect x="700" y="160" width="22" height="280"/>
+        </g>
+
+        <!-- Back doubled beam -->
+        <rect x="220" y="100" width="460" height="14" class="fill-walnut"/>
+        <rect x="220" y="86" width="460" height="14" class="fill-walnut"/>
+        <line x1="220" y1="100" x2="680" y2="100" class="stroke-honey" stroke-width="0.4"/>
+        <text x="700" y="96" class="anno-label">2× 2×8 doubled beam (back)</text>
+
+        <!-- Front doubled beam -->
+        <rect x="160" y="140" width="560" height="14" class="fill-walnut"/>
+        <rect x="160" y="126" width="560" height="14" class="fill-walnut"/>
+        <line x1="160" y1="140" x2="720" y2="140" class="stroke-honey" stroke-width="0.4"/>
+        <text x="120" y="170" class="anno-label">2× 2×8 doubled beam (front)</text>
+        <line x1="155" y1="165" x2="160" y2="155" class="leader"/>
+
+        <!-- Rafters spanning front-back -->
+        <g>
+          <line x1="200" y1="146" x2="250" y2="106" class="stroke-walnut" stroke-width="6"/>
+          <line x1="280" y1="146" x2="330" y2="106" class="stroke-walnut" stroke-width="6"/>
+          <line x1="360" y1="146" x2="410" y2="106" class="stroke-walnut" stroke-width="6"/>
+          <line x1="440" y1="146" x2="490" y2="106" class="stroke-walnut" stroke-width="6"/>
+          <line x1="520" y1="146" x2="570" y2="106" class="stroke-walnut" stroke-width="6"/>
+          <line x1="600" y1="146" x2="650" y2="106" class="stroke-walnut" stroke-width="6"/>
+          <line x1="680" y1="146" x2="710" y2="106" class="stroke-walnut" stroke-width="6"/>
+        </g>
+        <text x="720" y="120" class="anno-label">7× 2×6 rafters @ 22″ o.c.</text>
+
+        <!-- Top slats running perpendicular (shown as lighter lines) -->
+        <g class="stroke-walnut" stroke-width="2.5" opacity="0.85">
+          <line x1="195" y1="138" x2="710" y2="98"/>
+          <line x1="195" y1="130" x2="710" y2="90"/>
+          <line x1="195" y1="122" x2="710" y2="82"/>
+          <line x1="195" y1="114" x2="710" y2="74"/>
+        </g>
+        <text x="720" y="80" class="anno-label">2×2 slats @ 12″ o.c.</text>
+
+        <!-- Corner brace, visible -->
+        <line x1="200" y1="170" x2="232" y2="148" class="stroke-walnut" stroke-width="5"/>
+        <line x1="700" y1="170" x2="670" y2="148" class="stroke-walnut" stroke-width="5"/>
+        <text x="80" y="220" class="anno-label">Corner brace, 2×6 cut at 45°</text>
+        <line x1="135" y1="215" x2="200" y2="180" class="leader"/>
+
+        <!-- Post base anchors -->
+        <g class="fill-concrete">
+          <rect x="178" y="440" width="26" height="6"/>
+          <rect x="238" y="440" width="24" height="6"/>
+          <rect x="638" y="440" width="24" height="6"/>
+          <rect x="698" y="440" width="26" height="6"/>
+        </g>
+        <text x="190" y="465" class="dim-label">POST BASE</text>
+        <text x="190" y="478" class="dim-label">SIMPSON ABU66Z</text>
+
+        <!-- Dimensions -->
+        <line x1="160" y1="490" x2="722" y2="490" class="dim-line"/>
+        <line x1="160" y1="485" x2="160" y2="495" class="dim-line"/>
+        <line x1="722" y1="485" x2="722" y2="495" class="dim-line"/>
+        <text x="441" y="498" class="dim-label" text-anchor="middle" style="background: var(--paper-warm);">11′-0″ between front post centers</text>
+      </svg>
+      <div class="drawing-title-block"><strong>A2.0</strong> &nbsp; Framing diagram — exploded isometric</div>
+    </div>
+  </section>
+
+  <!-- ===== CONNECTION DETAILS ===== -->
+  <section class="sheet">
+    <div class="sheet-marker">
+      <span class="num">A2.1</span>
+      Details
+    </div>
+    <div class="eyebrow">Drawings · 07</div>
+    <h2 class="section-title">Three <em>connections</em> that matter.</h2>
+    <p class="lede">Get these three right and the structure will outlast you. Get them wrong and you'll be re-doing things in a wet spring four years from now.</p>
+
+    <div class="drawing">
+      <div class="drawing-scale">Details · Scale varies</div>
+      <svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg">
+        <!-- DETAIL 1: POST BASE -->
+        <g transform="translate(0, 0)">
+          <text x="40" y="30" class="anno-label">① Post base — anchor to concrete</text>
+
+          <!-- Post -->
+          <rect x="100" y="80" width="60" height="180" class="fill-walnut"/>
+          <line x1="100" y1="80" x2="100" y2="260" class="stroke-honey" stroke-width="0.4"/>
+
+          <!-- Anchor -->
+          <rect x="90" y="260" width="80" height="10" class="fill-walnut"/>
+          <rect x="118" y="270" width="24" height="20" class="fill-walnut"/>
+          <line x1="130" y1="290" x2="130" y2="320" class="stroke-walnut" stroke-width="3"/>
+
+          <!-- Concrete -->
+          <pattern id="conc1" patternUnits="userSpaceOnUse" width="4" height="4">
+            <circle cx="2" cy="2" r="0.6" class="fill-concrete"/>
+          </pattern>
+          <rect x="40" y="290" width="200" height="50" fill="url(#conc1)"/>
+          <rect x="40" y="290" width="200" height="50" class="stroke-ink" stroke-width="0.6" fill="none"/>
+
+          <!-- Labels -->
+          <text x="190" y="170" class="dim-label">6×6 D-fir post</text>
+          <line x1="185" y1="166" x2="165" y2="160" class="leader"/>
+
+          <text x="190" y="265" class="dim-label">Simpson ABU66Z</text>
+          <text x="190" y="278" class="dim-label">standoff base</text>
+          <line x1="185" y1="270" x2="170" y2="265" class="leader"/>
+
+          <text x="190" y="320" class="dim-label">⅝″ anchor bolt</text>
+          <text x="190" y="333" class="dim-label">epoxy-set, 6″ embed</text>
+          <line x1="185" y1="320" x2="135" y2="315" class="leader"/>
+
+          <text x="80" y="320" class="dim-label">¾″ standoff (rot gap)</text>
+          <line x1="115" y1="316" x2="130" y2="275" class="leader"/>
+        </g>
+
+        <!-- DETAIL 2: BEAM SANDWICH -->
+        <g transform="translate(310, 0)">
+          <text x="40" y="30" class="anno-label">② Beam-to-post sandwich</text>
+
+          <!-- Post -->
+          <rect x="120" y="120" width="50" height="160" class="fill-walnut"/>
+
+          <!-- Two 2x8 beams sandwiching -->
+          <rect x="60" y="100" width="180" height="50" class="fill-walnut"/>
+          <rect x="60" y="100" width="180" height="50" class="stroke-honey" stroke-width="0.4" fill="none"/>
+          <line x1="60" y1="125" x2="240" y2="125" class="stroke-honey" stroke-width="0.4"/>
+
+          <!-- Hidden post edge dashed through beams -->
+          <line x1="120" y1="100" x2="120" y2="150" class="stroke-ink" stroke-width="0.5" stroke-dasharray="2 2"/>
+          <line x1="170" y1="100" x2="170" y2="150" class="stroke-ink" stroke-width="0.5" stroke-dasharray="2 2"/>
+
+          <!-- Through-bolts -->
+          <g class="fill-ink">
+            <circle cx="105" cy="115" r="3"/>
+            <circle cx="105" cy="138" r="3"/>
+            <circle cx="195" cy="115" r="3"/>
+            <circle cx="195" cy="138" r="3"/>
+          </g>
+
+          <!-- Labels -->
+          <text x="20" y="85" class="dim-label">2× 2×8 beam (one each side)</text>
+          <line x1="50" y1="92" x2="80" y2="100" class="leader"/>
+
+          <text x="245" y="118" class="dim-label">½″ × 7″ carriage</text>
+          <text x="245" y="131" class="dim-label">bolts, 4 ea joint</text>
+          <line x1="240" y1="125" x2="200" y2="125" class="leader"/>
+
+          <text x="20" y="290" class="dim-label">Beams flush with</text>
+          <text x="20" y="303" class="dim-label">top of post</text>
+          <line x1="55" y1="290" x2="100" y2="200" class="leader"/>
+        </g>
+
+        <!-- DETAIL 3: CORNER BRACE -->
+        <g transform="translate(620, 0)">
+          <text x="20" y="30" class="anno-label">③ Corner brace at 45°</text>
+
+          <!-- Post -->
+          <rect x="40" y="80" width="50" height="200" class="fill-walnut"/>
+
+          <!-- Beam -->
+          <rect x="40" y="80" width="220" height="40" class="fill-walnut"/>
+
+          <!-- Brace -->
+          <polygon points="90,120 90,180 150,120" class="fill-walnut"/>
+          <line x1="90" y1="180" x2="150" y2="120" class="stroke-honey" stroke-width="0.4"/>
+
+          <!-- Lag bolts shown as dots -->
+          <g class="fill-ink">
+            <circle cx="98" cy="170" r="2"/>
+            <circle cx="108" cy="160" r="2"/>
+            <circle cx="140" cy="132" r="2"/>
+            <circle cx="130" cy="142" r="2"/>
+          </g>
+
+          <!-- Angle indicator -->
+          <path d="M 90 150 A 30 30 0 0 0 110 130" class="stroke-walnut" stroke-width="0.6" fill="none"/>
+          <text x="110" y="155" class="dim-label">45°</text>
+
+          <!-- Labels -->
+          <text x="160" y="195" class="dim-label">2×6 cut both ends</text>
+          <text x="160" y="208" class="dim-label">at 45°, ~30″ long</text>
+          <line x1="155" y1="195" x2="130" y2="155" class="leader"/>
+
+          <text x="160" y="240" class="dim-label">⅜″ × 4″ lag bolts</text>
+          <text x="160" y="253" class="dim-label">2 each end</text>
+          <line x1="155" y1="240" x2="115" y2="170" class="leader"/>
+        </g>
+      </svg>
+      <div class="drawing-title-block"><strong>A2.1</strong> &nbsp; Three connection details</div>
+    </div>
+  </section>
+
+  <!-- ===== SHOPPING LIST ===== -->
+  <section class="sheet">
+    <div class="sheet-marker">
+      <span class="num">A3.0</span>
+      Materials
+    </div>
+    <div class="eyebrow">What to buy · 08</div>
+    <h2 class="section-title">The <em>shopping list.</em></h2>
+    <p class="lede">Quantities include a small waste allowance. Prices below are mid-2025 Vancouver retail and will drift — use them as guidance for ratios between materials, not as gospel.</p>
+
+    <div class="list-section">
+      <h3>Structure — lumber</h3>
+      <div class="list-grid">
+        <div>
+          <div class="list-item"><div class="name">6×6 Doug fir, 8 ft <span class="detail">Posts</span></div><div class="qty">4 pcs</div></div>
+          <div class="list-item"><div class="name">2×8 Doug fir, 12 ft <span class="detail">Long beams (doubled)</span></div><div class="qty">4 pcs</div></div>
+          <div class="list-item"><div class="name">2×6 Doug fir, 10 ft <span class="detail">Rafters</span></div><div class="qty">7 pcs</div></div>
+          <div class="list-item"><div class="name">2×6 Doug fir, 8 ft <span class="detail">Corner braces</span></div><div class="qty">4 pcs</div></div>
+        </div>
+        <div>
+          <div class="list-item"><div class="name">2×2 cedar or fir, 14 ft <span class="detail">Roof slats over rafters</span></div><div class="qty">11 pcs</div></div>
+          <div class="list-item"><div class="name">2×4 SPF, 8 ft <span class="detail">Wall framing — studs &amp; plates</span></div><div class="qty">48 pcs</div></div>
+          <div class="list-item"><div class="name">2×4 PT, 12 ft <span class="detail">Bottom plates (in contact w/ pad)</span></div><div class="qty">4 pcs</div></div>
+          <div class="list-item"><div class="name">½″ exterior plywood, 4×8 <span class="detail">Sheathing behind cladding</span></div><div class="qty">7 sheets</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="list-section">
+      <h3>Cladding &amp; roof</h3>
+      <div class="list-grid">
+        <div>
+          <div class="list-item"><div class="name">1×6 T&G cedar or fir, 10 ft <span class="detail">Horizontal cladding</span></div><div class="qty">~50 pcs / 500 lf</div></div>
+          <div class="list-item"><div class="name">1×4 cedar, 8 ft <span class="detail">Corner trim &amp; edge boards</span></div><div class="qty">8 pcs</div></div>
+          <div class="list-item"><div class="name">Tyvek wrap, 9 ft × 100 ft roll</div><div class="qty">1 roll</div></div>
+        </div>
+        <div>
+          <div class="list-item"><div class="name">8mm twin-wall polycarbonate, 4 ft × 12 ft <span class="detail">Roof sheets, clear</span></div><div class="qty">3 sheets</div></div>
+          <div class="list-item"><div class="name">Polycarbonate H-profile connector, 12 ft</div><div class="qty">2 pcs</div></div>
+          <div class="list-item"><div class="name">Polycarbonate end-cap tape, 4 ft</div><div class="qty">6 pcs</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="list-section">
+      <h3>Concrete pad</h3>
+      <div class="list-grid">
+        <div>
+          <div class="list-item"><div class="name">¾″ minus drainage gravel <span class="detail">4″ compacted base, 88 sf</span></div><div class="qty">~1.5 yd³</div></div>
+          <div class="list-item"><div class="name">Bagged concrete mix, 30 kg <span class="detail">4″ slab, 88 sf</span></div><div class="qty">~32 bags</div></div>
+          <div class="list-item"><div class="name">6×6 W2.9 welded wire mesh, 5 ft × 10 ft</div><div class="qty">2 sheets</div></div>
+        </div>
+        <div>
+          <div class="list-item"><div class="name">2×4 PT, 12 ft <span class="detail">Form boards</span></div><div class="qty">4 pcs</div></div>
+          <div class="list-item"><div class="name">Vapour barrier, 6 mil poly</div><div class="qty">1 roll</div></div>
+          <div class="list-item"><div class="name">River rock, 1–2″ <span class="detail">Perimeter band, 12″ wide</span></div><div class="qty">~0.5 yd³</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="list-section">
+      <h3>Plumbing, electrical, fit-out</h3>
+      <div class="list-grid">
+        <div>
+          <div class="list-item"><div class="name">Stock tank, 5½′ × 3½′ × 2′ <span class="detail">Cold plunge</span></div><div class="qty">1</div></div>
+          <div class="list-item"><div class="name">Linear shower drain, 24″</div><div class="qty">1</div></div>
+          <div class="list-item"><div class="name">Black iron pipe ¾″ — shower riser kit</div><div class="qty">1 set</div></div>
+          <div class="list-item"><div class="name">Copper rain showerhead, 8″</div><div class="qty">1</div></div>
+          <div class="list-item"><div class="name">Thermostatic mixing valve <span class="detail">ASSE 1017, e.g. Caleffi 521</span></div><div class="qty">1</div></div>
+        </div>
+        <div>
+          <div class="list-item"><div class="name">PEX-A tubing, ½″ — red &amp; blue</div><div class="qty">100 ft ea</div></div>
+          <div class="list-item"><div class="name">PEX fittings, ½″ (ells, tees, valves)</div><div class="qty">1 kit</div></div>
+          <div class="list-item"><div class="name">String lights, outdoor S14, 24 ft</div><div class="qty">1 set</div></div>
+          <div class="list-item"><div class="name">Exterior wood stain — walnut</div><div class="qty">2 gal</div></div>
+          <div class="list-item"><div class="name">Exterior wood stain — honey</div><div class="qty">2 gal</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HARDWARE ===== -->
+  <section class="sheet">
+    <div class="sheet-marker">
+      <span class="num">A3.1</span>
+      Hardware
+    </div>
+    <div class="eyebrow">What to buy · 09</div>
+    <h2 class="section-title">Anchors, bolts, <em>and the small stuff.</em></h2>
+
+    <div class="list-section">
+      <div class="list-grid">
+        <div>
+          <h3>Anchors &amp; connectors</h3>
+          <div class="list-item"><div class="name">Simpson ABU66Z post base, hot-dip galv.</div><div class="qty">4</div></div>
+          <div class="list-item"><div class="name">⅝″ × 7″ wedge anchor or epoxy anchor</div><div class="qty">4</div></div>
+          <div class="list-item"><div class="name">Simpson H1 hurricane tie</div><div class="qty">14</div></div>
+          <div class="list-item"><div class="name">⅜″ × 4″ lag bolts + washers <span class="detail">corner braces</span></div><div class="qty">32</div></div>
+          <div class="list-item"><div class="name">½″ × 7″ carriage bolts + washers + nuts <span class="detail">beam-to-post</span></div><div class="qty">16</div></div>
+        </div>
+        <div>
+          <h3>Fasteners</h3>
+          <div class="list-item"><div class="name">3″ exterior structural screws, 5 lb box</div><div class="qty">1 box</div></div>
+          <div class="list-item"><div class="name">2½″ exterior screws, 5 lb box</div><div class="qty">2 boxes</div></div>
+          <div class="list-item"><div class="name">1¼″ stainless finish nails for T&G</div><div class="qty">1 box</div></div>
+          <div class="list-item"><div class="name">Polycarbonate roofing screws w/ neoprene washer</div><div class="qty">50 pcs</div></div>
+          <div class="list-item"><div class="name">16d framing nails</div><div class="qty">5 lb</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BUILD SEQUENCE ===== -->
+  <section class="sheet">
+    <div class="sheet-marker">
+      <span class="num">A4.0</span>
+      Build Sequence
+    </div>
+    <div class="eyebrow">The build · 10</div>
+    <h2 class="section-title">Six phases, <em>five weekends.</em></h2>
+    <p class="lede">The order matters. Pad before frame, frame before roof, roof before walls (so you stay dry while you work), walls before plumbing rough-in, plumbing before tile and fit-out. Trust the sequence.</p>
+
+    <!-- PHASE 1 -->
+    <div class="phase">
+      <div class="phase-header">
+        <div class="phase-num">01</div>
+        <div class="phase-title">Site &amp; concrete pad</div>
+        <div class="phase-meta"><strong>Weekend 1</strong>12 hours · 2 people</div>
+      </div>
+      <div class="phase-body">
+        <p class="phase-intro">The least glamorous and most important weekend. A flat, well-drained pad is the difference between a structure that lasts twenty years and one that's racking in two.</p>
+
+        <div class="substeps">
+          <div class="substep">
+            <div class="step-label">1.1 · Mark out</div>
+            <h5>Lay out the footprint</h5>
+            <p>String lines and batter boards. Pad goes 11′-0″ × 8′-0″ outside-of-form. Square the corners with the 3-4-5 method or a long diagonal check (13′-7½″ across the 11×8). Mark for the river-rock band, an extra 12″ all around.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">1.2 · Excavate</div>
+            <h5>Dig down 8 inches</h5>
+            <p>Strip topsoil, dig out 8″ across the whole pad area. Get the bottom roughly flat with a slope of about ¼″ per foot toward the future drain location. The rest of the slope is in the slab itself.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">1.3 · Base</div>
+            <h5>Compacted gravel base</h5>
+            <p>Lay 4″ of ¾″ minus crushed gravel. Rake flat, wet down lightly, run a plate compactor over it in two passes at right angles. A well-compacted base is what keeps your slab from cracking.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">1.4 · Forms</div>
+            <h5>Set forms &amp; vapour barrier</h5>
+            <p>2×4 PT forms staked every 3 ft. Drop in 6 mil poly. Lay welded wire mesh on small chairs (or stones) so it sits in the middle of the slab thickness. Mark anchor-bolt positions on the form tops — you'll set them in wet concrete.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">1.5 · Pour</div>
+            <h5>Mix &amp; pour</h5>
+            <p>Mix in batches, fill systematically from one corner. Screed across the forms with a straight 2×4. Bull-float, edge, and set your anchor bolts at exactly the post locations (measure twice). Wait until the slab is firm, then float and trowel smooth.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">1.6 · Cure</div>
+            <h5>Walk away</h5>
+            <p>Cover with plastic, mist daily for three days. Don't load it for a week. Pull forms after 24 hours. While it's curing, head to the lumberyard and pre-stain the frame timbers — that's the next weekend's work prepped.</p>
+          </div>
+        </div>
+
+        <div class="tip">
+          <strong>Pro tip ·</strong>Set your anchor bolts using a paper template cut to match the post-base footprint. Tape it to the wet concrete, push the bolts through, peel paper off when the concrete sets. Your post bases will land within ⅛″ of each other.
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase">
+      <div class="phase-header">
+        <div class="phase-num">02</div>
+        <div class="phase-title">Heavy timber frame</div>
+        <div class="phase-meta"><strong>Weekend 2</strong>10 hours · 2 people essential</div>
+      </div>
+      <div class="phase-body">
+        <p class="phase-intro">The most satisfying phase. By Sunday afternoon you'll be standing inside something that looks like the finished pavilion. Don't rush the squaring — everything downstream depends on this.</p>
+
+        <div class="substeps">
+          <div class="substep">
+            <div class="step-label">2.1 · Bases</div>
+            <h5>Bolt down the four post bases</h5>
+            <p>Simpson ABU66Z standoff bases over the anchor bolts. The standoff lifts the post ¾″ above the concrete — critical for keeping the end grain dry. Snug the nuts; don't crank yet.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">2.2 · Posts</div>
+            <h5>Raise the four 6×6 posts</h5>
+            <p>Pre-stain all four sides before raising (much easier on the ground). Set in bases, plumb in both directions with the 4-ft level, brace temporarily with diagonal 2×4s screwed to stakes. Repeat for all four. Get them plumb and stay obsessive about it.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">2.3 · Beams</div>
+            <h5>Sandwich the doubled beams</h5>
+            <p>Two 2×8s flank each long-side pair of posts — one on the inside face, one on the outside. They run continuous from end to end, flush with the post tops. Clamp first, drill four ½″ holes per post, drive carriage bolts through, washer-and-nut on the inside.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">2.4 · Square</div>
+            <h5>Diagonal-check the frame</h5>
+            <p>Measure both diagonals corner-post to corner-post. If they match, you're square. If they don't, push the long diagonal in by tapping the bottom of one post sideways before the bolts are fully torqued. Then crank everything down.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">2.5 · Rafters</div>
+            <h5>Drop in the rafters</h5>
+            <p>Seven 2×6 rafters spanning the short dimension, 22″ on center. Notch the bottom 1½″ deep × 7¼″ wide to seat over the doubled beams (called a "bird's mouth" cut). Tie down with H1 hurricane ties — two screws each side. Let the rafters overhang 12″ at front and back.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">2.6 · Braces</div>
+            <h5>Corner braces, all four corners</h5>
+            <p>2×6 cut both ends at 45°, roughly 30″ long. Snug into the corner of post-and-beam, lag-bolt two ⅜″ × 4″ bolts at each end. These are doing real work — they triangulate the frame against racking. Stain to match.</p>
+          </div>
+        </div>
+
+        <div class="tip">
+          <strong>Pro tip ·</strong>Pre-drill every bolt hole oversized by ¹⁄₁₆″. Doug fir is hard and you'll snap your driver before you get a ½″ bolt through a dry 6×6. A countersink for the bolt head also keeps things cleaner.
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase">
+      <div class="phase-header">
+        <div class="phase-num">03</div>
+        <div class="phase-title">Lattice &amp; polycarbonate roof</div>
+        <div class="phase-meta"><strong>Weekend 3</strong>6 hours · solo OK</div>
+      </div>
+      <div class="phase-body">
+        <p class="phase-intro">A two-layer roof. The lower layer is open 2×2 lattice for the shadow play — it's what gives this whole thing its character. The upper layer is twin-wall polycarbonate, because this is Vancouver and we have feelings about rain.</p>
+
+        <div class="substeps">
+          <div class="substep">
+            <div class="step-label">3.1 · Slope</div>
+            <h5>Confirm your roof slope</h5>
+            <p>The frame as built is flat. To shed water, you need 1½–2″ of fall from front to back. Either rip a tapered shim along the top of the rear beam, or — easier — packing strips that lift the front edge of the lattice slightly. Aim for ~10° max.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">3.2 · Slats</div>
+            <h5>Lay the 2×2 lattice slats</h5>
+            <p>Eleven slats running perpendicular to the rafters (so, the long way across the 11′ direction), spaced 12″ on center. Pre-stain. Screw down with two 2½″ screws at each rafter intersection. Let them overhang the side rafters by 2–3″ for a clean shadow line.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">3.3 · Caps</div>
+            <h5>Tape the polycarbonate channels</h5>
+            <p>Twin-wall polycarbonate has open flutes at the ends. Tape the top edge with solid aluminum tape and the bottom edge with vented breather tape. This stops bugs and water sitting in the channels.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">3.4 · Lay sheets</div>
+            <h5>Drop the polycarbonate</h5>
+            <p>Three 4×12 sheets cover the 11′ × 10′ roof area with 12″ overhangs front/back. UV-protected side up (it's marked). Flutes must run down-slope so condensation drains. Overlap or H-channel between sheets.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">3.5 · Fasten</div>
+            <h5>Screw down — but not too tight</h5>
+            <p>Polycarbonate-specific screws with neoprene washers, every 18″ along each slat. Pre-drill the polycarbonate ³⁄₁₆″ oversize — the material expands and contracts a lot, and if you pin it tight it'll buckle in summer or crack in winter.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">3.6 · Trim</div>
+            <h5>Edge flashing</h5>
+            <p>Bend a piece of pre-finished aluminum flashing over the front edge to keep wind from getting under the sheets. Caulk the back edge to the rear wall top plate (we'll get there in phase 4).</p>
+          </div>
+        </div>
+
+        <div class="tip">
+          <strong>Pro tip ·</strong>Walk the lattice with weight only over rafters, never between. A 2×2 on edge will support you for a step but not a stand. Lay a sheet of plywood across two rafters as a working platform.
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 4 -->
+    <div class="phase">
+      <div class="phase-header">
+        <div class="phase-num">04</div>
+        <div class="phase-title">Walls &amp; cladding</div>
+        <div class="phase-meta"><strong>Weekend 4</strong>12 hours · solo OK</div>
+      </div>
+      <div class="phase-body">
+        <p class="phase-intro">Three walls — solid rear, full left, partial right. This is the weekend you turn a pergola into a room. Plan your cuts so the horizontal cladding lines wrap continuously around the inside corner.</p>
+
+        <div class="substeps">
+          <div class="substep">
+            <div class="step-label">4.1 · Frame</div>
+            <h5>Wall framing — 2×4 studs</h5>
+            <p>Build each wall as a stud panel on the ground: bottom plate PT, top plate SPF, studs at 16″ o.c. Match the height to the beam underside (~7′-10″). Lift and stand each panel between posts, toenail into post sides and into the slab through the PT bottom plate.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">4.2 · Sheath</div>
+            <h5>Plywood sheathing &amp; wrap</h5>
+            <p>½″ exterior plywood across the outside face of each wall — locks the wall against racking. Then Tyvek house wrap, taped at all seams. The wrap is what keeps wind-driven Vancouver rain from getting behind your cladding.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">4.3 · Strapping</div>
+            <h5>Optional rain screen</h5>
+            <p>For longest life, run vertical ¾″ × 1½″ strapping over the Tyvek every 16″ before the cladding. This gives a drainage gap behind the boards. Skip if budget is tight, but you lose 5–10 years of cladding life.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">4.4 · Cladding</div>
+            <h5>Horizontal T&G boards</h5>
+            <p>1×6 cedar or fir, tongue up, groove down. Start at the bottom, level the first row religiously — every row after follows. Blind-nail through the tongue with stainless 1¼″ finish nails so no fasteners show. Stagger butt joints on stud lines.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">4.5 · Corners</div>
+            <h5>Inside &amp; outside corners</h5>
+            <p>Where two walls meet, run 1×4 corner trim over the cladding edges. Caulk behind it. The exposed end-grain of the cladding is the weak point in wet weather — corner boards hide that and seal it.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">4.6 · Finish</div>
+            <h5>Stain</h5>
+            <p>Two coats of honey-toned exterior stain on the cladding, dry to dry. Wait at least 8 hours between coats. The dark walnut stain on the frame should already be on — touch up any nicks from construction.</p>
+          </div>
+        </div>
+
+        <div class="tip">
+          <strong>Pro tip ·</strong>If you can't get T&G in the species you want, shiplap is the next best thing and easier to install. The crisp shadow line at every board edge actually reads more like the reference image than a tight T&G joint.
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 5 -->
+    <div class="phase">
+      <div class="phase-header">
+        <div class="phase-num">05</div>
+        <div class="phase-title">Plumbing, drain &amp; lights</div>
+        <div class="phase-meta"><strong>Weekend 5</strong>10 hours · plumber if uncertain</div>
+      </div>
+      <div class="phase-body">
+        <p class="phase-intro">The shower drain and supply lines are best roughed in before the pad pour — but if you didn't, you can surface-mount everything with black iron pipe and chase the supply through a shallow channel. This is the weekend the building becomes useful.</p>
+
+        <div class="substeps">
+          <div class="substep">
+            <div class="step-label">5.1 · Drain</div>
+            <h5>Connect the drain</h5>
+            <p>Linear drain at the low point of the shower zone. Run a 2″ ABS line under the pad (if pre-poured) or trench around the outside to your existing storm drain. Vent if your local code requires it — a 1¼″ AAV up inside the partial right wall works.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">5.2 · Supply</div>
+            <h5>Hot &amp; cold supply lines</h5>
+            <p>½″ PEX-A from your house — red for hot, blue for cold. Bury 24″ deep below frost line for the run from the house. Pop up inside the partial right wall, leave 18″ of pigtail at shower height.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">5.3 · Valve</div>
+            <h5>Install the mixing valve</h5>
+            <p>Thermostatic mixing valve (Caleffi 521 or equivalent) inside the wall cavity, hot and cold in, tempered out. Set to 105°F. This is your anti-scald — non-negotiable if you ever hook up solar pre-heat later.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">5.4 · Fixture</div>
+            <h5>Build the black-pipe shower</h5>
+            <p>¾″ black iron pipe assembled with elbows: floor flange, 80″ riser, 90° to a 12″ horizontal arm, then the copper rain head. Thread-seal every joint. Spray-paint matte black where the pipe was scratched. Anchor the floor flange to the pad with concrete screws.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">5.5 · Plunge</div>
+            <h5>Set the plunge tub</h5>
+            <p>Stock tank on a level pad of its own (3″ above main pad helps with overflow). Clad the outside in vertical 1×4 boards matching the frame stain. Drain plumbed to the same line as the shower. Fill manually from the cold supply, or plumb in a dedicated cold tap.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">5.6 · Lights</div>
+            <h5>String lights &amp; GFCI outlet</h5>
+            <p>Outdoor S14 string lights along the underside of the lattice — staple the cable along a rafter, drape between. One GFCI-protected exterior outlet on the partial right wall, run from the house circuit. If you don't have an outdoor circuit, a licensed electrician for this part.</p>
+          </div>
+        </div>
+
+        <div class="tip">
+          <strong>Pro tip ·</strong>Pressure-test the supply lines for 24 hours before closing up the wall cavity. PEX joints fail at the connections, never in the middle of a run — and you want any leak to be obvious now, not three months from now when it has soaked your sheathing.
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 6 -->
+    <div class="phase">
+      <div class="phase-header">
+        <div class="phase-num">06</div>
+        <div class="phase-title">Fit-out &amp; ritual</div>
+        <div class="phase-meta"><strong>Weekend 6</strong>6 hours · enjoy</div>
+      </div>
+      <div class="phase-body">
+        <p class="phase-intro">The pieces that turn a building into a place. Bench, hooks, the river rock band, the small things you'll forget you needed until you stand inside the finished thing for the first time.</p>
+
+        <div class="substeps">
+          <div class="substep">
+            <div class="step-label">6.1 · Step</div>
+            <h5>Build the step bench</h5>
+            <p>A simple box of 2×4 frame clad in 1×6 boards matching the plunge cladding. Sized to land at half the plunge height — 12″ tall, 18″ × 24″ footprint. Position so it's a comfortable step in and a usable bench when you're not getting in.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">6.2 · Rock</div>
+            <h5>River rock perimeter</h5>
+            <p>Spread the 1–2″ river rock in the 12″ collar around the pad. About 0.5 yd³ for the full perimeter. It catches splash, deters mud, and makes the building feel like it sits in a landscape rather than on top of one.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">6.3 · Hooks</div>
+            <h5>Towel hooks &amp; the small stuff</h5>
+            <p>Two or three matte-black hooks on the inside face of the left wall, about 60″ off the pad. A small open shelf for soap and salt. A peg for the bath thermometer. These details cost almost nothing and matter every time.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">6.4 · Stain</div>
+            <h5>Final stain touch-ups</h5>
+            <p>Walk the whole structure and touch up every nick from construction. The frame's dark walnut should be saturated and even. The cladding's honey tone should be uniform front-to-back. Don't skip the cut ends of the rafter tails.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">6.5 · Test</div>
+            <h5>Run a full cycle</h5>
+            <p>Fill the plunge, get the shower hot, sit on the bench. Find what's missing. A hook in the wrong place, a step that wobbles, a slat that vibrates in the wind. Fix those before you call it done.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">6.6 · Use</div>
+            <h5>Use it tonight</h5>
+            <p>This is the most important step. Buildings that don't get used in their first week tend not to get used. Make a fire in a portable pit nearby, light the string lights, run the shower hot, and step into the cold. You're done.</p>
+          </div>
+        </div>
+
+        <div class="tip">
+          <strong>Pro tip ·</strong>Buy a single good bath sheet — a proper thick cotton or linen one — and keep it in a sealed bin inside the pavilion. The ritual works better when the towel is right there waiting.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CLOSING ===== -->
+  <section class="closing">
+    <div class="mark">✦</div>
+    <p class="closing-text">The point isn't the building. <em>The point is the ten minutes after the sauna.</em></p>
+    <div class="colophon">
+      Onsen · Build Set Rev. 03 · 14 Sheets · Vancouver BC<br>
+      Drawings &amp; specifications · For your own backyard
+    </div>
+  </section>
+
+</div>
+
+</body>
+</html>
