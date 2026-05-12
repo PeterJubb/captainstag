@@ -1,0 +1,2024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>OP–01 / Outdoor Bath Pavilion — Vancouver, BC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..900,30..100;1,9..144,300..900,30..100&family=Manrope:wght@200..800&family=JetBrains+Mono:wght@300..600&display=swap">
+<style>
+  :root {
+    --paper:        #ECE5D8;
+    --paper-warm:   #E2D9C5;
+    --paper-deep:   #D4C9B0;
+    --ink:          #15110D;
+    --ink-soft:     #3A332B;
+    --char:         #221E18;
+    --black:        #0A0908;
+    --fir:          #A6633A;
+    --fir-deep:     #6B3D1E;
+    --fir-shadow:   #3F2412;
+    --sage:         #4D5B47;
+    --line:         #B0A696;
+    --line-soft:    #CAC0AE;
+    --rule:         #8A8276;
+    --grain:        rgba(20,15,10,0.035);
+
+    --f-display: 'Fraunces', 'Georgia', serif;
+    --f-body: 'Manrope', system-ui, sans-serif;
+    --f-mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  *,*::before,*::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(166,99,58,0.07), transparent 55%),
+      radial-gradient(ellipse at 80% 100%, rgba(77,91,71,0.06), transparent 50%),
+      var(--paper);
+    color: var(--ink);
+    font-family: var(--f-body);
+    font-weight: 350;
+    font-size: 15px;
+    line-height: 1.65;
+    letter-spacing: 0.005em;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Paper grain texture overlay */
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(circle at 25% 30%, var(--grain) 0.5px, transparent 1px),
+      radial-gradient(circle at 70% 60%, var(--grain) 0.4px, transparent 1px),
+      radial-gradient(circle at 50% 80%, var(--grain) 0.5px, transparent 1px);
+    background-size: 3px 3px, 5px 5px, 7px 7px;
+    opacity: 0.6;
+    z-index: 1;
+    mix-blend-mode: multiply;
+  }
+
+  /* ============== TOP BAR ============== */
+  .topbar {
+    position: relative;
+    z-index: 10;
+    border-bottom: 1px solid var(--line);
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 24px;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .topbar .brand {
+    color: var(--ink);
+    font-weight: 500;
+    letter-spacing: 0.22em;
+  }
+  .topbar .brand span { color: var(--fir-deep); }
+  .topbar .meta {
+    display: flex;
+    gap: 32px;
+  }
+  .topbar .meta b { font-weight: 500; color: var(--ink); }
+
+  /* ============== LAYOUT ============== */
+  main {
+    position: relative;
+    z-index: 5;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  section {
+    position: relative;
+    padding: 90px 0;
+  }
+
+  /* Sheet marker — like a drawing sheet code */
+  .sheet-mark {
+    position: absolute;
+    top: 90px;
+    right: 0;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--rule);
+    text-align: right;
+  }
+  .sheet-mark .num {
+    display: block;
+    font-family: var(--f-display);
+    font-weight: 300;
+    font-size: 38px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-top: 4px;
+    font-style: italic;
+  }
+
+  .eyebrow {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--fir-deep);
+    font-weight: 500;
+    margin-bottom: 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 28px;
+    height: 1px;
+    background: var(--fir-deep);
+  }
+
+  h1, h2, h3 {
+    font-family: var(--f-display);
+    font-weight: 350;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+    font-feature-settings: "ss01";
+  }
+
+  /* ============== COVER ============== */
+  .cover {
+    padding-top: 70px;
+    padding-bottom: 110px;
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 80px;
+    align-items: end;
+    min-height: 78vh;
+  }
+
+  .cover-left h1 {
+    font-size: clamp(48px, 7vw, 108px);
+    line-height: 0.92;
+    font-weight: 300;
+    margin: 28px 0 50px;
+    font-variation-settings: "SOFT" 100, "opsz" 144;
+  }
+  .cover-left h1 em {
+    font-style: italic;
+    color: var(--fir-deep);
+    font-weight: 350;
+  }
+  .cover-left .lede {
+    max-width: 420px;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    font-weight: 300;
+  }
+  .cover-left .lede::first-letter {
+    font-family: var(--f-display);
+    font-size: 52px;
+    line-height: 0.85;
+    float: left;
+    margin: 6px 10px -4px 0;
+    color: var(--fir-deep);
+    font-weight: 350;
+    font-style: italic;
+  }
+
+  .cover-right {
+    align-self: end;
+  }
+
+  .specgrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 1px solid var(--ink);
+    margin-bottom: 32px;
+  }
+  .spec {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .spec:nth-child(odd) { padding-right: 28px; border-right: 1px solid var(--line); }
+  .spec:nth-child(even) { padding-left: 28px; }
+  .spec .label {
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--rule);
+    margin-bottom: 8px;
+  }
+  .spec .value {
+    font-family: var(--f-display);
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 1.05;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+  }
+  .spec .unit {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin-left: 6px;
+    letter-spacing: 0.05em;
+  }
+
+  .cover-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 8px;
+  }
+
+  /* ============== CONCEPT ============== */
+  .concept {
+    border-top: 1px solid var(--line);
+    padding-top: 80px;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+  }
+  .concept .label-col {
+    position: relative;
+  }
+  .concept h2 {
+    font-size: clamp(34px, 4.2vw, 56px);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    max-width: 320px;
+  }
+  .concept h2 em {
+    font-style: italic;
+    color: var(--fir-deep);
+  }
+  .concept .body p {
+    font-size: 16.5px;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin-bottom: 22px;
+    max-width: 580px;
+  }
+  .concept .body p strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .pull {
+    font-family: var(--f-display);
+    font-style: italic;
+    font-weight: 350;
+    font-size: 22px;
+    line-height: 1.4;
+    color: var(--fir-deep);
+    padding: 12px 0 12px 22px;
+    border-left: 2px solid var(--fir-deep);
+    margin: 28px 0;
+    max-width: 540px;
+  }
+
+  /* ============== SHEET (Drawing) ============== */
+  .sheet {
+    border-top: 1px solid var(--line);
+    padding-top: 80px;
+  }
+  .sheet header {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-bottom: 50px;
+    gap: 40px;
+  }
+  .sheet h2 {
+    font-size: clamp(34px, 4.2vw, 56px);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+  }
+  .sheet h2 em { font-style: italic; color: var(--fir-deep); }
+
+  .sheet-meta {
+    text-align: right;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    line-height: 1.8;
+  }
+  .sheet-meta b { color: var(--ink); font-weight: 500; }
+
+  .drawing-frame {
+    border: 1px solid var(--ink);
+    background:
+      repeating-linear-gradient(0deg, transparent, transparent 47px, rgba(20,17,13,0.04) 47px, rgba(20,17,13,0.04) 48px),
+      repeating-linear-gradient(90deg, transparent, transparent 47px, rgba(20,17,13,0.04) 47px, rgba(20,17,13,0.04) 48px),
+      var(--paper-warm);
+    padding: 36px;
+    position: relative;
+  }
+  .drawing-frame::before {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border: 1px solid var(--line);
+    pointer-events: none;
+  }
+
+  .drawing-title {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: var(--paper-warm);
+    border-top: 1px solid var(--ink);
+    border-left: 1px solid var(--ink);
+    padding: 14px 20px;
+    font-family: var(--f-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-align: right;
+    line-height: 1.5;
+    z-index: 2;
+  }
+  .drawing-title .big {
+    display: block;
+    font-family: var(--f-display);
+    font-style: italic;
+    font-weight: 350;
+    font-size: 20px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    text-transform: none;
+    margin-top: 2px;
+  }
+
+  .drawing-svg {
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Two-up drawings */
+  .twoup {
+    display: grid;
+    grid-template-columns: 1.32fr 1fr;
+    gap: 28px;
+  }
+
+  /* ============== PROGRAM ============== */
+  .program {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border-top: 1px solid var(--line);
+  }
+  .zone {
+    padding: 30px 28px 28px 0;
+    border-right: 1px solid var(--line);
+  }
+  .zone:last-child { border-right: none; padding-right: 0; }
+  .zone:not(:first-child) { padding-left: 28px; }
+  .zone .znum {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--fir-deep);
+    margin-bottom: 14px;
+  }
+  .zone h4 {
+    font-family: var(--f-display);
+    font-weight: 350;
+    font-size: 26px;
+    letter-spacing: -0.015em;
+    line-height: 1.1;
+    margin-bottom: 14px;
+    color: var(--ink);
+  }
+  .zone h4 em { font-style: italic; color: var(--fir-deep); }
+  .zone p {
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+
+  /* ============== MATERIALS ============== */
+  .materials {
+    border-top: 1px solid var(--line);
+    padding-top: 80px;
+  }
+  .materials header {
+    margin-bottom: 50px;
+  }
+  .materials h2 {
+    font-size: clamp(34px, 4.2vw, 56px);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+  }
+  .materials h2 em { font-style: italic; color: var(--fir-deep); }
+  .materials .sub {
+    font-size: 16px;
+    color: var(--ink-soft);
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  .matgrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 36px 28px;
+  }
+  .matcol h5 {
+    font-family: var(--f-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--fir-deep);
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    border-bottom: 1px solid var(--ink);
+  }
+  .matcol ul {
+    list-style: none;
+  }
+  .matcol li {
+    padding: 11px 0;
+    border-bottom: 1px dashed var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    font-size: 14px;
+  }
+  .matcol li:last-child { border-bottom: none; }
+  .matcol li .item { color: var(--ink); font-weight: 400; }
+  .matcol li .item .note {
+    display: block;
+    font-family: var(--f-mono);
+    font-size: 10.5px;
+    color: var(--rule);
+    letter-spacing: 0.05em;
+    margin-top: 2px;
+  }
+  .matcol li .qty {
+    font-family: var(--f-mono);
+    font-size: 12px;
+    color: var(--ink-soft);
+    white-space: nowrap;
+    letter-spacing: 0.04em;
+  }
+
+  /* ============== SEQUENCE ============== */
+  .sequence {
+    border-top: 1px solid var(--line);
+    padding-top: 80px;
+  }
+  .sequence header { margin-bottom: 50px; }
+  .sequence h2 {
+    font-size: clamp(34px, 4.2vw, 56px);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+  }
+  .sequence h2 em { font-style: italic; color: var(--fir-deep); }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 60px;
+  }
+  .step {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 24px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--line);
+  }
+  .step .n {
+    font-family: var(--f-display);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 44px;
+    line-height: 0.9;
+    color: var(--fir-deep);
+    letter-spacing: -0.02em;
+  }
+  .step h6 {
+    font-family: var(--f-display);
+    font-weight: 400;
+    font-size: 19px;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 8px;
+  }
+  .step p {
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+
+  /* ============== ATMOSPHERE / CLOSING ============== */
+  .atmosphere {
+    border-top: 1px solid var(--line);
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+  .atmosphere-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .atmosphere h2 {
+    font-size: clamp(40px, 5vw, 72px);
+    font-weight: 300;
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 36px;
+    font-variation-settings: "SOFT" 100;
+  }
+  .atmosphere h2 em { font-style: italic; color: var(--fir-deep); }
+  .atmosphere p {
+    font-size: 19px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin-bottom: 24px;
+  }
+  .atmosphere .ritual-list {
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-align: center;
+  }
+  .atmosphere .ritual-list span {
+    position: relative;
+  }
+  .atmosphere .ritual-list span:not(:last-child)::after {
+    content: "·";
+    position: absolute;
+    right: -12px;
+    color: var(--fir-deep);
+  }
+
+  /* ============== FOOTER ============== */
+  footer {
+    position: relative;
+    z-index: 5;
+    border-top: 1px solid var(--ink);
+    padding: 32px 40px 60px;
+    max-width: 1440px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--f-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  footer .mark {
+    font-family: var(--f-display);
+    font-style: italic;
+    font-weight: 350;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    text-transform: none;
+    color: var(--ink);
+  }
+
+  /* ============== SVG STYLING ============== */
+  .dim-line { stroke: var(--ink); stroke-width: 0.6; fill: none; }
+  .dim-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    fill: var(--ink);
+    letter-spacing: 0.08em;
+  }
+  .label-text {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    fill: var(--ink-soft);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .label-big {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 350;
+    font-size: 14px;
+    fill: var(--fir-deep);
+    letter-spacing: -0.01em;
+  }
+  .struct-line { stroke: var(--ink); stroke-width: 1.2; fill: none; }
+  .struct-fill { fill: var(--ink); }
+  .wood-fill   { fill: var(--fir); }
+  .wood-deep   { fill: var(--fir-deep); }
+  .light-fill  { fill: var(--paper-deep); }
+
+  /* ============== ANIMATIONS ============== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .cover-left > *, .cover-right > * {
+    animation: fadeUp 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .cover-left .eyebrow { animation-delay: 0.05s; }
+  .cover-left h1 { animation-delay: 0.15s; }
+  .cover-left .lede { animation-delay: 0.3s; }
+  .cover-right .specgrid { animation-delay: 0.4s; }
+  .cover-right .cover-svg { animation-delay: 0.55s; }
+
+  /* ============== RESPONSIVE ============== */
+  @media (max-width: 980px) {
+    .topbar { padding: 14px 22px; flex-wrap: wrap; gap: 12px; font-size: 10px; }
+    .topbar .meta { gap: 18px; flex-wrap: wrap; }
+    main { padding: 0 22px; }
+    section { padding: 60px 0; }
+    .sheet-mark { top: 60px; }
+    .cover {
+      grid-template-columns: 1fr;
+      gap: 50px;
+      padding-top: 50px;
+      padding-bottom: 70px;
+      min-height: auto;
+    }
+    .concept { grid-template-columns: 1fr; gap: 30px; padding-top: 60px; }
+    .sheet { padding-top: 60px; }
+    .sheet header { flex-direction: column; align-items: start; gap: 14px; }
+    .twoup { grid-template-columns: 1fr; }
+    .program { grid-template-columns: 1fr; }
+    .zone { border-right: none; border-bottom: 1px solid var(--line); padding: 24px 0 !important; }
+    .zone:last-child { border-bottom: none; }
+    .matgrid { grid-template-columns: 1fr 1fr; gap: 28px 22px; }
+    .steps { grid-template-columns: 1fr; gap: 26px; }
+    .atmosphere { padding-top: 70px; padding-bottom: 70px; }
+    .atmosphere .ritual-list { grid-template-columns: 1fr 1fr; gap: 14px; text-align: left; }
+    .atmosphere .ritual-list span::after { display: none; }
+    footer { padding: 24px 22px 40px; flex-direction: column; gap: 12px; align-items: flex-start; }
+    .drawing-frame { padding: 18px; }
+  }
+
+  @media (max-width: 560px) {
+    .specgrid { grid-template-columns: 1fr; }
+    .spec:nth-child(odd) { padding-right: 0; border-right: none; }
+    .spec:nth-child(even) { padding-left: 0; }
+    .spec .value { font-size: 26px; }
+    .matgrid { grid-template-columns: 1fr; }
+    .drawing-title { font-size: 9px; padding: 10px 14px; }
+    .drawing-title .big { font-size: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================== -->
+<!-- TOP BAR                                                          -->
+<!-- ============================================================== -->
+<div class="topbar">
+  <div class="brand">Atelier <span>—</span> Drawing Set</div>
+  <div class="meta">
+    <div><b>OP–01</b> · Outdoor Bath Pavilion</div>
+    <div>Vancouver, <b>BC</b></div>
+    <div>Issued <b>2026.05</b></div>
+  </div>
+</div>
+
+<main>
+
+<!-- ============================================================== -->
+<!-- COVER SHEET                                                      -->
+<!-- ============================================================== -->
+<section class="cover">
+  <div class="cover-left">
+    <div class="eyebrow">Project 01 · Cold Plunge Pavilion</div>
+    <h1>An outdoor bath<br>pavilion, <em>quiet</em><br>by intent.</h1>
+    <p class="lede">
+      A small, three-sided timber pavilion built beside the sauna — a covered place
+      for cold plunges, hot showers, and the slow ritual of cooling down. Not a
+      patio cover. Not a pergola kit. Closer to a hidden onsen, scaled to one
+      garden, one rainy coast.
+    </p>
+  </div>
+
+  <div class="cover-right">
+    <div class="specgrid">
+      <div class="spec">
+        <div class="label">Width</div>
+        <div class="value">11<span class="unit">FT</span></div>
+      </div>
+      <div class="spec">
+        <div class="label">Depth</div>
+        <div class="value">8<span class="unit">FT</span></div>
+      </div>
+      <div class="spec">
+        <div class="label">Height</div>
+        <div class="value">8<span class="unit">FT</span></div>
+      </div>
+      <div class="spec">
+        <div class="label">Footprint</div>
+        <div class="value">88<span class="unit">SF</span></div>
+      </div>
+    </div>
+
+    <!-- COVER AXONOMETRIC -->
+    <svg class="cover-svg" viewBox="0 0 720 540" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="boards" patternUnits="userSpaceOnUse" width="10" height="10" patternTransform="rotate(0)">
+          <rect width="10" height="10" fill="#A6633A"/>
+          <line x1="0" y1="0" x2="10" y2="0" stroke="#6B3D1E" stroke-width="0.4" opacity="0.5"/>
+          <line x1="0" y1="5" x2="10" y2="5" stroke="#6B3D1E" stroke-width="0.3" opacity="0.3"/>
+        </pattern>
+        <pattern id="boards-light" patternUnits="userSpaceOnUse" width="8" height="8">
+          <rect width="8" height="8" fill="#C18854"/>
+          <line x1="0" y1="0" x2="8" y2="0" stroke="#6B3D1E" stroke-width="0.3" opacity="0.4"/>
+        </pattern>
+        <linearGradient id="roofGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#221E18"/>
+          <stop offset="100%" stop-color="#0A0908"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Ground plane (subtle) -->
+      <polygon points="60,470 660,470 600,510 120,510" fill="#D4C9B0" opacity="0.5"/>
+      <line x1="60" y1="470" x2="660" y2="470" stroke="#8A8276" stroke-width="0.5" opacity="0.5"/>
+
+      <!-- 11x8x8 axonometric (30 degree projection) -->
+      <!-- We use scale: 1 ft = ~36 px horizontally, 36 px*0.866 vertically; height: 1 ft = 36 px -->
+      <!-- ORIGIN at front-left base post -->
+      <!-- 11ft wide (right), 8ft deep (back), 8ft tall (up) -->
+
+      <!-- Back wall (T&G cladding) -->
+      <polygon points="166,158 622,158 622,446 166,446" fill="url(#boards)" opacity="0.95"/>
+      <!-- vertical board lines on back wall -->
+      <g stroke="#3F2412" stroke-width="0.5" opacity="0.55">
+        <line x1="190" y1="158" x2="190" y2="446"/>
+        <line x1="214" y1="158" x2="214" y2="446"/>
+        <line x1="238" y1="158" x2="238" y2="446"/>
+        <line x1="262" y1="158" x2="262" y2="446"/>
+        <line x1="286" y1="158" x2="286" y2="446"/>
+        <line x1="310" y1="158" x2="310" y2="446"/>
+        <line x1="334" y1="158" x2="334" y2="446"/>
+        <line x1="358" y1="158" x2="358" y2="446"/>
+        <line x1="382" y1="158" x2="382" y2="446"/>
+        <line x1="406" y1="158" x2="406" y2="446"/>
+        <line x1="430" y1="158" x2="430" y2="446"/>
+        <line x1="454" y1="158" x2="454" y2="446"/>
+        <line x1="478" y1="158" x2="478" y2="446"/>
+        <line x1="502" y1="158" x2="502" y2="446"/>
+        <line x1="526" y1="158" x2="526" y2="446"/>
+        <line x1="550" y1="158" x2="550" y2="446"/>
+        <line x1="574" y1="158" x2="574" y2="446"/>
+        <line x1="598" y1="158" x2="598" y2="446"/>
+      </g>
+
+      <!-- Left side wall (in projection, leftward and forward) -->
+      <polygon points="166,158 78,254 78,494 166,446" fill="url(#boards-light)" opacity="0.92"/>
+      <!-- vertical slat hints -->
+      <g stroke="#3F2412" stroke-width="0.4" opacity="0.55">
+        <line x1="160" y1="170" x2="86" y2="262"/>
+        <line x1="150" y1="180" x2="78" y2="272"/>
+        <line x1="140" y1="190" x2="78" y2="284"/>
+        <line x1="130" y1="200" x2="78" y2="296"/>
+        <line x1="120" y1="210" x2="78" y2="308"/>
+        <line x1="110" y1="220" x2="78" y2="320"/>
+        <line x1="100" y1="230" x2="78" y2="332"/>
+        <line x1="90" y1="240" x2="78" y2="344"/>
+      </g>
+
+      <!-- Right side wall - partial privacy -->
+      <!-- back portion (full) -->
+      <polygon points="622,158 706,254 706,378 622,330" fill="url(#boards-light)" opacity="0.92"/>
+      <g stroke="#3F2412" stroke-width="0.4" opacity="0.55">
+        <line x1="630" y1="166" x2="702" y2="258"/>
+        <line x1="640" y1="176" x2="706" y2="270"/>
+        <line x1="650" y1="186" x2="706" y2="282"/>
+        <line x1="660" y1="196" x2="706" y2="294"/>
+        <line x1="670" y1="206" x2="706" y2="306"/>
+        <line x1="680" y1="216" x2="706" y2="318"/>
+        <line x1="690" y1="226" x2="706" y2="330"/>
+      </g>
+
+      <!-- ROOF (sloped down toward back) -->
+      <!-- Front edge higher; back edge lower (rear slope per brief) -->
+      <!-- Roof front-left, front-right, back-right, back-left -->
+      <polygon points="60,150 642,150 720,238 142,254" fill="url(#roofGrad)"/>
+      <!-- Roof shadow line -->
+      <polygon points="60,150 642,150 720,238 142,254" fill="none" stroke="#0A0908" stroke-width="1"/>
+      <!-- Roof corrugation/lines -->
+      <g stroke="#3A332B" stroke-width="0.4" opacity="0.6">
+        <line x1="100" y1="174" x2="680" y2="174"/>
+        <line x1="115" y1="194" x2="695" y2="194"/>
+        <line x1="130" y1="214" x2="710" y2="214"/>
+      </g>
+
+      <!-- Roof underside hint at front (shadow) -->
+      <polygon points="60,150 642,150 642,158 60,158" fill="#15110D" opacity="0.85"/>
+
+      <!-- Rafters (exposed at front edge) - 6 visible rafter tails -->
+      <g fill="#6B3D1E">
+        <rect x="116" y="158" width="6" height="9"/>
+        <rect x="206" y="158" width="6" height="9"/>
+        <rect x="296" y="158" width="6" height="9"/>
+        <rect x="386" y="158" width="6" height="9"/>
+        <rect x="476" y="158" width="6" height="9"/>
+        <rect x="566" y="158" width="6" height="9"/>
+      </g>
+
+      <!-- FRONT POSTS (6x6, visible at front opening) -->
+      <!-- Front-left post -->
+      <rect x="155" y="158" width="22" height="288" fill="#6B3D1E"/>
+      <rect x="155" y="158" width="22" height="288" fill="none" stroke="#3F2412" stroke-width="0.6"/>
+      <line x1="166" y1="158" x2="166" y2="446" stroke="#A6633A" stroke-width="0.7" opacity="0.5"/>
+      <!-- Front-right post -->
+      <rect x="611" y="158" width="22" height="288" fill="#6B3D1E"/>
+      <rect x="611" y="158" width="22" height="288" fill="none" stroke="#3F2412" stroke-width="0.6"/>
+      <line x1="622" y1="158" x2="622" y2="446" stroke="#A6633A" stroke-width="0.7" opacity="0.5"/>
+
+      <!-- Front beam (double 2x8) -->
+      <rect x="155" y="150" width="478" height="14" fill="#15110D"/>
+
+      <!-- Open front (interior glimpse) - dark interior -->
+      <polygon points="177,164 611,164 611,446 177,446" fill="#1A1816" opacity="0.55"/>
+
+      <!-- Noren curtain hint - subtle fabric panels hanging from front beam -->
+      <g fill="#4D5B47" opacity="0.85">
+        <path d="M 200 164 L 230 164 L 232 230 L 198 232 Z"/>
+        <path d="M 240 164 L 270 164 L 272 230 L 238 232 Z"/>
+        <path d="M 280 164 L 310 164 L 312 230 L 278 232 Z"/>
+        <path d="M 510 164 L 540 164 L 542 230 L 508 232 Z"/>
+        <path d="M 550 164 L 580 164 L 582 230 L 548 232 Z"/>
+        <path d="M 590 164 L 610 164 L 612 230 L 588 232 Z"/>
+      </g>
+
+      <!-- Soft warm glow from inside -->
+      <ellipse cx="394" cy="320" rx="200" ry="80" fill="#A6633A" opacity="0.18"/>
+      <ellipse cx="394" cy="380" rx="160" ry="40" fill="#A6633A" opacity="0.12"/>
+
+      <!-- Ground / duckboard hint at front -->
+      <g stroke="#6B3D1E" stroke-width="1" opacity="0.7">
+        <line x1="177" y1="448" x2="611" y2="448"/>
+        <line x1="177" y1="454" x2="611" y2="454"/>
+        <line x1="177" y1="460" x2="611" y2="460"/>
+        <line x1="177" y1="466" x2="611" y2="466"/>
+      </g>
+
+      <!-- Compass / scale indicator -->
+      <g transform="translate(40, 510)">
+        <text x="0" y="0" class="label-text">N ↑   ·   3/16" = 1'-0"</text>
+      </g>
+
+      <!-- Drawing label -->
+      <g transform="translate(630, 528)">
+        <text x="0" y="0" class="label-text" text-anchor="end" style="font-size:9px">AXONOMETRIC · ENTRY VIEW</text>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<!-- ============================================================== -->
+<!-- CONCEPT                                                          -->
+<!-- ============================================================== -->
+<section class="concept">
+  <div class="sheet-mark">Sheet<span class="num">A0.1</span></div>
+
+  <div class="label-col">
+    <div class="eyebrow">Brief</div>
+    <h2>Not a pergola.<br><em>A small room</em><br>for water.</h2>
+  </div>
+
+  <div class="body">
+    <p>
+      The site sits next to a small backyard sauna in Vancouver. After a hot session,
+      the body needs cold, then warm again, then quiet. This pavilion is the
+      architecture of that sequence — a covered <strong>cold-plunge enclosure</strong> at one end,
+      a <strong>standing transition</strong> in the middle, an <strong>outdoor shower</strong> at the other.
+    </p>
+
+    <div class="pull">
+      Closer to a hidden onsen than a backyard cover — three walls, an open front,
+      and a quiet roof that holds the rain off the wood.
+    </div>
+
+    <p>
+      The structure is honest and exposed. Four <strong>6×6 Douglas fir posts</strong> carry
+      <strong>doubled 2×8 beams</strong>. A bank of <strong>2×6 rafters</strong> spans the short way and lifts
+      the roof clear of the head. Three sides are clad in vertical tongue-and-groove
+      fir to match the sauna; the fourth is left open to the garden and dressed only
+      with a <strong>noren curtain</strong> at the head.
+    </p>
+
+    <p>
+      The roof is the one piece of industry in the building — <strong>matte black corrugated
+      metal</strong> on a slight rear slope, fastened above the rafters with shadow gaps so
+      that, from below, only the wood is read. Everything else is the warmth and grain
+      of stained fir, the soft heat of one wall sconce, and the steady percussion of
+      Pacific rain.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================== -->
+<!-- PLAN SHEET                                                       -->
+<!-- ============================================================== -->
+<section class="sheet">
+  <div class="sheet-mark">Sheet<span class="num">A1.0</span></div>
+
+  <header>
+    <div>
+      <div class="eyebrow">Drawing 01</div>
+      <h2>Plan, with <em>interior program</em>.</h2>
+    </div>
+    <div class="sheet-meta">
+      Scale <b>1/2" = 1'-0"</b><br>
+      North <b>↑</b><br>
+      Origin <b>SW corner</b>
+    </div>
+  </header>
+
+  <div class="drawing-frame">
+    <!-- PLAN VIEW SVG -->
+    <svg class="drawing-svg" viewBox="0 0 1320 880" xmlns="http://www.w3.org/2000/svg">
+      <!-- 132" x 96" = scale 10x.  Plus margins for dimension lines. -->
+      <!-- Pavilion footprint sits inside this with 130 unit margin all around -->
+      <!-- footprint: x 130..1190, y 130..850 (W=1060, D=720 — 132"x96" exact would be 1320x960; reducing for margins) -->
+      <!-- Let's just use raw scale 10x = 1320x960 inside, and have an outer space for dims -->
+
+      <!-- We'll center: footprint at 110..1210 (W=1100=110" no that's 11ft 0in... but let's keep using simple proportions. Use 1100 wide x 800 deep for the pavilion. -->
+
+      <!-- Pavilion footprint coords -->
+      <!-- top-left: 110, 90; width: 1100; height: 720 -->
+      <!-- 11 ft = 1100 px (scale 100 px = 1 ft), 8 ft = 800 px... but we have 720. Use 1100x800 inside total 1320x880 viewBox -->
+      <!-- Redo: viewBox 1320x880. Pavilion: x=110..1210 (w=1100), y=70..870 (h=800). So scale 100px = 1 ft. -->
+
+      <defs>
+        <pattern id="planBoards" patternUnits="userSpaceOnUse" width="14" height="14" patternTransform="rotate(0)">
+          <rect width="14" height="14" fill="#C18854"/>
+          <line x1="0" y1="0" x2="14" y2="0" stroke="#6B3D1E" stroke-width="0.4"/>
+          <line x1="0" y1="7" x2="14" y2="7" stroke="#6B3D1E" stroke-width="0.25" opacity="0.5"/>
+        </pattern>
+        <pattern id="planBoardsThin" patternUnits="userSpaceOnUse" width="12" height="12">
+          <rect width="12" height="12" fill="#C18854" opacity="0.85"/>
+          <line x1="0" y1="0" x2="12" y2="0" stroke="#6B3D1E" stroke-width="0.4"/>
+          <line x1="0" y1="6" x2="12" y2="6" stroke="#6B3D1E" stroke-width="0.25" opacity="0.5"/>
+        </pattern>
+      </defs>
+
+      <!-- Subtle 1ft grid -->
+      <g stroke="#B0A696" stroke-width="0.3" opacity="0.35">
+        <line x1="210" y1="70" x2="210" y2="870"/>
+        <line x1="310" y1="70" x2="310" y2="870"/>
+        <line x1="410" y1="70" x2="410" y2="870"/>
+        <line x1="510" y1="70" x2="510" y2="870"/>
+        <line x1="610" y1="70" x2="610" y2="870"/>
+        <line x1="710" y1="70" x2="710" y2="870"/>
+        <line x1="810" y1="70" x2="810" y2="870"/>
+        <line x1="910" y1="70" x2="910" y2="870"/>
+        <line x1="1010" y1="70" x2="1010" y2="870"/>
+        <line x1="1110" y1="70" x2="1110" y2="870"/>
+
+        <line x1="110" y1="170" x2="1210" y2="170"/>
+        <line x1="110" y1="270" x2="1210" y2="270"/>
+        <line x1="110" y1="370" x2="1210" y2="370"/>
+        <line x1="110" y1="470" x2="1210" y2="470"/>
+        <line x1="110" y1="570" x2="1210" y2="570"/>
+        <line x1="110" y1="670" x2="1210" y2="670"/>
+        <line x1="110" y1="770" x2="1210" y2="770"/>
+      </g>
+
+      <!-- Rafters overhead (dashed) - run the 8ft direction (north-south), spaced along 11ft -->
+      <!-- 6 rafters: at 1', 3', 5', 7', 9', 10.5' from left (so spacing ~2', last closer to right post) -->
+      <!-- Or evenly: positions 0.5', 2.5', 4.5', 6.5', 8.5', 10.5' (6 rafters at ~2' on center) -->
+      <g stroke="#6B3D1E" stroke-width="3" stroke-dasharray="10 6" opacity="0.45" fill="none">
+        <line x1="155" y1="50" x2="155" y2="890"/>
+        <line x1="350" y1="50" x2="350" y2="890"/>
+        <line x1="540" y1="50" x2="540" y2="890"/>
+        <line x1="780" y1="50" x2="780" y2="890"/>
+        <line x1="970" y1="50" x2="970" y2="890"/>
+        <line x1="1165" y1="50" x2="1165" y2="890"/>
+      </g>
+
+      <!-- Rear wall (top) - solid cladding -->
+      <rect x="110" y="70" width="1100" height="36" fill="url(#planBoards)"/>
+      <rect x="110" y="70" width="1100" height="36" fill="none" stroke="#15110D" stroke-width="1.4"/>
+
+      <!-- Left wall (full enclosure) -->
+      <rect x="110" y="70" width="36" height="800" fill="url(#planBoards)"/>
+      <rect x="110" y="70" width="36" height="800" fill="none" stroke="#15110D" stroke-width="1.4"/>
+
+      <!-- Right wall (partial - back 60% only, per brief: "partial privacy wall") -->
+      <rect x="1174" y="70" width="36" height="480" fill="url(#planBoardsThin)"/>
+      <rect x="1174" y="70" width="36" height="480" fill="none" stroke="#15110D" stroke-width="1.4"/>
+
+      <!-- POSTS at corners (6x6 = ~55px, drawn as filled black squares) -->
+      <!-- Back-left -->
+      <rect x="110" y="70" width="55" height="55" fill="#0A0908"/>
+      <!-- Back-right -->
+      <rect x="1155" y="70" width="55" height="55" fill="#0A0908"/>
+      <!-- Front-left -->
+      <rect x="110" y="815" width="55" height="55" fill="#0A0908"/>
+      <!-- Front-right -->
+      <rect x="1155" y="815" width="55" height="55" fill="#0A0908"/>
+
+      <!-- INTERIOR ZONE DIVIDERS (subtle dotted lines) -->
+      <g stroke="#6B3D1E" stroke-width="1" stroke-dasharray="3 6" opacity="0.55" fill="none">
+        <line x1="450" y1="106" x2="450" y2="815"/>
+        <line x1="870" y1="106" x2="870" y2="815"/>
+      </g>
+
+      <!-- ZONE 1: COLD PLUNGE (left) — plunge tub silhouette -->
+      <!-- Tub: rectangle ~3.5x2 ft centered in zone 1 (zone is from 146 to 450 px wide = ~3 ft 10 in, deep is from ~150 to 750) -->
+      <rect x="190" y="220" width="220" height="500" fill="#4D5B47" opacity="0.18" rx="8"/>
+      <rect x="190" y="220" width="220" height="500" fill="none" stroke="#4D5B47" stroke-width="1.5" rx="8"/>
+      <!-- Water hint -->
+      <g stroke="#4D5B47" stroke-width="0.5" opacity="0.5" fill="none">
+        <path d="M 210 350 Q 250 345, 290 350 T 390 350"/>
+        <path d="M 210 420 Q 250 415, 290 420 T 390 420"/>
+        <path d="M 210 490 Q 250 485, 290 490 T 390 490"/>
+        <path d="M 210 560 Q 250 555, 290 560 T 390 560"/>
+        <path d="M 210 630 Q 250 625, 290 630 T 390 630"/>
+      </g>
+      <text x="300" y="180" text-anchor="middle" class="label-text" style="font-weight:600;letter-spacing:0.24em;fill:#15110D">01 · COLD PLUNGE</text>
+
+      <!-- ZONE 2: TRANSITION (middle) -->
+      <!-- Bench on rear wall -->
+      <rect x="510" y="115" width="300" height="50" fill="#A6633A" opacity="0.55"/>
+      <rect x="510" y="115" width="300" height="50" fill="none" stroke="#6B3D1E" stroke-width="0.8"/>
+      <line x1="560" y1="115" x2="560" y2="165" stroke="#6B3D1E" stroke-width="0.5" opacity="0.6"/>
+      <line x1="610" y1="115" x2="610" y2="165" stroke="#6B3D1E" stroke-width="0.5" opacity="0.6"/>
+      <line x1="660" y1="115" x2="660" y2="165" stroke="#6B3D1E" stroke-width="0.5" opacity="0.6"/>
+      <line x1="710" y1="115" x2="710" y2="165" stroke="#6B3D1E" stroke-width="0.5" opacity="0.6"/>
+      <line x1="760" y1="115" x2="760" y2="165" stroke="#6B3D1E" stroke-width="0.5" opacity="0.6"/>
+
+      <!-- Duckboard slats on floor in transition zone -->
+      <g stroke="#6B3D1E" stroke-width="0.7" opacity="0.55">
+        <line x1="475" y1="200" x2="475" y2="810"/>
+        <line x1="505" y1="200" x2="505" y2="810"/>
+        <line x1="535" y1="200" x2="535" y2="810"/>
+        <line x1="565" y1="200" x2="565" y2="810"/>
+        <line x1="595" y1="200" x2="595" y2="810"/>
+        <line x1="625" y1="200" x2="625" y2="810"/>
+        <line x1="655" y1="200" x2="655" y2="810"/>
+        <line x1="685" y1="200" x2="685" y2="810"/>
+        <line x1="715" y1="200" x2="715" y2="810"/>
+        <line x1="745" y1="200" x2="745" y2="810"/>
+        <line x1="775" y1="200" x2="775" y2="810"/>
+        <line x1="805" y1="200" x2="805" y2="810"/>
+        <line x1="835" y1="200" x2="835" y2="810"/>
+      </g>
+      <!-- Towel hooks indicator on rear wall (middle) -->
+      <circle cx="540" cy="91" r="4" fill="#0A0908"/>
+      <circle cx="610" cy="91" r="4" fill="#0A0908"/>
+      <circle cx="680" cy="91" r="4" fill="#0A0908"/>
+      <circle cx="750" cy="91" r="4" fill="#0A0908"/>
+
+      <text x="660" y="180" text-anchor="middle" class="label-text" style="font-weight:600;letter-spacing:0.24em;fill:#15110D">02 · TRANSITION</text>
+      <text x="660" y="500" text-anchor="middle" class="label-big">standing space</text>
+
+      <!-- ZONE 3: SHOWER (right) -->
+      <!-- Shower head position -->
+      <circle cx="1020" cy="200" r="22" fill="none" stroke="#0A0908" stroke-width="1.4"/>
+      <circle cx="1020" cy="200" r="14" fill="none" stroke="#0A0908" stroke-width="0.8"/>
+      <!-- water droplet pattern -->
+      <g fill="#4D5B47" opacity="0.6">
+        <circle cx="1005" cy="240" r="1.5"/>
+        <circle cx="1020" cy="260" r="1.5"/>
+        <circle cx="1035" cy="240" r="1.5"/>
+        <circle cx="995" cy="290" r="1.5"/>
+        <circle cx="1020" cy="310" r="1.5"/>
+        <circle cx="1045" cy="290" r="1.5"/>
+        <circle cx="1005" cy="350" r="1.5"/>
+        <circle cx="1035" cy="350" r="1.5"/>
+        <circle cx="1020" cy="380" r="1.5"/>
+      </g>
+      <!-- gravel drain area -->
+      <rect x="920" y="430" width="220" height="350" fill="none" stroke="#8A8276" stroke-width="0.6" stroke-dasharray="2 3"/>
+      <g fill="#8A8276" opacity="0.5">
+        <circle cx="950" cy="460" r="1.5"/><circle cx="980" cy="470" r="1.5"/><circle cx="1010" cy="460" r="1.5"/>
+        <circle cx="1040" cy="475" r="1.5"/><circle cx="1070" cy="465" r="1.5"/><circle cx="1100" cy="470" r="1.5"/>
+        <circle cx="965" cy="500" r="1.5"/><circle cx="995" cy="510" r="1.5"/><circle cx="1025" cy="500" r="1.5"/>
+        <circle cx="1055" cy="515" r="1.5"/><circle cx="1085" cy="505" r="1.5"/><circle cx="1115" cy="510" r="1.5"/>
+        <circle cx="950" cy="540" r="1.5"/><circle cx="980" cy="550" r="1.5"/><circle cx="1010" cy="540" r="1.5"/>
+        <circle cx="1040" cy="555" r="1.5"/><circle cx="1070" cy="545" r="1.5"/><circle cx="1100" cy="550" r="1.5"/>
+        <circle cx="965" cy="580" r="1.5"/><circle cx="995" cy="590" r="1.5"/><circle cx="1025" cy="580" r="1.5"/>
+        <circle cx="1055" cy="595" r="1.5"/><circle cx="1085" cy="585" r="1.5"/><circle cx="1115" cy="590" r="1.5"/>
+        <circle cx="950" cy="620" r="1.5"/><circle cx="980" cy="630" r="1.5"/><circle cx="1010" cy="620" r="1.5"/>
+        <circle cx="1040" cy="635" r="1.5"/><circle cx="1070" cy="625" r="1.5"/><circle cx="1100" cy="630" r="1.5"/>
+        <circle cx="965" cy="660" r="1.5"/><circle cx="995" cy="670" r="1.5"/><circle cx="1025" cy="660" r="1.5"/>
+        <circle cx="1055" cy="675" r="1.5"/><circle cx="1085" cy="665" r="1.5"/><circle cx="1115" cy="670" r="1.5"/>
+        <circle cx="950" cy="700" r="1.5"/><circle cx="980" cy="710" r="1.5"/><circle cx="1010" cy="700" r="1.5"/>
+        <circle cx="1040" cy="715" r="1.5"/><circle cx="1070" cy="705" r="1.5"/><circle cx="1100" cy="710" r="1.5"/>
+        <circle cx="965" cy="740" r="1.5"/><circle cx="995" cy="750" r="1.5"/><circle cx="1025" cy="740" r="1.5"/>
+      </g>
+      <text x="1020" y="180" text-anchor="middle" class="label-text" style="font-weight:600;letter-spacing:0.24em;fill:#15110D">03 · SHOWER</text>
+
+      <!-- NOREN CURTAIN at front -->
+      <g stroke="#4D5B47" stroke-width="2" opacity="0.75">
+        <line x1="180" y1="820" x2="180" y2="855"/>
+        <line x1="220" y1="820" x2="220" y2="855"/>
+        <line x1="260" y1="820" x2="260" y2="855"/>
+        <line x1="300" y1="820" x2="300" y2="855"/>
+        <line x1="340" y1="820" x2="340" y2="855"/>
+        <line x1="380" y1="820" x2="380" y2="855"/>
+        <line x1="420" y1="820" x2="420" y2="855"/>
+        <line x1="460" y1="820" x2="460" y2="855"/>
+        <line x1="500" y1="820" x2="500" y2="855"/>
+        <line x1="540" y1="820" x2="540" y2="855"/>
+      </g>
+      <g stroke="#4D5B47" stroke-width="2" opacity="0.75">
+        <line x1="780" y1="820" x2="780" y2="855"/>
+        <line x1="820" y1="820" x2="820" y2="855"/>
+        <line x1="860" y1="820" x2="860" y2="855"/>
+        <line x1="900" y1="820" x2="900" y2="855"/>
+        <line x1="940" y1="820" x2="940" y2="855"/>
+        <line x1="980" y1="820" x2="980" y2="855"/>
+        <line x1="1020" y1="820" x2="1020" y2="855"/>
+        <line x1="1060" y1="820" x2="1060" y2="855"/>
+        <line x1="1100" y1="820" x2="1100" y2="855"/>
+        <line x1="1140" y1="820" x2="1140" y2="855"/>
+      </g>
+      <text x="660" y="845" text-anchor="middle" class="label-text" style="fill:#4D5B47;font-size:9.5px">↑ NOREN ENTRY (OPEN)</text>
+
+      <!-- DIMENSION LINES -->
+      <!-- Bottom: 11'-0" overall -->
+      <g class="dim-line">
+        <line x1="110" y1="900" x2="1210" y2="900"/>
+        <line x1="110" y1="893" x2="110" y2="907"/>
+        <line x1="1210" y1="893" x2="1210" y2="907"/>
+        <line x1="110" y1="880" x2="110" y2="905"/>
+        <line x1="1210" y1="880" x2="1210" y2="905"/>
+      </g>
+      <rect x="610" y="888" width="110" height="22" fill="#E2D9C5"/>
+      <text x="660" y="903" text-anchor="middle" class="dim-text" style="font-weight:500">11'-0"</text>
+
+      <!-- Right: 8'-0" overall -->
+      <g class="dim-line">
+        <line x1="1240" y1="70" x2="1240" y2="870"/>
+        <line x1="1233" y1="70" x2="1247" y2="70"/>
+        <line x1="1233" y1="870" x2="1247" y2="870"/>
+        <line x1="1235" y1="70" x2="1260" y2="70"/>
+        <line x1="1235" y1="870" x2="1260" y2="870"/>
+      </g>
+      <g transform="translate(1240 470) rotate(-90)">
+        <rect x="-30" y="-12" width="60" height="22" fill="#E2D9C5"/>
+        <text x="0" y="3" text-anchor="middle" class="dim-text" style="font-weight:500">8'-0"</text>
+      </g>
+
+      <!-- Zone widths (small dim line) -->
+      <g class="dim-line" opacity="0.7">
+        <line x1="146" y1="50" x2="450" y2="50"/>
+        <line x1="146" y1="44" x2="146" y2="56"/>
+        <line x1="450" y1="44" x2="450" y2="56"/>
+        <line x1="450" y1="50" x2="870" y2="50"/>
+        <line x1="870" y1="44" x2="870" y2="56"/>
+        <line x1="870" y1="50" x2="1174" y2="50"/>
+        <line x1="1174" y1="44" x2="1174" y2="56"/>
+      </g>
+      <text x="298" y="40" text-anchor="middle" class="dim-text" style="font-size:10px">3'-0½"</text>
+      <text x="660" y="40" text-anchor="middle" class="dim-text" style="font-size:10px">4'-2"</text>
+      <text x="1022" y="40" text-anchor="middle" class="dim-text" style="font-size:10px">3'-0½"</text>
+
+      <!-- North arrow (small) -->
+      <g transform="translate(80, 100)">
+        <circle cx="0" cy="0" r="18" fill="none" stroke="#15110D" stroke-width="0.6"/>
+        <polygon points="0,-14 5,8 0,4 -5,8" fill="#15110D"/>
+        <text x="0" y="-22" text-anchor="middle" class="label-text" style="font-size:9px">N</text>
+      </g>
+
+      <!-- Legend keys -->
+      <g transform="translate(80, 800)" font-family="JetBrains Mono" font-size="9" fill="#3A332B" letter-spacing="0.06em">
+        <rect x="0" y="-8" width="14" height="8" fill="#0A0908"/>
+        <text x="20" y="-1">6×6 FIR POST</text>
+        <rect x="0" y="8" width="14" height="6" fill="url(#planBoards)"/>
+        <text x="20" y="15">T&amp;G CLADDING</text>
+        <line x1="0" y1="28" x2="14" y2="28" stroke="#6B3D1E" stroke-width="2" stroke-dasharray="4 2"/>
+        <text x="20" y="31">2×6 RAFTER ABOVE</text>
+      </g>
+    </svg>
+
+    <div class="drawing-title">
+      Drawing A1.0<br>
+      <span class="big">Plan — interior program</span>
+    </div>
+  </div>
+
+  <!-- PROGRAM ZONES -->
+  <div class="program">
+    <div class="zone">
+      <div class="znum">01 / WEST</div>
+      <h4>Cold <em>plunge</em></h4>
+      <p>
+        A freestanding tub sits against the enclosed left wall, set on duckboard
+        with gravel drainage beneath. The wall behind it stays solid for privacy
+        and warmth retention.
+      </p>
+    </div>
+    <div class="zone">
+      <div class="znum">02 / CENTER</div>
+      <h4>Standing <em>transition</em></h4>
+      <p>
+        A small bench on the rear wall. Towel hooks above. Room enough to dress,
+        towel off, set down a cup of tea, and listen to the rain on the metal
+        roof before going back in.
+      </p>
+    </div>
+    <div class="zone">
+      <div class="znum">03 / EAST</div>
+      <h4>Outdoor <em>shower</em></h4>
+      <p>
+        Wall-mounted matte black fixture on the back wall. The partial side wall
+        screens it from the garden; the open front lets steam clear. Gravel bed
+        below the duckboard takes the water.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================== -->
+<!-- ELEVATIONS                                                       -->
+<!-- ============================================================== -->
+<section class="sheet">
+  <div class="sheet-mark">Sheet<span class="num">A2.0</span></div>
+
+  <header>
+    <div>
+      <div class="eyebrow">Drawing 02</div>
+      <h2>Elevations, with <em>roof slope</em>.</h2>
+    </div>
+    <div class="sheet-meta">
+      Scale <b>3/8" = 1'-0"</b><br>
+      Roof fall <b>~4" back</b><br>
+      Cladding <b>Vertical T&G</b>
+    </div>
+  </header>
+
+  <div class="twoup">
+
+    <!-- FRONT ELEVATION (11 ft wide) -->
+    <div class="drawing-frame">
+      <svg class="drawing-svg" viewBox="0 0 880 600" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="elFirBoards" patternUnits="userSpaceOnUse" width="22" height="20">
+            <rect width="22" height="20" fill="#A6633A"/>
+            <line x1="0" y1="0" x2="0" y2="20" stroke="#6B3D1E" stroke-width="0.7"/>
+            <line x1="11" y1="0" x2="11" y2="20" stroke="#6B3D1E" stroke-width="0.4" opacity="0.6"/>
+          </pattern>
+        </defs>
+
+        <!-- Ground line -->
+        <line x1="50" y1="510" x2="830" y2="510" stroke="#15110D" stroke-width="1.5"/>
+        <g stroke="#15110D" stroke-width="0.5" opacity="0.7">
+          <line x1="60" y1="510" x2="50" y2="525"/>
+          <line x1="100" y1="510" x2="90" y2="525"/>
+          <line x1="140" y1="510" x2="130" y2="525"/>
+          <line x1="180" y1="510" x2="170" y2="525"/>
+          <line x1="220" y1="510" x2="210" y2="525"/>
+          <line x1="260" y1="510" x2="250" y2="525"/>
+          <line x1="300" y1="510" x2="290" y2="525"/>
+          <line x1="340" y1="510" x2="330" y2="525"/>
+          <line x1="380" y1="510" x2="370" y2="525"/>
+          <line x1="420" y1="510" x2="410" y2="525"/>
+          <line x1="460" y1="510" x2="450" y2="525"/>
+          <line x1="500" y1="510" x2="490" y2="525"/>
+          <line x1="540" y1="510" x2="530" y2="525"/>
+          <line x1="580" y1="510" x2="570" y2="525"/>
+          <line x1="620" y1="510" x2="610" y2="525"/>
+          <line x1="660" y1="510" x2="650" y2="525"/>
+          <line x1="700" y1="510" x2="690" y2="525"/>
+          <line x1="740" y1="510" x2="730" y2="525"/>
+          <line x1="780" y1="510" x2="770" y2="525"/>
+          <line x1="820" y1="510" x2="810" y2="525"/>
+        </g>
+
+        <!-- The opening looks INTO the pavilion. So we see: 2 posts, beam, roof edge above (slightly tilted - higher on this side), interior glimpse behind, noren curtain. -->
+
+        <!-- BACK WALL visible through opening -->
+        <rect x="120" y="160" width="640" height="350" fill="#A6633A" opacity="0.5"/>
+        <g stroke="#6B3D1E" stroke-width="0.5" opacity="0.7">
+          <line x1="140" y1="160" x2="140" y2="510"/>
+          <line x1="160" y1="160" x2="160" y2="510"/>
+          <line x1="180" y1="160" x2="180" y2="510"/>
+          <line x1="200" y1="160" x2="200" y2="510"/>
+          <line x1="220" y1="160" x2="220" y2="510"/>
+          <line x1="240" y1="160" x2="240" y2="510"/>
+          <line x1="260" y1="160" x2="260" y2="510"/>
+          <line x1="280" y1="160" x2="280" y2="510"/>
+          <line x1="300" y1="160" x2="300" y2="510"/>
+          <line x1="320" y1="160" x2="320" y2="510"/>
+          <line x1="340" y1="160" x2="340" y2="510"/>
+          <line x1="360" y1="160" x2="360" y2="510"/>
+          <line x1="380" y1="160" x2="380" y2="510"/>
+          <line x1="400" y1="160" x2="400" y2="510"/>
+          <line x1="420" y1="160" x2="420" y2="510"/>
+          <line x1="440" y1="160" x2="440" y2="510"/>
+          <line x1="460" y1="160" x2="460" y2="510"/>
+          <line x1="480" y1="160" x2="480" y2="510"/>
+          <line x1="500" y1="160" x2="500" y2="510"/>
+          <line x1="520" y1="160" x2="520" y2="510"/>
+          <line x1="540" y1="160" x2="540" y2="510"/>
+          <line x1="560" y1="160" x2="560" y2="510"/>
+          <line x1="580" y1="160" x2="580" y2="510"/>
+          <line x1="600" y1="160" x2="600" y2="510"/>
+          <line x1="620" y1="160" x2="620" y2="510"/>
+          <line x1="640" y1="160" x2="640" y2="510"/>
+          <line x1="660" y1="160" x2="660" y2="510"/>
+          <line x1="680" y1="160" x2="680" y2="510"/>
+          <line x1="700" y1="160" x2="700" y2="510"/>
+          <line x1="720" y1="160" x2="720" y2="510"/>
+          <line x1="740" y1="160" x2="740" y2="510"/>
+        </g>
+
+        <!-- soft warm tint inside -->
+        <rect x="120" y="160" width="640" height="350" fill="#A6633A" opacity="0.1"/>
+
+        <!-- POSTS (6x6) - height 8 ft = roughly 350 px tall, post is 22px wide -->
+        <rect x="98" y="160" width="22" height="350" fill="#15110D"/>
+        <rect x="760" y="160" width="22" height="350" fill="#15110D"/>
+
+        <!-- Wood grain on posts -->
+        <g stroke="#6B3D1E" stroke-width="0.4" opacity="0.4">
+          <line x1="105" y1="170" x2="105" y2="500"/>
+          <line x1="113" y1="170" x2="113" y2="500"/>
+          <line x1="767" y1="170" x2="767" y2="500"/>
+          <line x1="775" y1="170" x2="775" y2="500"/>
+        </g>
+
+        <!-- BEAM (double 2x8) front face -->
+        <rect x="80" y="140" width="720" height="22" fill="#15110D"/>
+        <rect x="80" y="140" width="720" height="22" fill="none" stroke="#A6633A" stroke-width="0.4" opacity="0.5"/>
+        <line x1="80" y1="151" x2="800" y2="151" stroke="#A6633A" stroke-width="0.4" opacity="0.4"/>
+
+        <!-- ROOF edge (front, slightly higher than back per slope) -->
+        <!-- corrugated metal -->
+        <rect x="60" y="115" width="760" height="25" fill="#0A0908"/>
+        <g stroke="#2A2520" stroke-width="0.5" opacity="0.8">
+          <line x1="60" y1="120" x2="820" y2="120"/>
+          <line x1="60" y1="128" x2="820" y2="128"/>
+          <line x1="60" y1="134" x2="820" y2="134"/>
+        </g>
+        <!-- corrugation pattern -->
+        <g stroke="#3A332B" stroke-width="0.4" opacity="0.7">
+          <line x1="80" y1="115" x2="80" y2="140"/>
+          <line x1="100" y1="115" x2="100" y2="140"/>
+          <line x1="120" y1="115" x2="120" y2="140"/>
+          <line x1="140" y1="115" x2="140" y2="140"/>
+          <line x1="160" y1="115" x2="160" y2="140"/>
+          <line x1="180" y1="115" x2="180" y2="140"/>
+          <line x1="200" y1="115" x2="200" y2="140"/>
+          <line x1="220" y1="115" x2="220" y2="140"/>
+          <line x1="240" y1="115" x2="240" y2="140"/>
+          <line x1="260" y1="115" x2="260" y2="140"/>
+          <line x1="280" y1="115" x2="280" y2="140"/>
+          <line x1="300" y1="115" x2="300" y2="140"/>
+          <line x1="320" y1="115" x2="320" y2="140"/>
+          <line x1="340" y1="115" x2="340" y2="140"/>
+          <line x1="360" y1="115" x2="360" y2="140"/>
+          <line x1="380" y1="115" x2="380" y2="140"/>
+          <line x1="400" y1="115" x2="400" y2="140"/>
+          <line x1="420" y1="115" x2="420" y2="140"/>
+          <line x1="440" y1="115" x2="440" y2="140"/>
+          <line x1="460" y1="115" x2="460" y2="140"/>
+          <line x1="480" y1="115" x2="480" y2="140"/>
+          <line x1="500" y1="115" x2="500" y2="140"/>
+          <line x1="520" y1="115" x2="520" y2="140"/>
+          <line x1="540" y1="115" x2="540" y2="140"/>
+          <line x1="560" y1="115" x2="560" y2="140"/>
+          <line x1="580" y1="115" x2="580" y2="140"/>
+          <line x1="600" y1="115" x2="600" y2="140"/>
+          <line x1="620" y1="115" x2="620" y2="140"/>
+          <line x1="640" y1="115" x2="640" y2="140"/>
+          <line x1="660" y1="115" x2="660" y2="140"/>
+          <line x1="680" y1="115" x2="680" y2="140"/>
+          <line x1="700" y1="115" x2="700" y2="140"/>
+          <line x1="720" y1="115" x2="720" y2="140"/>
+          <line x1="740" y1="115" x2="740" y2="140"/>
+          <line x1="760" y1="115" x2="760" y2="140"/>
+          <line x1="780" y1="115" x2="780" y2="140"/>
+          <line x1="800" y1="115" x2="800" y2="140"/>
+        </g>
+
+        <!-- NOREN curtain - hanging from beam in two panels -->
+        <g fill="#4D5B47" opacity="0.75">
+          <path d="M 130 162 L 240 162 L 244 280 L 126 282 Z"/>
+          <path d="M 640 162 L 750 162 L 754 280 L 636 282 Z"/>
+        </g>
+        <!-- curtain folds -->
+        <g stroke="#3A4A36" stroke-width="0.4" opacity="0.6">
+          <line x1="155" y1="165" x2="156" y2="278"/>
+          <line x1="180" y1="165" x2="181" y2="278"/>
+          <line x1="205" y1="165" x2="206" y2="278"/>
+          <line x1="220" y1="165" x2="221" y2="278"/>
+          <line x1="665" y1="165" x2="666" y2="278"/>
+          <line x1="690" y1="165" x2="691" y2="278"/>
+          <line x1="715" y1="165" x2="716" y2="278"/>
+          <line x1="730" y1="165" x2="731" y2="278"/>
+        </g>
+
+        <!-- duckboard floor visible -->
+        <g stroke="#6B3D1E" stroke-width="1" opacity="0.8">
+          <line x1="120" y1="498" x2="760" y2="498"/>
+          <line x1="120" y1="504" x2="760" y2="504"/>
+          <line x1="120" y1="510" x2="760" y2="510"/>
+        </g>
+
+        <!-- soft wall sconce glow (subtle) -->
+        <circle cx="440" cy="280" r="50" fill="#A6633A" opacity="0.18"/>
+        <circle cx="440" cy="280" r="3" fill="#15110D"/>
+
+        <!-- DIMENSION LINES -->
+        <!-- bottom width 11'-0" -->
+        <g class="dim-line">
+          <line x1="98" y1="555" x2="782" y2="555"/>
+          <line x1="98" y1="548" x2="98" y2="562"/>
+          <line x1="782" y1="548" x2="782" y2="562"/>
+          <line x1="98" y1="525" x2="98" y2="560"/>
+          <line x1="782" y1="525" x2="782" y2="560"/>
+        </g>
+        <rect x="395" y="544" width="90" height="22" fill="#E2D9C5"/>
+        <text x="440" y="559" text-anchor="middle" class="dim-text" style="font-weight:500">11'-0"</text>
+
+        <!-- left height 8'-0" (to beam) -->
+        <g class="dim-line">
+          <line x1="40" y1="160" x2="40" y2="510"/>
+          <line x1="33" y1="160" x2="47" y2="160"/>
+          <line x1="33" y1="510" x2="47" y2="510"/>
+          <line x1="42" y1="160" x2="80" y2="160"/>
+          <line x1="42" y1="510" x2="80" y2="510"/>
+        </g>
+        <g transform="translate(40 335) rotate(-90)">
+          <rect x="-30" y="-12" width="60" height="22" fill="#E2D9C5"/>
+          <text x="0" y="3" text-anchor="middle" class="dim-text" style="font-weight:500">8'-0"</text>
+        </g>
+
+        <!-- Annotations -->
+        <text x="440" y="92" text-anchor="middle" class="label-text" style="fill:#15110D">CORRUGATED METAL, MATTE BLACK</text>
+        <line x1="440" y1="100" x2="440" y2="112" stroke="#15110D" stroke-width="0.5"/>
+
+        <g transform="translate(820 250)">
+          <line x1="-15" y1="0" x2="-50" y2="0" stroke="#15110D" stroke-width="0.4"/>
+          <text x="-10" y="3" class="label-text" style="font-size:9px">NOREN</text>
+        </g>
+
+        <g transform="translate(820 350)">
+          <line x1="-15" y1="0" x2="-50" y2="0" stroke="#15110D" stroke-width="0.4"/>
+          <text x="-10" y="3" class="label-text" style="font-size:9px">6×6 FIR POST</text>
+        </g>
+
+        <g transform="translate(820 130)">
+          <line x1="-15" y1="0" x2="-50" y2="0" stroke="#15110D" stroke-width="0.4"/>
+          <text x="-10" y="3" class="label-text" style="font-size:9px">2×8 BEAM (DBL)</text>
+        </g>
+
+      </svg>
+
+      <div class="drawing-title">
+        Drawing A2.1<br>
+        <span class="big">Front elevation</span>
+      </div>
+    </div>
+
+    <!-- SIDE ELEVATION / SECTION -->
+    <div class="drawing-frame">
+      <svg class="drawing-svg" viewBox="0 0 700 600" xmlns="http://www.w3.org/2000/svg">
+        <!-- 8 ft wide, 8 ft tall -->
+        <!-- scale: ~70 px per ft, width 8 ft = 560 px, height 8 ft = 350 px -->
+
+        <!-- Ground -->
+        <line x1="50" y1="510" x2="650" y2="510" stroke="#15110D" stroke-width="1.5"/>
+        <g stroke="#15110D" stroke-width="0.5" opacity="0.7">
+          <line x1="60" y1="510" x2="50" y2="525"/>
+          <line x1="100" y1="510" x2="90" y2="525"/>
+          <line x1="140" y1="510" x2="130" y2="525"/>
+          <line x1="180" y1="510" x2="170" y2="525"/>
+          <line x1="220" y1="510" x2="210" y2="525"/>
+          <line x1="260" y1="510" x2="250" y2="525"/>
+          <line x1="300" y1="510" x2="290" y2="525"/>
+          <line x1="340" y1="510" x2="330" y2="525"/>
+          <line x1="380" y1="510" x2="370" y2="525"/>
+          <line x1="420" y1="510" x2="410" y2="525"/>
+          <line x1="460" y1="510" x2="450" y2="525"/>
+          <line x1="500" y1="510" x2="490" y2="525"/>
+          <line x1="540" y1="510" x2="530" y2="525"/>
+          <line x1="580" y1="510" x2="570" y2="525"/>
+          <line x1="620" y1="510" x2="610" y2="525"/>
+        </g>
+
+        <!-- This is a side section showing: rear wall (left), front opening (right), roof slope -->
+        <!-- Front edge of roof higher, back edge lower (per "slight rear slope") -->
+        <!-- Roof slope ~4" over 8 ft = small angle -->
+
+        <!-- POST (rear/left) -->
+        <rect x="100" y="160" width="22" height="350" fill="#15110D"/>
+        <!-- POST (front/right) -->
+        <rect x="568" y="148" width="22" height="362" fill="#15110D"/>
+        <!-- Note: front post is slightly taller because roof slopes down to back -->
+
+        <!-- BEAM (along this side, top of posts) - sloped -->
+        <polygon points="100,160 590,148 590,170 100,182" fill="#15110D"/>
+
+        <!-- ROOF (sloped) - corrugated metal -->
+        <polygon points="78,138 612,123 612,148 78,163" fill="#0A0908"/>
+        <g stroke="#2A2520" stroke-width="0.4" opacity="0.7">
+          <line x1="78" y1="143" x2="612" y2="128"/>
+          <line x1="78" y1="153" x2="612" y2="138"/>
+        </g>
+
+        <!-- RAFTERS visible in section (under roof) - dashed boxes -->
+        <!-- We're looking from the side, so rafters are perpendicular to our view -->
+        <!-- They run across, so we see them in elevation as small rectangles -->
+        <!-- Actually in side elevation we see all 6 rafters edge-on since they run side-to-side -->
+        <!-- 6 rafters spaced 2 ft apart, viewed end-on -->
+        <g fill="#6B3D1E" opacity="0.85">
+          <rect x="106" y="170" width="14" height="14" stroke="#3F2412" stroke-width="0.4"/>
+          <rect x="190" y="167" width="14" height="14" stroke="#3F2412" stroke-width="0.4"/>
+          <rect x="280" y="165" width="14" height="14" stroke="#3F2412" stroke-width="0.4"/>
+          <rect x="370" y="162" width="14" height="14" stroke="#3F2412" stroke-width="0.4"/>
+          <rect x="460" y="160" width="14" height="14" stroke="#3F2412" stroke-width="0.4"/>
+          <rect x="550" y="157" width="14" height="14" stroke="#3F2412" stroke-width="0.4"/>
+        </g>
+
+        <!-- REAR WALL (cladding, on left) -->
+        <rect x="78" y="160" width="22" height="350" fill="url(#elFirBoards)" opacity="0.95"/>
+        <rect x="78" y="160" width="22" height="350" fill="none" stroke="#15110D" stroke-width="0.6"/>
+
+        <!-- INTERIOR (between the posts, behind/inside the section cut) -->
+        <!-- Wall behind (back wall T&G, full height) -->
+        <rect x="122" y="160" width="446" height="350" fill="#A6633A" opacity="0.35"/>
+        <g stroke="#6B3D1E" stroke-width="0.4" opacity="0.7">
+          <line x1="140" y1="160" x2="140" y2="510"/>
+          <line x1="160" y1="160" x2="160" y2="510"/>
+          <line x1="180" y1="160" x2="180" y2="510"/>
+          <line x1="200" y1="160" x2="200" y2="510"/>
+          <line x1="220" y1="160" x2="220" y2="510"/>
+          <line x1="240" y1="160" x2="240" y2="510"/>
+          <line x1="260" y1="160" x2="260" y2="510"/>
+          <line x1="280" y1="160" x2="280" y2="510"/>
+          <line x1="300" y1="160" x2="300" y2="510"/>
+          <line x1="320" y1="160" x2="320" y2="510"/>
+          <line x1="340" y1="160" x2="340" y2="510"/>
+          <line x1="360" y1="160" x2="360" y2="510"/>
+          <line x1="380" y1="160" x2="380" y2="510"/>
+          <line x1="400" y1="160" x2="400" y2="510"/>
+          <line x1="420" y1="160" x2="420" y2="510"/>
+          <line x1="440" y1="160" x2="440" y2="510"/>
+          <line x1="460" y1="160" x2="460" y2="510"/>
+          <line x1="480" y1="160" x2="480" y2="510"/>
+          <line x1="500" y1="160" x2="500" y2="510"/>
+          <line x1="520" y1="160" x2="520" y2="510"/>
+          <line x1="540" y1="160" x2="540" y2="510"/>
+          <line x1="560" y1="160" x2="560" y2="510"/>
+        </g>
+
+        <!-- COLD PLUNGE TUB (visible in section, on left/back) -->
+        <rect x="140" y="380" width="160" height="120" rx="6" fill="#4D5B47" opacity="0.4"/>
+        <rect x="140" y="380" width="160" height="120" rx="6" fill="none" stroke="#4D5B47" stroke-width="1.2"/>
+        <!-- water surface -->
+        <line x1="148" y1="396" x2="292" y2="396" stroke="#4D5B47" stroke-width="0.8"/>
+        <g stroke="#4D5B47" stroke-width="0.4" opacity="0.5">
+          <path d="M 148 410 Q 175 408, 220 412 T 292 410" fill="none"/>
+          <path d="M 148 430 Q 175 428, 220 432 T 292 430" fill="none"/>
+          <path d="M 148 450 Q 175 448, 220 452 T 292 450" fill="none"/>
+        </g>
+        <text x="220" y="468" text-anchor="middle" class="label-text" style="font-size:8px;fill:#4D5B47">cold plunge</text>
+
+        <!-- BENCH on back wall (visible to right of tub) -->
+        <rect x="340" y="370" width="180" height="22" fill="#6B3D1E" opacity="0.8"/>
+        <rect x="340" y="370" width="180" height="22" fill="none" stroke="#3F2412" stroke-width="0.5"/>
+        <!-- bench legs -->
+        <rect x="348" y="392" width="6" height="118" fill="#6B3D1E"/>
+        <rect x="506" y="392" width="6" height="118" fill="#6B3D1E"/>
+
+        <!-- Towel hooks (on rear wall above bench) -->
+        <circle cx="380" cy="290" r="3" fill="#0A0908"/>
+        <circle cx="430" cy="290" r="3" fill="#0A0908"/>
+        <circle cx="480" cy="290" r="3" fill="#0A0908"/>
+
+        <!-- duckboard floor -->
+        <g stroke="#6B3D1E" stroke-width="0.8" opacity="0.75">
+          <line x1="122" y1="498" x2="568" y2="498"/>
+          <line x1="122" y1="504" x2="568" y2="504"/>
+          <line x1="122" y1="510" x2="568" y2="510"/>
+        </g>
+
+        <!-- Noren curtain (right side, at opening) -->
+        <g fill="#4D5B47" opacity="0.85">
+          <path d="M 568 170 L 600 170 L 602 290 L 566 292 Z"/>
+        </g>
+
+        <!-- Wall sconce -->
+        <circle cx="500" cy="270" r="2.5" fill="#15110D"/>
+        <circle cx="500" cy="270" r="28" fill="#A6633A" opacity="0.18"/>
+
+        <!-- DIMENSIONS -->
+        <!-- bottom 8 ft -->
+        <g class="dim-line">
+          <line x1="100" y1="555" x2="590" y2="555"/>
+          <line x1="100" y1="548" x2="100" y2="562"/>
+          <line x1="590" y1="548" x2="590" y2="562"/>
+          <line x1="100" y1="525" x2="100" y2="560"/>
+          <line x1="590" y1="525" x2="590" y2="560"/>
+        </g>
+        <rect x="305" y="544" width="80" height="22" fill="#E2D9C5"/>
+        <text x="345" y="559" text-anchor="middle" class="dim-text" style="font-weight:500">8'-0"</text>
+
+        <!-- left height -->
+        <g class="dim-line">
+          <line x1="40" y1="160" x2="40" y2="510"/>
+          <line x1="33" y1="160" x2="47" y2="160"/>
+          <line x1="33" y1="510" x2="47" y2="510"/>
+          <line x1="42" y1="160" x2="78" y2="160"/>
+          <line x1="42" y1="510" x2="78" y2="510"/>
+        </g>
+        <g transform="translate(40 335) rotate(-90)">
+          <rect x="-30" y="-12" width="60" height="22" fill="#E2D9C5"/>
+          <text x="0" y="3" text-anchor="middle" class="dim-text" style="font-weight:500">8'-0"</text>
+        </g>
+
+        <!-- slope indicator -->
+        <g transform="translate(295 90)">
+          <line x1="-30" y1="6" x2="60" y2="-3" stroke="#15110D" stroke-width="0.6"/>
+          <line x1="-30" y1="6" x2="60" y2="6" stroke="#15110D" stroke-width="0.4" stroke-dasharray="2 2"/>
+          <text x="15" y="-10" text-anchor="middle" class="dim-text" style="font-size:9.5px">↘ ~4" FALL TO REAR</text>
+        </g>
+
+        <!-- Section indicator -->
+        <text x="345" y="92" text-anchor="middle" class="label-text" style="fill:#15110D;font-size:9px">SECTION A–A LOOKING WEST</text>
+
+      </svg>
+
+      <div class="drawing-title">
+        Drawing A2.2<br>
+        <span class="big">Section A–A</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================== -->
+<!-- MATERIALS                                                        -->
+<!-- ============================================================== -->
+<section class="materials">
+  <div class="sheet-mark">Sheet<span class="num">A3.0</span></div>
+
+  <header>
+    <div class="eyebrow">Materials & specification</div>
+    <h2>What it's <em>made of</em>.</h2>
+    <p class="sub">
+      A short list, intentionally. The pavilion lives or dies by the quality of the
+      fir, the patience of the joinery, and the restraint of the hardware. Buy good
+      lumber, sticker-dry it if it isn't already, and oil the boards before installation.
+    </p>
+  </header>
+
+  <div class="matgrid">
+
+    <div class="matcol">
+      <h5>01 / Structure</h5>
+      <ul>
+        <li>
+          <div class="item">6×6 Douglas fir post
+            <span class="note">corner uprights, set on standoffs</span>
+          </div>
+          <div class="qty">4 × 8'</div>
+        </li>
+        <li>
+          <div class="item">2×8 Doug fir beam
+            <span class="note">doubled, sandwich both faces of posts</span>
+          </div>
+          <div class="qty">4 × 12'</div>
+        </li>
+        <li>
+          <div class="item">2×8 Doug fir beam
+            <span class="note">side beams, doubled</span>
+          </div>
+          <div class="qty">4 × 10'</div>
+        </li>
+        <li>
+          <div class="item">2×6 Doug fir rafter
+            <span class="note">spans 8' direction · ~2' o.c.</span>
+          </div>
+          <div class="qty">6 × 10'</div>
+        </li>
+        <li>
+          <div class="item">2×6 fir corner brace
+            <span class="note">45° at each post head</span>
+          </div>
+          <div class="qty">8 × short</div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="matcol">
+      <h5>02 / Cladding</h5>
+      <ul>
+        <li>
+          <div class="item">1×6 fir T&G, vertical
+            <span class="note">rear wall · stained to match sauna</span>
+          </div>
+          <div class="qty">~95 lf</div>
+        </li>
+        <li>
+          <div class="item">1×6 fir T&G, vertical
+            <span class="note">left side wall (full enclosure)</span>
+          </div>
+          <div class="qty">~70 lf</div>
+        </li>
+        <li>
+          <div class="item">1×6 fir T&G, vertical
+            <span class="note">right side wall (partial, rear 60%)</span>
+          </div>
+          <div class="qty">~42 lf</div>
+        </li>
+        <li>
+          <div class="item">1×3 fir furring
+            <span class="note">strapping behind cladding for air</span>
+          </div>
+          <div class="qty">~110 lf</div>
+        </li>
+        <li>
+          <div class="item">Exterior wood stain
+            <span class="note">penetrating oil · warm fir tone</span>
+          </div>
+          <div class="qty">1 gal</div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="matcol">
+      <h5>03 / Roof</h5>
+      <ul>
+        <li>
+          <div class="item">Corrugated metal panel
+            <span class="note">matte black · 24 ga</span>
+          </div>
+          <div class="qty">~90 sf</div>
+        </li>
+        <li>
+          <div class="item">2×4 roof purlins
+            <span class="note">over rafters, perpendicular</span>
+          </div>
+          <div class="qty">4 × 12'</div>
+        </li>
+        <li>
+          <div class="item">Drip edge + closure
+            <span class="note">matte black to match</span>
+          </div>
+          <div class="qty">28 lf</div>
+        </li>
+        <li>
+          <div class="item">Roof underlayment
+            <span class="note">peel-and-stick membrane</span>
+          </div>
+          <div class="qty">1 roll</div>
+        </li>
+        <li>
+          <div class="item">Hidden gutter, rear
+            <span class="note">routes to French drain</span>
+          </div>
+          <div class="qty">12'</div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="matcol">
+      <h5>04 / Finish & Fit</h5>
+      <ul>
+        <li>
+          <div class="item">Cedar duckboard floor
+            <span class="note">spaced slats on sleepers</span>
+          </div>
+          <div class="qty">88 sf</div>
+        </li>
+        <li>
+          <div class="item">Drainage gravel
+            <span class="note">3/4" washed beneath duckboard</span>
+          </div>
+          <div class="qty">~1.5 yd³</div>
+        </li>
+        <li>
+          <div class="item">Wall sconce, matte black
+            <span class="note">warm 2200K · IP65</span>
+          </div>
+          <div class="qty">1 ea</div>
+        </li>
+        <li>
+          <div class="item">Noren curtain
+            <span class="note">indigo linen · front entry</span>
+          </div>
+          <div class="qty">2 panel</div>
+        </li>
+        <li>
+          <div class="item">Outdoor shower fixture
+            <span class="note">matte black · cold + hot</span>
+          </div>
+          <div class="qty">1 set</div>
+        </li>
+        <li>
+          <div class="item">Towel hooks, blackened brass
+            <span class="note">rear wall, above bench</span>
+          </div>
+          <div class="qty">4 ea</div>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================== -->
+<!-- BUILD SEQUENCE                                                   -->
+<!-- ============================================================== -->
+<section class="sequence">
+  <div class="sheet-mark">Sheet<span class="num">A4.0</span></div>
+
+  <header>
+    <div class="eyebrow">Construction sequence</div>
+    <h2>Building it, <em>in order</em>.</h2>
+  </header>
+
+  <div class="steps">
+    <div class="step">
+      <div class="n">01</div>
+      <div>
+        <h6>Set the footprint</h6>
+        <p>
+          Square out the 11' × 8' pad next to the sauna. Anchor four 6×6 standoffs
+          to the slab — keep the post bases off the ground for rot resistance.
+          Re-check diagonals: corner to corner should match within 1/8".
+        </p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="n">02</div>
+      <div>
+        <h6>Raise the posts</h6>
+        <p>
+          Cut all four 6×6 posts to 8'-0", plus an extra 1/2" at the front pair
+          for the rear roof slope (or scribe later). Stand each post in its
+          standoff and brace temporarily — laser-plumb all four faces.
+        </p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="n">03</div>
+      <div>
+        <h6>Hang the beams</h6>
+        <p>
+          Sandwich each pair of posts with doubled 2×8 beams — long beams (12')
+          on the front and rear faces, side beams (10') tucked between. Through-bolt
+          with 1/2" galvanized hardware. The pavilion stops racking the moment all
+          four beams are home.
+        </p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="n">04</div>
+      <div>
+        <h6>Lay the rafters</h6>
+        <p>
+          Drop six 2×6 rafters across the 8' span, ~2' on centre, with the rear
+          ends set ~4" below the front to throw the roof toward the back. Notch a
+          shallow seat over each beam. Tail the front ends with a clean cut — no
+          decorative scrolls.
+        </p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="n">05</div>
+      <div>
+        <h6>Sheathe & roof</h6>
+        <p>
+          2×4 purlins across the rafters, peel-and-stick membrane over the top,
+          then corrugated metal in matte black with matching closure strips. A
+          hidden gutter along the rear catches the runoff and pipes it to a
+          french drain.
+        </p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="n">06</div>
+      <div>
+        <h6>Strap the walls</h6>
+        <p>
+          1×3 furring vertically over a breathable WRB on the rear, left, and
+          partial-right framing. This gives the cladding a ventilated cavity —
+          essential for fir holding up in Vancouver winters.
+        </p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="n">07</div>
+      <div>
+        <h6>Clad in fir</h6>
+        <p>
+          1×6 T&G fir, run vertically, blind-nailed through the tongue. Pre-stain
+          all six faces of every board before installation so any shrinkage
+          doesn't expose raw wood. Leave a small shadow gap at the bottom for
+          drainage.
+        </p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="n">08</div>
+      <div>
+        <h6>Fit the interior</h6>
+        <p>
+          Cedar duckboard on sleepers over the gravel bed. Bench against the rear
+          wall. Plumb the cold and hot lines for the shower, set the plunge tub
+          on its pad, install the sconce, hang the noren. Burn a candle, sit on
+          the bench, listen.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================== -->
+<!-- ATMOSPHERE / CLOSING                                             -->
+<!-- ============================================================== -->
+<section class="atmosphere">
+  <div class="sheet-mark">Sheet<span class="num">A5.0</span></div>
+
+  <div class="atmosphere-inner">
+    <div class="eyebrow">On atmosphere</div>
+    <h2>A place built<br>for the <em>ritual</em>,<br>not the view.</h2>
+
+    <p>
+      Done right, the pavilion disappears into use. The fir darkens with the
+      seasons. The metal roof ticks under hard rain. Steam from the shower lifts
+      out the open front and is gone before it touches the cladding. The cold
+      plunge takes the heat out of you in twenty seconds and leaves quiet behind.
+    </p>
+
+    <p>
+      It is not a structure that wants to be photographed — it is a structure
+      that wants to be used at dusk, in November, barefoot, with a cup of tea.
+      The rest of the architecture sits down so the ritual can happen.
+    </p>
+
+    <div class="ritual-list">
+      <span>Sauna</span>
+      <span>Plunge</span>
+      <span>Shower</span>
+      <span>Tea</span>
+      <span>Rain</span>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================== -->
+<!-- FOOTER                                                           -->
+<!-- ============================================================== -->
+<footer>
+  <div>
+    <span class="mark">Atelier</span> · Drawing Set OP–01
+  </div>
+  <div>
+    Vancouver, BC · 49.26° N
+  </div>
+  <div>
+    Issued 2026.05 · Rev. A
+  </div>
+</footer>
+
+</body>
+</html>
