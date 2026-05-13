@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Onsen — A Build Guide</title>
+<title>Onsen — A Build Plan</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -11,13 +11,17 @@
   :root {
     --paper: #ECE5D8;
     --paper-warm: #E4DAC6;
+    --paper-cool: #DED5C2;
     --ink: #15110D;
     --ink-soft: #3A332B;
     --walnut: #3F2412;
+    --walnut-deep: #2A1808;
     --honey: #C18854;
     --honey-pale: #E2C8A8;
     --sage: #4D5B47;
     --concrete: #B8B0A4;
+    --concrete-dark: #8E867B;
+    --metal-black: #1A1714;
     --hairline: rgba(21, 17, 13, 0.15);
     --hairline-soft: rgba(21, 17, 13, 0.08);
   }
@@ -65,7 +69,7 @@
     font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--concrete);
+    color: var(--concrete-dark);
   }
   .sheet-marker .num {
     display: block;
@@ -111,7 +115,7 @@
   }
   .cover-sub {
     margin-top: 32px;
-    max-width: 640px;
+    max-width: 660px;
     font-size: 19px;
     line-height: 1.5;
     color: var(--ink-soft);
@@ -129,7 +133,7 @@
     font-size: 10px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--concrete);
+    color: var(--concrete-dark);
     margin-bottom: 6px;
   }
   .cover-meta .item .val {
@@ -139,6 +143,32 @@
   }
   @media (max-width: 768px) {
     .cover-meta { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ===== SITE NOTE on cover ===== */
+  .site-note {
+    margin-top: 36px;
+    padding: 22px 26px;
+    background: rgba(193, 136, 84, 0.10);
+    border-left: 2px solid var(--walnut);
+    max-width: 720px;
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .site-note strong {
+    color: var(--walnut);
+    font-style: normal;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 8px;
   }
 
   /* ===== SECTION HEAD ===== */
@@ -167,94 +197,13 @@
   .lede {
     font-family: 'Fraunces', serif;
     font-weight: 300;
-    font-size: 24px;
-    line-height: 1.45;
+    font-size: 22px;
+    line-height: 1.5;
     color: var(--ink-soft);
     max-width: 720px;
     margin-bottom: 48px;
   }
   .lede em { font-style: italic; color: var(--walnut); }
-
-  /* ===== AT A GLANCE ===== */
-  .glance-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-    border-top: 1px solid var(--ink);
-    border-bottom: 1px solid var(--ink);
-    margin: 40px 0;
-  }
-  .glance-cell {
-    padding: 36px 28px;
-    border-right: 1px solid var(--hairline);
-  }
-  .glance-cell:last-child { border-right: none; }
-  .glance-cell .label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--concrete);
-    margin-bottom: 12px;
-  }
-  .glance-cell .big {
-    font-family: 'Fraunces', serif;
-    font-weight: 300;
-    font-size: 42px;
-    line-height: 1;
-    color: var(--walnut);
-    margin-bottom: 8px;
-    letter-spacing: -0.02em;
-  }
-  .glance-cell .big em { font-style: italic; }
-  .glance-cell .desc {
-    font-size: 13px;
-    color: var(--ink-soft);
-    line-height: 1.45;
-  }
-  @media (max-width: 768px) {
-    .glance-grid { grid-template-columns: 1fr; }
-    .glance-cell { border-right: none; border-bottom: 1px solid var(--hairline); }
-    .glance-cell:last-child { border-bottom: none; }
-  }
-
-  /* ===== PREP CHECKLIST ===== */
-  .prep-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
-    background: var(--hairline);
-    border: 1px solid var(--hairline);
-    margin: 30px 0;
-  }
-  .prep-cell {
-    background: var(--paper);
-    padding: 28px 24px;
-    position: relative;
-  }
-  .prep-cell .num {
-    font-family: 'Fraunces', serif;
-    font-style: italic;
-    font-weight: 400;
-    font-size: 28px;
-    color: var(--honey);
-    line-height: 1;
-    margin-bottom: 14px;
-  }
-  .prep-cell h4 {
-    font-family: 'Fraunces', serif;
-    font-weight: 400;
-    font-size: 20px;
-    color: var(--ink);
-    margin-bottom: 10px;
-    letter-spacing: -0.01em;
-  }
-  .prep-cell p {
-    font-size: 14px;
-    color: var(--ink-soft);
-    line-height: 1.55;
-  }
-  @media (max-width: 768px) { .prep-grid { grid-template-columns: 1fr; } }
 
   /* ===== DRAWING FRAME ===== */
   .drawing {
@@ -289,9 +238,27 @@
     font-size: 10px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--concrete);
+    color: var(--concrete-dark);
   }
   .drawing svg { display: block; width: 100%; height: auto; }
+
+  /* ===== LEGEND ===== */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin: 20px 0 4px;
+    padding: 14px 18px;
+    background: var(--paper);
+    border: 1px solid var(--hairline);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .legend-item { display: flex; align-items: center; gap: 8px; }
+  .legend-swatch { width: 16px; height: 12px; border: 0.5px solid var(--ink); display: inline-block; }
 
   /* ===== TWO COLUMN ===== */
   .two-col {
@@ -303,7 +270,7 @@
   }
   @media (max-width: 900px) { .two-col { grid-template-columns: 1fr; gap: 40px; } }
 
-  /* ===== TOOLS / SHOPPING LIST ===== */
+  /* ===== SHOPPING LIST ===== */
   .list-section {
     margin: 36px 0;
   }
@@ -334,7 +301,7 @@
     align-items: baseline;
   }
   .list-item .name { color: var(--ink); }
-  .list-item .name .detail { color: var(--concrete); font-size: 12px; display: block; margin-top: 2px; }
+  .list-item .name .detail { color: var(--concrete-dark); font-size: 12px; display: block; margin-top: 2px; }
   .list-item .qty {
     font-family: 'JetBrains Mono', monospace;
     font-size: 12px;
@@ -346,17 +313,17 @@
 
   /* ===== PHASE ===== */
   .phase {
-    margin: 60px 0;
-    padding-top: 40px;
+    margin: 56px 0;
+    padding-top: 36px;
     border-top: 1px solid var(--ink);
     position: relative;
   }
   .phase-header {
     display: grid;
-    grid-template-columns: 80px 1fr auto;
+    grid-template-columns: 80px 1fr;
     gap: 24px;
     align-items: baseline;
-    margin-bottom: 28px;
+    margin-bottom: 24px;
   }
   .phase-num {
     font-family: 'Fraunces', serif;
@@ -375,16 +342,6 @@
     color: var(--ink);
     letter-spacing: -0.02em;
   }
-  .phase-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--concrete);
-    text-align: right;
-    line-height: 1.6;
-  }
-  .phase-meta strong { color: var(--walnut); display: block; font-weight: 500; }
   .phase-body {
     margin-left: 104px;
     max-width: 880px;
@@ -393,17 +350,17 @@
     .phase-header { grid-template-columns: 56px 1fr; }
     .phase-num { font-size: 48px; }
     .phase-title { font-size: 26px; }
-    .phase-meta { grid-column: 1 / -1; text-align: left; margin-top: 8px; }
     .phase-body { margin-left: 0; }
   }
   .phase-intro {
     font-family: 'Fraunces', serif;
     font-weight: 300;
-    font-size: 18px;
+    font-size: 17px;
     line-height: 1.55;
     color: var(--ink-soft);
     margin-bottom: 28px;
     font-style: italic;
+    max-width: 680px;
   }
   .substeps {
     display: grid;
@@ -467,6 +424,19 @@
     margin-right: 6px;
   }
 
+  /* ===== SCHEMATIC DIAGRAM (water flow) ===== */
+  .schematic {
+    margin: 36px 0;
+  }
+  .schematic-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--concrete-dark);
+    margin-bottom: 14px;
+  }
+
   /* ===== CLOSING ===== */
   .closing {
     text-align: center;
@@ -498,7 +468,7 @@
     font-size: 10px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--concrete);
+    color: var(--concrete-dark);
     text-align: center;
   }
 
@@ -506,11 +476,14 @@
   .stroke-ink { stroke: var(--ink); fill: none; }
   .stroke-walnut { stroke: var(--walnut); fill: none; }
   .stroke-honey { stroke: var(--honey); fill: none; }
-  .stroke-concrete { stroke: var(--concrete); fill: none; }
+  .stroke-concrete { stroke: var(--concrete-dark); fill: none; }
   .fill-walnut { fill: var(--walnut); }
+  .fill-walnut-deep { fill: var(--walnut-deep); }
   .fill-honey { fill: var(--honey); }
+  .fill-honey-pale { fill: var(--honey-pale); }
   .fill-paper { fill: var(--paper); }
   .fill-concrete { fill: var(--concrete); }
+  .fill-metal { fill: var(--metal-black); }
   .dim-label {
     font-family: 'JetBrains Mono', monospace;
     font-size: 9px;
@@ -522,6 +495,14 @@
     font-style: italic;
     font-size: 11px;
     fill: var(--walnut);
+  }
+  .room-label {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 14px;
+    fill: var(--walnut);
+    letter-spacing: 0.02em;
   }
   .leader { stroke: var(--ink-soft); stroke-width: 0.4; fill: none; }
   .dim-line { stroke: var(--ink-soft); stroke-width: 0.5; fill: none; }
@@ -535,153 +516,33 @@
 
   <!-- TOP RULE -->
   <div class="top-rule">
-    <div><span class="dot"></span>Onsen / Build Set / Rev. 03</div>
-    <div>Vancouver, BC · 49.26°N</div>
+    <div><span class="dot"></span>Onsen / Build Plan / Rev. 05</div>
+    <div>Vancouver, BC · existing alley pad · off-grid</div>
   </div>
 
   <!-- ===== COVER ===== -->
   <section class="cover sheet" style="border-bottom: 1px solid var(--hairline);">
     <div class="sheet-marker">
       <span class="num">A0</span>
-      Cover · Sheet 1 of 14
+      Cover · Sheet 1 of 9
     </div>
 
     <div>
-      <div class="eyebrow">A backyard pavilion · how to build it</div>
+      <div class="eyebrow">A backyard bath pavilion · the build plan</div>
       <h1 class="cover-title">Onsen,<br><em>by hand.</em></h1>
-      <p class="cover-sub">A complete construction guide for an 11 × 8 outdoor bath pavilion — heavy timber frame, horizontal cedar cladding, a translucent roof for the long winter light, a cold plunge and a hot shower. Built across five weekends with a circular saw, a drill, and one good neighbour.</p>
+      <p class="cover-sub">An 11 × 8 outdoor bath pavilion alongside the existing sauna. Heavy timber frame stained dark, fir cladding on the outside only — exposed framing inside. Black corrugated tin roof to match the sauna. A cold plunge, a hot shower, and zero grid connection.</p>
+
+      <div class="site-note">
+        <strong>Site &amp; services</strong>
+        Built on the existing concrete pad — no excavation, no slab pour. No house electrical run: propane on-demand heater for hot, garden hose from the bib for cold, a black hose coil on the roof for solar pre-heat, and solar string lights for evenings.
+      </div>
     </div>
 
     <div class="cover-meta">
       <div class="item"><div class="label">Footprint</div><div class="val">11′-0″ × 8′-0″</div></div>
       <div class="item"><div class="label">Frame</div><div class="val">Doug Fir 6×6</div></div>
-      <div class="item"><div class="label">Roof</div><div class="val">Polycarbonate / Lattice</div></div>
-      <div class="item"><div class="label">Climate</div><div class="val">Coastal · Zone 4 PNW</div></div>
-    </div>
-  </section>
-
-  <!-- ===== AT A GLANCE ===== -->
-  <section class="sheet">
-    <div class="sheet-marker">
-      <span class="num">A0.1</span>
-      At a Glance
-    </div>
-    <div class="eyebrow">Before you commit · 01</div>
-    <h2 class="section-title">What you're <em>signing up for.</em></h2>
-    <p class="lede">It is a real build. Not hard — but real. Plan on five productive weekends spread across a month or two, plus another two for plumbing, finishes, and the inevitable second trip to the lumberyard.</p>
-
-    <div class="glance-grid">
-      <div class="glance-cell">
-        <div class="label">Difficulty</div>
-        <div class="big"><em>Intermediate</em></div>
-        <div class="desc">If you've built a deck or framed a wall, you have the skills. The trickiest moments are squaring the frame and dropping the polycarbonate sheets cleanly.</div>
-      </div>
-      <div class="glance-cell">
-        <div class="label">Time</div>
-        <div class="big">5<em> weekends</em></div>
-        <div class="desc">Two for the pad and frame, one for the roof, one for cladding, one for plumbing and fit-out. Add a buffer weekend you'll definitely use.</div>
-      </div>
-      <div class="glance-cell">
-        <div class="label">Materials</div>
-        <div class="big">~$4,800<em> CAD</em></div>
-        <div class="desc">Range $3,800–$5,500 depending on lumber grade and whether you splurge on cedar or stay with stained fir. Plunge tub and shower fixtures included.</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== BEFORE YOU START ===== -->
-  <section class="sheet">
-    <div class="sheet-marker">
-      <span class="num">A0.2</span>
-      Prep Work
-    </div>
-    <div class="eyebrow">Before you commit · 02</div>
-    <h2 class="section-title">Six things to do <em>before lifting a board.</em></h2>
-
-    <div class="prep-grid">
-      <div class="prep-cell">
-        <div class="num">01</div>
-        <h4>Check your setbacks</h4>
-        <p>Vancouver allows accessory structures under 10 m² without a permit in most zones, but rear-yard and side-yard setbacks still apply. Call your district planning desk. Five minutes, saves grief.</p>
-      </div>
-      <div class="prep-cell">
-        <div class="num">02</div>
-        <h4>BC One Call before digging</h4>
-        <p>Free locate service for buried utilities. Three business days' notice. <code style="font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--walnut);">1-800-474-6886</code> or clickbeforeyoudig.com. Don't skip this for a small pad — gas lines don't care about your project size.</p>
-      </div>
-      <div class="prep-cell">
-        <div class="num">03</div>
-        <h4>Sun and prevailing rain</h4>
-        <p>Plan the open front to face south or southwest. The solid rear wall takes the prevailing winter weather (here, off the ocean, that's southeast). Stand in the proposed footprint at 4 pm in February if you can.</p>
-      </div>
-      <div class="prep-cell">
-        <div class="num">04</div>
-        <h4>Drainage and grading</h4>
-        <p>Pad slopes 1.5% to the shower drain. Around the perimeter, plan for a 12″ river-rock band that catches splash and routes water away. If you can tie into existing storm drainage, do it now while you're already digging.</p>
-      </div>
-      <div class="prep-cell">
-        <div class="num">05</div>
-        <h4>Lead times</h4>
-        <p>Order the plunge tub three weeks out. Polycarbonate sheets often need to be ordered in too. The 6×6 Doug fir posts are usually in stock at any larger yard — but check before you load up the trailer.</p>
-      </div>
-      <div class="prep-cell">
-        <div class="num">06</div>
-        <h4>One helper</h4>
-        <p>Most of this is solo work. But for raising the corner posts and dropping the doubled beams on top, you want a second pair of hands. Schedule that weekend now, not later.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== TOOLS ===== -->
-  <section class="sheet">
-    <div class="sheet-marker">
-      <span class="num">A0.3</span>
-      Tools
-    </div>
-    <div class="eyebrow">What you'll need · 03</div>
-    <h2 class="section-title">Tools, <em>by category.</em></h2>
-    <p class="lede">No specialty equipment. A weekend carpenter's kit, plus a couple of plumbing-specific bits you can pick up at the hardware store the morning of phase five.</p>
-
-    <div class="list-section">
-      <div class="two-col" style="margin: 0;">
-        <div>
-          <h3>Layout & cutting</h3>
-          <div class="list-item"><div class="name">Tape measure, 25 ft</div><div class="qty">1</div></div>
-          <div class="list-item"><div class="name">Speed square + framing square</div><div class="qty">1 ea</div></div>
-          <div class="list-item"><div class="name">Chalk line</div><div class="qty">1</div></div>
-          <div class="list-item"><div class="name">4-ft spirit level</div><div class="qty">1</div></div>
-          <div class="list-item"><div class="name">Line laser <span class="detail">helpful but optional</span></div><div class="qty">1</div></div>
-          <div class="list-item"><div class="name">Circular saw, 7¼″</div><div class="qty">1</div></div>
-          <div class="list-item"><div class="name">Miter saw, 10″ or 12″ <span class="detail">rent if you don't own</span></div><div class="qty">1</div></div>
-          <div class="list-item"><div class="name">Jigsaw, for cutouts</div><div class="qty">1</div></div>
-
-          <h3 style="margin-top: 32px;">Concrete & site</h3>
-          <div class="list-item"><div class="name">Round-point shovel + flat shovel</div><div class="qty">1 ea</div></div>
-          <div class="list-item"><div class="name">Wheelbarrow</div><div class="qty">1</div></div>
-          <div class="list-item"><div class="name">Plate compactor <span class="detail">rent — half day</span></div><div class="qty">1</div></div>
-          <div class="list-item"><div class="name">Magnesium float + edger</div><div class="qty">1 ea</div></div>
-          <div class="list-item"><div class="name">Mixing tub or mixer rental</div><div class="qty">1</div></div>
-        </div>
-
-        <div>
-          <h3>Fastening & drilling</h3>
-          <div class="list-item"><div class="name">Impact driver</div><div class="qty">1</div></div>
-          <div class="list-item"><div class="name">Drill / driver, ½″ chuck</div><div class="qty">1</div></div>
-          <div class="list-item"><div class="name">Spade bits + countersink set</div><div class="qty">1 set</div></div>
-          <div class="list-item"><div class="name">Ratchet & socket set</div><div class="qty">1 set</div></div>
-          <div class="list-item"><div class="name">Hammer, framing claw</div><div class="qty">1</div></div>
-          <div class="list-item"><div class="name">Pry bar / cat's paw</div><div class="qty">1</div></div>
-
-          <h3 style="margin-top: 32px;">Plumbing & finishing</h3>
-          <div class="list-item"><div class="name">PEX crimper or expander</div><div class="qty">1</div></div>
-          <div class="list-item"><div class="name">Tubing cutter</div><div class="qty">1</div></div>
-          <div class="list-item"><div class="name">Pipe wrench, 14″</div><div class="qty">1</div></div>
-          <div class="list-item"><div class="name">Caulk gun</div><div class="qty">1</div></div>
-          <div class="list-item"><div class="name">3″ roller + 2½″ brush</div><div class="qty">1 ea</div></div>
-          <div class="list-item"><div class="name">Random orbit sander</div><div class="qty">1</div></div>
-          <div class="list-item"><div class="name">Hearing, eye, dust protection</div><div class="qty">always</div></div>
-        </div>
-      </div>
+      <div class="item"><div class="label">Roof</div><div class="val">Black corrugated tin</div></div>
+      <div class="item"><div class="label">Services</div><div class="val">Off-grid</div></div>
     </div>
   </section>
 
@@ -689,90 +550,269 @@
   <section class="sheet">
     <div class="sheet-marker">
       <span class="num">A1.0</span>
-      Plan View
+      Plan
     </div>
-    <div class="eyebrow">Drawings · 04</div>
-    <h2 class="section-title">The <em>floor plan.</em></h2>
-    <p class="lede">Three zones from left to right: the cold plunge against the rear wall, a short transition strip with the step-up bench, and the shower stall on the open east side. The whole pad sits inside a river-rock collar that catches splash and helps with drainage.</p>
+    <div class="eyebrow">Drawings · 01</div>
+    <h2 class="section-title">The <em>plan.</em></h2>
+    <p class="lede">One open interior, two adjacent elements. Clad plunge box against the rear wall on the west half, shower zone on the east half — head mounted on the east wall, spraying west, so you stand facing the sauna with your back to the plunge.</p>
+
+    <div class="legend">
+      <div class="legend-item"><span class="legend-swatch" style="background: var(--walnut);"></span>Frame &amp; clad surfaces</div>
+      <div class="legend-item"><span class="legend-swatch" style="background: var(--concrete);"></span>Existing concrete pad</div>
+      <div class="legend-item"><span class="legend-swatch" style="background: var(--paper-cool); border-style: dotted;"></span>River rock band</div>
+      <div class="legend-item"><span class="legend-swatch" style="background: rgba(193,136,84,0.18); border: 1px solid var(--honey);"></span>Mechanical</div>
+    </div>
 
     <div class="drawing">
-      <div class="drawing-scale">Scale 1/2″ = 1′-0″ · Plan</div>
-      <svg viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg">
-        <!-- Pad outline -->
-        <rect x="120" y="100" width="660" height="360" class="stroke-ink fill-paper" stroke-width="1.5"/>
+      <div class="drawing-scale">Scale 1/2″ = 1′-0″ · Plan view</div>
+      <svg viewBox="0 0 900 600" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="concreteFill" patternUnits="userSpaceOnUse" width="5" height="5">
+            <rect width="5" height="5" fill="#D6CDBE"/>
+            <circle cx="1.5" cy="1.5" r="0.4" fill="#8E867B"/>
+            <circle cx="3.5" cy="3.5" r="0.3" fill="#8E867B"/>
+          </pattern>
+          <pattern id="rockFill" patternUnits="userSpaceOnUse" width="14" height="14">
+            <rect width="14" height="14" fill="#D6CDBE"/>
+            <circle cx="3" cy="4" r="2.2" fill="none" stroke="#8E867B" stroke-width="0.5"/>
+            <circle cx="10" cy="9" r="2.8" fill="none" stroke="#8E867B" stroke-width="0.5"/>
+            <circle cx="11" cy="2" r="1.8" fill="none" stroke="#8E867B" stroke-width="0.5"/>
+            <circle cx="2" cy="11" r="1.6" fill="none" stroke="#8E867B" stroke-width="0.5"/>
+          </pattern>
+          <pattern id="claddingH" patternUnits="userSpaceOnUse" width="20" height="6">
+            <rect width="20" height="6" fill="#3F2412"/>
+            <line x1="0" y1="6" x2="20" y2="6" stroke="#1A0F04" stroke-width="0.4"/>
+          </pattern>
+          <pattern id="postSection" patternUnits="userSpaceOnUse" width="4" height="4" patternTransform="rotate(45)">
+            <rect width="4" height="4" fill="#3F2412"/>
+            <line x1="0" y1="0" x2="0" y2="4" stroke="#2A1808" stroke-width="0.5"/>
+          </pattern>
+        </defs>
 
-        <!-- River rock collar -->
-        <rect x="100" y="80" width="700" height="400" class="stroke-concrete" stroke-width="0.8" stroke-dasharray="3 2"/>
-        <text x="105" y="76" class="dim-label">RIVER ROCK PERIMETER, 12″</text>
+        <!-- River rock perimeter -->
+        <rect x="80" y="60" width="740" height="440" fill="url(#rockFill)"/>
+        <rect x="80" y="60" width="740" height="440" fill="none" stroke="#8E867B" stroke-width="0.6" stroke-dasharray="4 3"/>
 
-        <!-- Posts -->
-        <rect x="115" y="95" width="20" height="20" class="fill-walnut"/>
-        <rect x="765" y="95" width="20" height="20" class="fill-walnut"/>
-        <rect x="115" y="445" width="20" height="20" class="fill-walnut"/>
-        <rect x="765" y="445" width="20" height="20" class="fill-walnut"/>
+        <!-- Existing concrete pad -->
+        <rect x="120" y="100" width="660" height="360" fill="url(#concreteFill)" stroke="#15110D" stroke-width="1"/>
 
-        <!-- Rear wall (solid) -->
-        <rect x="135" y="105" width="630" height="14" class="fill-walnut" opacity="0.85"/>
-        <text x="450" y="98" class="anno-label" text-anchor="middle">Rear wall — solid T&G</text>
+        <!-- Wall cladding (outside face only — shown as the outermost layer) -->
+        <!-- Rear wall (north) -->
+        <rect x="140" y="100" width="620" height="10" fill="url(#claddingH)" stroke="#15110D" stroke-width="0.5"/>
+        <!-- Wall stud cavity behind (visible from inside as open framing) -->
+        <rect x="140" y="110" width="620" height="6" fill="none" stroke="#15110D" stroke-width="0.4" stroke-dasharray="2 2"/>
+        <!-- Stud marks -->
+        <g stroke="#3F2412" stroke-width="0.6">
+          <line x1="155" y1="110" x2="155" y2="116"/>
+          <line x1="195" y1="110" x2="195" y2="116"/>
+          <line x1="235" y1="110" x2="235" y2="116"/>
+          <line x1="275" y1="110" x2="275" y2="116"/>
+          <line x1="315" y1="110" x2="315" y2="116"/>
+          <line x1="355" y1="110" x2="355" y2="116"/>
+          <line x1="395" y1="110" x2="395" y2="116"/>
+          <line x1="435" y1="110" x2="435" y2="116"/>
+          <line x1="475" y1="110" x2="475" y2="116"/>
+          <line x1="515" y1="110" x2="515" y2="116"/>
+          <line x1="555" y1="110" x2="555" y2="116"/>
+          <line x1="595" y1="110" x2="595" y2="116"/>
+          <line x1="635" y1="110" x2="635" y2="116"/>
+          <line x1="675" y1="110" x2="675" y2="116"/>
+          <line x1="715" y1="110" x2="715" y2="116"/>
+          <line x1="745" y1="110" x2="745" y2="116"/>
+        </g>
 
-        <!-- Left wall (full) -->
-        <rect x="120" y="119" width="14" height="326" class="fill-walnut" opacity="0.85"/>
-        <text x="108" y="285" class="anno-label" text-anchor="middle" transform="rotate(-90 108 285)">Left wall — full</text>
+        <!-- Left wall (west, full) -->
+        <rect x="120" y="116" width="10" height="328" fill="url(#claddingH)" stroke="#15110D" stroke-width="0.5"/>
+        <rect x="130" y="116" width="6" height="328" fill="none" stroke="#15110D" stroke-width="0.4" stroke-dasharray="2 2"/>
+        <!-- Right wall (east, partial — only behind shower) -->
+        <rect x="770" y="116" width="10" height="200" fill="url(#claddingH)" stroke="#15110D" stroke-width="0.5"/>
+        <rect x="764" y="116" width="6" height="200" fill="none" stroke="#15110D" stroke-width="0.4" stroke-dasharray="2 2"/>
 
-        <!-- Right wall (partial, behind shower) -->
-        <rect x="766" y="119" width="14" height="170" class="fill-walnut" opacity="0.85"/>
-        <text x="797" y="200" class="anno-label" transform="rotate(90 797 200)">Right — partial</text>
+        <!-- POSTS (4 corners, shown as cut sections) -->
+        <rect x="118" y="98" width="22" height="22" fill="url(#postSection)" stroke="#15110D" stroke-width="0.8"/>
+        <rect x="760" y="98" width="22" height="22" fill="url(#postSection)" stroke="#15110D" stroke-width="0.8"/>
+        <rect x="118" y="442" width="22" height="22" fill="url(#postSection)" stroke="#15110D" stroke-width="0.8"/>
+        <rect x="760" y="442" width="22" height="22" fill="url(#postSection)" stroke="#15110D" stroke-width="0.8"/>
 
-        <!-- Plunge tub -->
-        <rect x="160" y="260" width="220" height="160" class="stroke-walnut" stroke-width="2" fill="none"/>
-        <rect x="170" y="270" width="200" height="140" rx="4" class="stroke-honey" stroke-width="1" fill="rgba(193,136,84,0.08)"/>
-        <text x="270" y="345" class="anno-label" text-anchor="middle">Plunge tub</text>
-        <text x="270" y="362" class="dim-label" text-anchor="middle">5′-6″ × 3′-6″ stock tank</text>
+        <!-- Post callout -->
+        <text x="100" y="92" class="dim-label">6×6 DF POST, TYP.</text>
+        <line x1="118" y1="98" x2="105" y2="89" class="leader"/>
+        <text x="100" y="478" class="dim-label">EXPOSED STUDS INSIDE</text>
+        <line x1="135" y1="471" x2="115" y2="475" class="leader"/>
 
-        <!-- Bench step -->
-        <rect x="380" y="380" width="80" height="40" class="stroke-walnut" stroke-width="1.2" fill="rgba(63,36,18,0.1)"/>
-        <text x="420" y="403" class="dim-label" text-anchor="middle">STEP</text>
+        <!-- ===== PLUNGE on left (west) half ===== -->
+        <!-- Plunge box (wood-clad surround) -->
+        <rect x="160" y="180" width="240" height="200" fill="#3F2412" stroke="#15110D" stroke-width="1.2"/>
+        <!-- Vertical cladding lines on plunge box (top view of vertical boards) -->
+        <g stroke="#2A1808" stroke-width="0.4" opacity="0.5">
+          <line x1="170" y1="180" x2="170" y2="380"/>
+          <line x1="180" y1="180" x2="180" y2="380"/>
+          <line x1="190" y1="180" x2="190" y2="380"/>
+          <line x1="200" y1="180" x2="200" y2="380"/>
+          <line x1="210" y1="180" x2="210" y2="380"/>
+          <line x1="220" y1="180" x2="220" y2="380"/>
+          <line x1="230" y1="180" x2="230" y2="380"/>
+          <line x1="240" y1="180" x2="240" y2="380"/>
+          <line x1="250" y1="180" x2="250" y2="380"/>
+          <line x1="260" y1="180" x2="260" y2="380"/>
+          <line x1="270" y1="180" x2="270" y2="380"/>
+          <line x1="280" y1="180" x2="280" y2="380"/>
+          <line x1="290" y1="180" x2="290" y2="380"/>
+          <line x1="300" y1="180" x2="300" y2="380"/>
+          <line x1="310" y1="180" x2="310" y2="380"/>
+          <line x1="320" y1="180" x2="320" y2="380"/>
+          <line x1="330" y1="180" x2="330" y2="380"/>
+          <line x1="340" y1="180" x2="340" y2="380"/>
+          <line x1="350" y1="180" x2="350" y2="380"/>
+          <line x1="360" y1="180" x2="360" y2="380"/>
+          <line x1="370" y1="180" x2="370" y2="380"/>
+          <line x1="380" y1="180" x2="380" y2="380"/>
+          <line x1="390" y1="180" x2="390" y2="380"/>
+        </g>
+        <!-- Oval plunge tub interior (water) -->
+        <ellipse cx="280" cy="280" rx="90" ry="80" fill="#A8C5D0" opacity="0.6"/>
+        <ellipse cx="280" cy="280" rx="90" ry="80" fill="none" stroke="#15110D" stroke-width="0.8"/>
+        <ellipse cx="270" cy="265" rx="40" ry="14" fill="#FFFFFF" opacity="0.4"/>
 
-        <!-- Shower zone -->
-        <rect x="560" y="200" width="200" height="220" class="stroke-honey" stroke-width="1" stroke-dasharray="3 2" fill="rgba(193,136,84,0.05)"/>
-        <text x="660" y="260" class="anno-label" text-anchor="middle">Shower zone</text>
+        <text x="280" y="284" class="room-label" text-anchor="middle" fill="#15110D">plunge</text>
+        <text x="280" y="300" class="dim-label" text-anchor="middle" fill="#15110D">5′-6″ × 3′-6″</text>
 
-        <!-- Shower fixture -->
-        <circle cx="640" cy="320" r="5" class="fill-walnut"/>
-        <line x1="640" y1="320" x2="640" y2="240" class="stroke-walnut" stroke-width="2"/>
-        <line x1="640" y1="240" x2="680" y2="240" class="stroke-walnut" stroke-width="2"/>
-        <circle cx="685" cy="240" r="6" class="fill-honey"/>
-        <text x="660" y="350" class="dim-label" text-anchor="middle">Black pipe + copper</text>
+        <!-- Step bench adjacent to plunge -->
+        <rect x="400" y="320" width="60" height="60" fill="#3F2412" stroke="#15110D" stroke-width="0.8"/>
+        <g stroke="#2A1808" stroke-width="0.4" opacity="0.6">
+          <line x1="410" y1="320" x2="410" y2="380"/>
+          <line x1="420" y1="320" x2="420" y2="380"/>
+          <line x1="430" y1="320" x2="430" y2="380"/>
+          <line x1="440" y1="320" x2="440" y2="380"/>
+          <line x1="450" y1="320" x2="450" y2="380"/>
+        </g>
+        <text x="430" y="354" class="dim-label" text-anchor="middle" fill="#ECE5D8">step</text>
 
-        <!-- Drain -->
-        <circle cx="700" cy="380" r="8" class="stroke-ink" stroke-width="0.8" fill="none"/>
-        <circle cx="700" cy="380" r="4" class="fill-concrete"/>
-        <text x="720" y="384" class="dim-label">DRAIN</text>
+        <!-- ===== SHOWER on right (east) half ===== -->
+        <!-- Shower stall floor zone -->
+        <rect x="540" y="180" width="220" height="200" fill="rgba(193, 136, 84, 0.10)" stroke="#C18854" stroke-width="0.8" stroke-dasharray="3 2"/>
+        <text x="650" y="200" class="room-label" text-anchor="middle">shower</text>
 
-        <!-- Dimensions -->
-        <line x1="120" y1="500" x2="780" y2="500" class="dim-line"/>
-        <line x1="120" y1="495" x2="120" y2="505" class="dim-line"/>
-        <line x1="780" y1="495" x2="780" y2="505" class="dim-line"/>
-        <text x="450" y="515" class="dim-label" text-anchor="middle">11′-0″</text>
+        <!-- Linear drain along back of shower -->
+        <rect x="555" y="208" width="190" height="10" fill="#8E867B" stroke="#15110D" stroke-width="0.5"/>
+        <g stroke="#15110D" stroke-width="0.3">
+          <line x1="565" y1="208" x2="565" y2="218"/>
+          <line x1="585" y1="208" x2="585" y2="218"/>
+          <line x1="605" y1="208" x2="605" y2="218"/>
+          <line x1="625" y1="208" x2="625" y2="218"/>
+          <line x1="645" y1="208" x2="645" y2="218"/>
+          <line x1="665" y1="208" x2="665" y2="218"/>
+          <line x1="685" y1="208" x2="685" y2="218"/>
+          <line x1="705" y1="208" x2="705" y2="218"/>
+          <line x1="725" y1="208" x2="725" y2="218"/>
+        </g>
+        <text x="555" y="232" class="dim-label">24″ LINEAR DRAIN, surface-mount</text>
 
-        <line x1="60" y1="100" x2="60" y2="460" class="dim-line"/>
-        <line x1="55" y1="100" x2="65" y2="100" class="dim-line"/>
-        <line x1="55" y1="460" x2="65" y2="460" class="dim-line"/>
-        <text x="50" y="285" class="dim-label" text-anchor="middle" transform="rotate(-90 50 285)">8′-0″</text>
+        <!-- ===== SHOWER FIXTURE — head on EAST wall, spraying WEST ===== -->
+        <!-- Riser is vertical (shown as dot in plan), mounted to east wall just inside -->
+        <circle cx="745" cy="290" r="5" fill="#1A1714" stroke="#15110D" stroke-width="0.5"/>
+        <!-- Arm extends WEST from riser -->
+        <line x1="745" y1="290" x2="680" y2="290" stroke="#1A1714" stroke-width="3"/>
+        <!-- Head at west end of arm -->
+        <circle cx="673" cy="290" r="9" fill="#C18854" stroke="#15110D" stroke-width="0.5"/>
+        <!-- Spray cone going west -->
+        <g stroke="#A8C5D0" stroke-width="0.5" opacity="0.7">
+          <line x1="665" y1="290" x2="600" y2="265"/>
+          <line x1="665" y1="290" x2="600" y2="290"/>
+          <line x1="665" y1="290" x2="600" y2="315"/>
+          <line x1="665" y1="290" x2="615" y2="278"/>
+          <line x1="665" y1="290" x2="615" y2="302"/>
+        </g>
+        <text x="673" y="278" class="anno-label" text-anchor="middle">copper head</text>
+        <text x="755" y="276" class="anno-label">black pipe</text>
+        <text x="755" y="288" class="anno-label">riser</text>
 
-        <!-- Open front indicator -->
-        <text x="450" y="478" class="anno-label" text-anchor="middle">— open front —</text>
-        <line x1="200" y1="468" x2="380" y2="468" class="stroke-walnut" stroke-width="0.4" stroke-dasharray="2 3"/>
-        <line x1="520" y1="468" x2="700" y2="468" class="stroke-walnut" stroke-width="0.4" stroke-dasharray="2 3"/>
+        <!-- Person position indicator (small footprint dashed) -->
+        <ellipse cx="615" cy="290" rx="22" ry="14" fill="none" stroke="#C18854" stroke-width="0.6" stroke-dasharray="2 2"/>
+        <!-- Facing-direction arrow (east, toward sauna) -->
+        <line x1="615" y1="290" x2="650" y2="290" stroke="#C18854" stroke-width="1"/>
+        <polygon points="650,290 642,286 642,294" fill="#C18854"/>
+        <text x="615" y="338" class="anno-label" text-anchor="middle">stand here</text>
+        <text x="615" y="352" class="dim-label" text-anchor="middle">back to plunge · facing sauna</text>
 
-        <!-- North arrow -->
-        <g transform="translate(840, 510)">
-          <circle r="18" class="stroke-ink" stroke-width="0.6" fill="none"/>
-          <path d="M 0,-14 L 5,8 L 0,4 L -5,8 Z" class="fill-walnut"/>
-          <text x="0" y="-22" class="dim-label" text-anchor="middle">N</text>
+        <!-- ===== PROPANE HEATER (outside east wall) ===== -->
+        <rect x="800" y="240" width="22" height="36" fill="rgba(193,136,84,0.30)" stroke="#C18854" stroke-width="0.8"/>
+        <text x="811" y="262" class="dim-label" text-anchor="middle" fill="#3F2412">H</text>
+        <text x="830" y="248" class="anno-label">propane heater</text>
+        <text x="830" y="260" class="dim-label">tankless, on-demand</text>
+        <text x="830" y="272" class="dim-label">vented exterior</text>
+
+        <!-- Propane tank -->
+        <circle cx="811" cy="305" r="14" fill="rgba(193,136,84,0.25)" stroke="#C18854" stroke-width="0.8"/>
+        <text x="811" y="309" class="dim-label" text-anchor="middle" fill="#3F2412">20#</text>
+        <text x="830" y="308" class="anno-label">propane tank</text>
+
+        <!-- Hose run from heater into shower wall (dashed) -->
+        <line x1="800" y1="258" x2="780" y2="258" stroke="#C18854" stroke-width="1" stroke-dasharray="3 2"/>
+        <line x1="780" y1="258" x2="745" y2="258" stroke="#C18854" stroke-width="1" stroke-dasharray="3 2"/>
+        <line x1="745" y1="258" x2="745" y2="285" stroke="#C18854" stroke-width="1" stroke-dasharray="3 2"/>
+        <text x="700" y="252" class="dim-label" fill="#C18854">hot to mixing valve →</text>
+
+        <!-- ===== COLD GARDEN HOSE entry from west ===== -->
+        <line x1="80" y1="285" x2="120" y2="285" stroke="#4D5B47" stroke-width="2.5"/>
+        <line x1="120" y1="285" x2="160" y2="285" stroke="#4D5B47" stroke-width="2.5" stroke-dasharray="2 2"/>
+        <text x="40" y="278" class="anno-label">cold supply</text>
+        <text x="40" y="290" class="dim-label">garden hose</text>
+        <text x="40" y="302" class="dim-label">from house bib</text>
+
+        <!-- ===== SOLAR COIL note (on roof above) ===== -->
+        <g transform="translate(420, 130)">
+          <circle r="22" fill="none" stroke="#C18854" stroke-width="0.8" stroke-dasharray="2 2"/>
+          <circle r="16" fill="none" stroke="#C18854" stroke-width="0.6" stroke-dasharray="2 2"/>
+          <circle r="10" fill="none" stroke="#C18854" stroke-width="0.4" stroke-dasharray="2 2"/>
+          <text y="3" class="anno-label" text-anchor="middle">solar coil</text>
+        </g>
+        <text x="465" y="118" class="dim-label">100′ black garden hose on roof</text>
+        <text x="465" y="131" class="dim-label">(above — see elevation)</text>
+
+        <!-- Existing sauna context -->
+        <g transform="translate(830, 220)">
+          <rect x="0" y="0" width="60" height="240" fill="rgba(193,68,40,0.10)" stroke="#3F2412" stroke-width="0.5" stroke-dasharray="2 2"/>
+          <text x="30" y="120" class="anno-label" text-anchor="middle" transform="rotate(-90 30 120)">existing sauna →</text>
+        </g>
+
+        <!-- Open south face indicator -->
+        <line x1="160" y1="478" x2="380" y2="478" stroke="#3F2412" stroke-width="0.5" stroke-dasharray="3 4"/>
+        <line x1="520" y1="478" x2="740" y2="478" stroke="#3F2412" stroke-width="0.5" stroke-dasharray="3 4"/>
+        <text x="450" y="482" class="anno-label" text-anchor="middle">— open south face —</text>
+
+        <!-- ===== DIMENSIONS ===== -->
+        <line x1="120" y1="535" x2="780" y2="535" class="dim-line"/>
+        <line x1="120" y1="528" x2="120" y2="542" class="dim-line"/>
+        <line x1="780" y1="528" x2="780" y2="542" class="dim-line"/>
+        <text x="450" y="552" class="dim-label" text-anchor="middle">11′-0″</text>
+
+        <line x1="50" y1="100" x2="50" y2="460" class="dim-line"/>
+        <line x1="43" y1="100" x2="57" y2="100" class="dim-line"/>
+        <line x1="43" y1="460" x2="57" y2="460" class="dim-line"/>
+        <text x="42" y="285" class="dim-label" text-anchor="middle" transform="rotate(-90 42 285)">8′-0″</text>
+
+        <line x1="160" y1="404" x2="400" y2="404" class="dim-line"/>
+        <line x1="160" y1="399" x2="160" y2="409" class="dim-line"/>
+        <line x1="400" y1="399" x2="400" y2="409" class="dim-line"/>
+        <text x="280" y="418" class="dim-label" text-anchor="middle">PLUNGE BOX · 4′-0″</text>
+
+        <line x1="540" y1="404" x2="760" y2="404" class="dim-line"/>
+        <line x1="540" y1="399" x2="540" y2="409" class="dim-line"/>
+        <line x1="760" y1="399" x2="760" y2="409" class="dim-line"/>
+        <text x="650" y="418" class="dim-label" text-anchor="middle">SHOWER · 3′-8″</text>
+
+        <!-- Compass — south at bottom (open face) -->
+        <g transform="translate(45, 555)">
+          <circle r="18" class="stroke-ink" stroke-width="0.6" fill="var(--paper)"/>
+          <path d="M 0,14 L 5,-8 L 0,-4 L -5,-8 Z" class="fill-walnut"/>
+          <text x="0" y="22" class="dim-label" text-anchor="middle">S</text>
+          <text x="0" y="-10" class="dim-label" text-anchor="middle">N</text>
+          <text x="22" y="3" class="dim-label">E</text>
+          <text x="-26" y="3" class="dim-label">W</text>
         </g>
       </svg>
-      <div class="drawing-title-block"><strong>A1.0</strong> &nbsp; Plan view — pad &amp; fixtures</div>
+      <div class="drawing-title-block"><strong>A1.0</strong> &nbsp; Plan · existing concrete pad · off-grid</div>
     </div>
   </section>
 
@@ -782,113 +822,309 @@
       <span class="num">A1.1</span>
       Elevations
     </div>
-    <div class="eyebrow">Drawings · 05</div>
-    <h2 class="section-title">Front & side <em>elevations.</em></h2>
+    <div class="eyebrow">Drawings · 02</div>
+    <h2 class="section-title">Front &amp; side <em>elevations.</em></h2>
+    <p class="lede">A mono-slope black tin roof, high at the front and shedding to the back. Dark walnut frame with horizontal fir cladding wrapped only on the outside — inside, the structure is left visible.</p>
 
+    <!-- FRONT ELEVATION -->
     <div class="drawing">
-      <div class="drawing-scale">Scale 3/8″ = 1′-0″ · Front Elevation</div>
-      <svg viewBox="0 0 900 460" xmlns="http://www.w3.org/2000/svg">
-        <!-- Ground -->
-        <line x1="40" y1="380" x2="860" y2="380" class="stroke-ink" stroke-width="1"/>
-        <pattern id="hatch" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
-          <line x1="0" y1="0" x2="0" y2="6" class="stroke-concrete" stroke-width="0.5"/>
-        </pattern>
-        <rect x="40" y="380" width="820" height="14" fill="url(#hatch)"/>
+      <div class="drawing-scale">Scale 3/8″ = 1′-0″ · Front (south)</div>
+      <svg viewBox="0 0 900 480" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="hatch1" patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
+            <line x1="0" y1="0" x2="0" y2="6" stroke="#8E867B" stroke-width="0.5"/>
+          </pattern>
+          <pattern id="corrugated" patternUnits="userSpaceOnUse" width="14" height="6">
+            <rect width="14" height="6" fill="#1A1714"/>
+            <ellipse cx="3.5" cy="3" rx="3.5" ry="1.5" fill="#2A2520"/>
+            <ellipse cx="10.5" cy="3" rx="3.5" ry="1.5" fill="#2A2520"/>
+          </pattern>
+          <pattern id="claddingFront" patternUnits="userSpaceOnUse" width="40" height="16">
+            <rect width="40" height="16" fill="#C18854" opacity="0.7"/>
+            <line x1="0" y1="16" x2="40" y2="16" stroke="#8B5A2B" stroke-width="0.5"/>
+          </pattern>
+        </defs>
 
-        <!-- Concrete pad -->
-        <rect x="100" y="370" width="700" height="14" class="fill-concrete"/>
-        <text x="450" y="408" class="dim-label" text-anchor="middle">CONCRETE PAD, 4″ ON 4″ COMPACTED GRAVEL</text>
+        <!-- Ground / existing concrete -->
+        <rect x="40" y="395" width="820" height="14" fill="url(#hatch1)"/>
+        <rect x="80" y="385" width="740" height="14" fill="url(#concreteFill)" stroke="#15110D" stroke-width="0.6"/>
+        <text x="450" y="425" class="dim-label" text-anchor="middle">EXISTING CONCRETE PAD</text>
 
-        <!-- Posts -->
-        <rect x="120" y="100" width="22" height="270" class="fill-walnut"/>
-        <rect x="758" y="100" width="22" height="270" class="fill-walnut"/>
-
-        <!-- Doubled beam (front) -->
-        <rect x="100" y="80" width="700" height="22" class="fill-walnut"/>
-        <line x1="100" y1="91" x2="800" y2="91" class="stroke-honey" stroke-width="0.5" opacity="0.5"/>
-
-        <!-- Rafters (visible end) -->
-        <g class="fill-walnut">
-          <rect x="100" y="68" width="14" height="20"/>
-          <rect x="240" y="68" width="14" height="20"/>
-          <rect x="380" y="68" width="14" height="20"/>
-          <rect x="520" y="68" width="14" height="20"/>
-          <rect x="660" y="68" width="14" height="20"/>
-          <rect x="786" y="68" width="14" height="20"/>
+        <!-- River rock at base -->
+        <g stroke="#8E867B" stroke-width="0.5" fill="none">
+          <circle cx="60" cy="395" r="3"/>
+          <circle cx="70" cy="393" r="2"/>
+          <circle cx="50" cy="397" r="2"/>
+          <circle cx="850" cy="395" r="3"/>
+          <circle cx="840" cy="393" r="2"/>
         </g>
 
-        <!-- Lattice slats (perpendicular, shown as horizontal lines on top) -->
-        <g class="stroke-walnut" stroke-width="3">
-          <line x1="100" y1="62" x2="800" y2="62"/>
-          <line x1="100" y1="56" x2="800" y2="56"/>
-          <line x1="100" y1="50" x2="800" y2="50"/>
+        <!-- POSTS (front face, front pair) -->
+        <rect x="120" y="80" width="22" height="305" fill="#3F2412"/>
+        <rect x="758" y="80" width="22" height="305" fill="#3F2412"/>
+        <line x1="131" y1="80" x2="131" y2="385" stroke="#2A1808" stroke-width="0.4"/>
+        <line x1="769" y1="80" x2="769" y2="385" stroke="#2A1808" stroke-width="0.4"/>
+
+        <!-- Doubled front beam -->
+        <rect x="100" y="60" width="700" height="20" fill="#3F2412"/>
+        <line x1="100" y1="70" x2="800" y2="70" stroke="#C18854" stroke-width="0.4" opacity="0.5"/>
+
+        <!-- Corner braces visible -->
+        <polygon points="142,85 142,130 185,85" fill="#3F2412" stroke="#15110D" stroke-width="0.5"/>
+        <polygon points="758,85 758,130 715,85" fill="#3F2412" stroke="#15110D" stroke-width="0.5"/>
+
+        <!-- Roof: black corrugated tin -->
+        <rect x="80" y="44" width="740" height="18" fill="url(#corrugated)"/>
+        <rect x="78" y="44" width="744" height="3" fill="#0E0B08"/>
+        <text x="830" y="55" class="anno-label">black corrugated tin</text>
+        <line x1="828" y1="52" x2="810" y2="53" class="leader"/>
+
+        <!-- Rafter ends visible -->
+        <g fill="#3F2412">
+          <rect x="120" y="62" width="6" height="14"/>
+          <rect x="240" y="62" width="6" height="14"/>
+          <rect x="370" y="62" width="6" height="14"/>
+          <rect x="500" y="62" width="6" height="14"/>
+          <rect x="630" y="62" width="6" height="14"/>
+          <rect x="760" y="62" width="6" height="14"/>
         </g>
 
-        <!-- Polycarbonate (translucent) -->
-        <rect x="98" y="44" width="704" height="6" fill="rgba(193,136,84,0.25)" stroke="rgba(193,136,84,0.6)" stroke-width="0.5"/>
-        <text x="820" y="52" class="anno-label">8mm twin-wall PC</text>
-        <line x1="815" y1="49" x2="803" y2="49" class="leader"/>
-
-        <!-- Corner braces -->
-        <line x1="142" y1="105" x2="180" y2="142" class="stroke-walnut" stroke-width="6"/>
-        <line x1="758" y1="142" x2="720" y2="105" class="stroke-walnut" stroke-width="6"/>
-        <text x="200" y="155" class="anno-label">Corner brace, 2×6 @ 45°</text>
-        <line x1="195" y1="148" x2="178" y2="135" class="leader"/>
-
-        <!-- Cladding lines on rear wall (visible behind posts) -->
-        <g class="stroke-honey" stroke-width="0.4" opacity="0.6">
-          <line x1="142" y1="130" x2="758" y2="130"/>
-          <line x1="142" y1="146" x2="758" y2="146"/>
-          <line x1="142" y1="162" x2="758" y2="162"/>
-          <line x1="142" y1="178" x2="758" y2="178"/>
-          <line x1="142" y1="194" x2="758" y2="194"/>
-          <line x1="142" y1="210" x2="758" y2="210"/>
+        <!-- Cladding visible on rear wall (between posts, set back) -->
+        <rect x="142" y="80" width="616" height="305" fill="url(#claddingFront)"/>
+        <rect x="142" y="80" width="616" height="305" fill="rgba(21,17,13,0.18)"/>
+        <g stroke="#8B5A2B" stroke-width="0.35" opacity="0.7">
+          <line x1="142" y1="100" x2="758" y2="100"/>
+          <line x1="142" y1="118" x2="758" y2="118"/>
+          <line x1="142" y1="136" x2="758" y2="136"/>
+          <line x1="142" y1="154" x2="758" y2="154"/>
+          <line x1="142" y1="172" x2="758" y2="172"/>
+          <line x1="142" y1="190" x2="758" y2="190"/>
+          <line x1="142" y1="208" x2="758" y2="208"/>
           <line x1="142" y1="226" x2="758" y2="226"/>
-          <line x1="142" y1="242" x2="758" y2="242"/>
-          <line x1="142" y1="258" x2="758" y2="258"/>
-          <line x1="142" y1="274" x2="758" y2="274"/>
-          <line x1="142" y1="290" x2="758" y2="290"/>
-          <line x1="142" y1="306" x2="758" y2="306"/>
-          <line x1="142" y1="322" x2="758" y2="322"/>
-          <line x1="142" y1="338" x2="758" y2="338"/>
-          <line x1="142" y1="354" x2="758" y2="354"/>
+          <line x1="142" y1="244" x2="758" y2="244"/>
+          <line x1="142" y1="262" x2="758" y2="262"/>
+          <line x1="142" y1="280" x2="758" y2="280"/>
+          <line x1="142" y1="298" x2="758" y2="298"/>
+          <line x1="142" y1="316" x2="758" y2="316"/>
+          <line x1="142" y1="334" x2="758" y2="334"/>
+          <line x1="142" y1="352" x2="758" y2="352"/>
+          <line x1="142" y1="370" x2="758" y2="370"/>
         </g>
-        <rect x="142" y="115" width="616" height="255" fill="rgba(193,136,84,0.12)"/>
+        <text x="450" y="115" class="anno-label" text-anchor="middle" fill="rgba(236,229,216,0.9)">— horizontal fir T&G cladding (rear wall, exterior face beyond) —</text>
 
-        <!-- Plunge tub silhouette -->
-        <rect x="180" y="270" width="200" height="100" class="stroke-walnut" stroke-width="1.5" fill="rgba(63,36,18,0.4)"/>
-        <rect x="190" y="278" width="180" height="22" fill="rgba(193,136,84,0.25)"/>
-        <text x="280" y="332" class="anno-label" text-anchor="middle" fill="rgba(236,229,216,0.9)">PLUNGE</text>
+        <!-- Plunge tub silhouette on left -->
+        <rect x="180" y="270" width="200" height="115" fill="#2A1808" stroke="#15110D" stroke-width="1"/>
+        <g stroke="#1A0F04" stroke-width="0.4">
+          <line x1="195" y1="270" x2="195" y2="385"/>
+          <line x1="210" y1="270" x2="210" y2="385"/>
+          <line x1="225" y1="270" x2="225" y2="385"/>
+          <line x1="240" y1="270" x2="240" y2="385"/>
+          <line x1="255" y1="270" x2="255" y2="385"/>
+          <line x1="270" y1="270" x2="270" y2="385"/>
+          <line x1="285" y1="270" x2="285" y2="385"/>
+          <line x1="300" y1="270" x2="300" y2="385"/>
+          <line x1="315" y1="270" x2="315" y2="385"/>
+          <line x1="330" y1="270" x2="330" y2="385"/>
+          <line x1="345" y1="270" x2="345" y2="385"/>
+          <line x1="360" y1="270" x2="360" y2="385"/>
+        </g>
+        <rect x="183" y="273" width="194" height="14" fill="#A8C5D0" opacity="0.7"/>
+        <ellipse cx="280" cy="278" rx="50" ry="3" fill="#FFFFFF" opacity="0.5"/>
+        <text x="280" y="345" class="anno-label" text-anchor="middle" fill="#ECE5D8">plunge</text>
 
-        <!-- Shower fixture -->
-        <line x1="640" y1="370" x2="640" y2="210" class="stroke-ink" stroke-width="2.5"/>
-        <line x1="640" y1="210" x2="690" y2="210" class="stroke-ink" stroke-width="2.5"/>
-        <circle cx="696" cy="216" r="8" class="fill-honey"/>
-        <line x1="640" y1="290" x2="660" y2="290" class="stroke-ink" stroke-width="2"/>
-        <text x="610" y="270" class="anno-label">Shower</text>
+        <!-- Step bench in front of plunge -->
+        <rect x="380" y="335" width="80" height="50" fill="#2A1808" stroke="#15110D" stroke-width="0.8"/>
+        <g stroke="#1A0F04" stroke-width="0.4">
+          <line x1="395" y1="335" x2="395" y2="385"/>
+          <line x1="410" y1="335" x2="410" y2="385"/>
+          <line x1="425" y1="335" x2="425" y2="385"/>
+          <line x1="440" y1="335" x2="440" y2="385"/>
+        </g>
 
-        <!-- String lights -->
-        <path d="M 200 110 Q 350 130 500 110 Q 650 130 750 110" class="stroke-honey" stroke-width="0.5" fill="none" opacity="0.7"/>
-        <g class="fill-honey">
-          <circle cx="280" cy="124" r="2.5"/>
-          <circle cx="360" cy="128" r="2.5"/>
-          <circle cx="450" cy="126" r="2.5"/>
-          <circle cx="540" cy="128" r="2.5"/>
-          <circle cx="620" cy="124" r="2.5"/>
+        <!-- ===== SHOWER FIXTURE: riser on EAST (right), arm extends LEFT (west) ===== -->
+        <line x1="725" y1="385" x2="725" y2="200" stroke="#1A1714" stroke-width="3"/>
+        <line x1="725" y1="200" x2="640" y2="200" stroke="#1A1714" stroke-width="3"/>
+        <circle cx="632" cy="208" r="9" fill="#C18854" stroke="#8B5A2B" stroke-width="0.5"/>
+        <!-- Spray going downward and west -->
+        <g stroke="#A8C5D0" stroke-width="0.6" opacity="0.6">
+          <line x1="628" y1="216" x2="600" y2="280"/>
+          <line x1="632" y1="216" x2="620" y2="290"/>
+          <line x1="636" y1="216" x2="640" y2="290"/>
+          <line x1="630" y1="216" x2="585" y2="270"/>
+        </g>
+        <!-- Shower valve handle -->
+        <rect x="715" y="270" width="20" height="6" fill="#1A1714"/>
+        <text x="755" y="208" class="anno-label">head sprays west</text>
+        <line x1="750" y1="205" x2="645" y2="208" class="leader"/>
+
+        <!-- ===== SOLAR PANEL on roof (for string lights) ===== -->
+        <rect x="640" y="36" width="50" height="14" fill="#1A1714" stroke="#0E0B08" stroke-width="0.5"/>
+        <g stroke="#3A332B" stroke-width="0.3">
+          <line x1="650" y1="36" x2="650" y2="50"/>
+          <line x1="660" y1="36" x2="660" y2="50"/>
+          <line x1="670" y1="36" x2="670" y2="50"/>
+          <line x1="680" y1="36" x2="680" y2="50"/>
+        </g>
+        <text x="610" y="32" class="anno-label">solar panel · string lights</text>
+        <line x1="630" y1="35" x2="640" y2="42" class="leader"/>
+
+        <!-- ===== SOLAR HOSE COIL on roof (front-elevation glimpse) ===== -->
+        <ellipse cx="380" cy="50" rx="35" ry="6" fill="none" stroke="#4D5B47" stroke-width="1.2"/>
+        <ellipse cx="380" cy="50" rx="25" ry="4" fill="none" stroke="#4D5B47" stroke-width="1.0"/>
+        <ellipse cx="380" cy="50" rx="15" ry="3" fill="none" stroke="#4D5B47" stroke-width="0.8"/>
+        <text x="280" y="32" class="anno-label">solar coil · 100′ black hose</text>
+        <line x1="330" y1="38" x2="365" y2="48" class="leader"/>
+
+        <!-- Solar string lights -->
+        <path d="M 180 100 Q 350 130 500 105 Q 650 135 740 105" stroke="#8B5A2B" stroke-width="0.5" fill="none" opacity="0.7"/>
+        <g fill="#E2C8A8">
+          <circle cx="240" cy="123" r="2.5" opacity="0.9"/>
+          <circle cx="320" cy="129" r="2.5" opacity="0.9"/>
+          <circle cx="410" cy="125" r="2.5" opacity="0.9"/>
+          <circle cx="500" cy="122" r="2.5" opacity="0.9"/>
+          <circle cx="585" cy="128" r="2.5" opacity="0.9"/>
+          <circle cx="670" cy="124" r="2.5" opacity="0.9"/>
         </g>
 
         <!-- Dimensions -->
-        <line x1="100" y1="430" x2="800" y2="430" class="dim-line"/>
-        <line x1="100" y1="425" x2="100" y2="435" class="dim-line"/>
-        <line x1="800" y1="425" x2="800" y2="435" class="dim-line"/>
-        <text x="450" y="445" class="dim-label" text-anchor="middle">11′-0″</text>
+        <line x1="100" y1="455" x2="800" y2="455" class="dim-line"/>
+        <line x1="100" y1="450" x2="100" y2="460" class="dim-line"/>
+        <line x1="800" y1="450" x2="800" y2="460" class="dim-line"/>
+        <text x="450" y="470" class="dim-label" text-anchor="middle">11′-0″</text>
 
-        <line x1="60" y1="80" x2="60" y2="370" class="dim-line"/>
-        <line x1="55" y1="80" x2="65" y2="80" class="dim-line"/>
-        <line x1="55" y1="370" x2="65" y2="370" class="dim-line"/>
-        <text x="50" y="225" class="dim-label" text-anchor="middle" transform="rotate(-90 50 225)">8′-0″ FRAME HT.</text>
+        <line x1="60" y1="60" x2="60" y2="385" class="dim-line"/>
+        <line x1="55" y1="60" x2="65" y2="60" class="dim-line"/>
+        <line x1="55" y1="385" x2="65" y2="385" class="dim-line"/>
+        <text x="48" y="225" class="dim-label" text-anchor="middle" transform="rotate(-90 48 225)">8′-0″ front ht.</text>
       </svg>
-      <div class="drawing-title-block"><strong>A1.1</strong> &nbsp; Front elevation — facing the open side</div>
+      <div class="drawing-title-block"><strong>A1.1a</strong> &nbsp; Front elevation — south (open) face</div>
+    </div>
+
+    <!-- SIDE ELEVATION (EAST) -->
+    <div class="drawing">
+      <div class="drawing-scale">Scale 3/8″ = 1′-0″ · Side (east) — facing sauna</div>
+      <svg viewBox="0 0 900 460" xmlns="http://www.w3.org/2000/svg">
+        <!-- Ground -->
+        <rect x="40" y="380" width="820" height="14" fill="url(#hatch1)"/>
+        <rect x="100" y="370" width="700" height="14" fill="url(#concreteFill)" stroke="#15110D" stroke-width="0.6"/>
+
+        <!-- Front post (taller, south = left in this view) -->
+        <rect x="180" y="75" width="22" height="295" fill="#3F2412"/>
+        <line x1="191" y1="75" x2="191" y2="370" stroke="#2A1808" stroke-width="0.4"/>
+        <!-- Back post (shorter, north = right) -->
+        <rect x="720" y="115" width="22" height="255" fill="#3F2412"/>
+        <line x1="731" y1="115" x2="731" y2="370" stroke="#2A1808" stroke-width="0.4"/>
+
+        <!-- Sloping beam -->
+        <polygon points="160,55 800,95 800,115 160,75" fill="#3F2412" stroke="#15110D" stroke-width="0.5"/>
+        <line x1="160" y1="65" x2="800" y2="105" stroke="#C18854" stroke-width="0.3" opacity="0.5"/>
+
+        <!-- Roof: corrugated metal -->
+        <polygon points="150,38 820,78 820,98 150,58" fill="url(#corrugated)" stroke="#0E0B08" stroke-width="0.6"/>
+        <line x1="800" y1="95" x2="830" y2="97" stroke="#0E0B08" stroke-width="3"/>
+        <text x="830" y="108" class="anno-label" text-anchor="end">drip edge</text>
+
+        <!-- Slope annotation -->
+        <line x1="540" y1="68" x2="660" y2="83" stroke="#C18854" stroke-width="0.4" stroke-dasharray="2 2"/>
+        <text x="600" y="62" class="anno-label" text-anchor="middle">~1:8 slope (≈7°)</text>
+
+        <!-- Solar hose coil on roof -->
+        <g transform="translate(450, 70)">
+          <ellipse rx="38" ry="6" fill="none" stroke="#4D5B47" stroke-width="1.3"/>
+          <ellipse rx="28" ry="4.5" fill="none" stroke="#4D5B47" stroke-width="1.1"/>
+          <ellipse rx="18" ry="3" fill="none" stroke="#4D5B47" stroke-width="0.9"/>
+          <ellipse rx="8" ry="1.5" fill="none" stroke="#4D5B47" stroke-width="0.7"/>
+        </g>
+        <text x="300" y="40" class="anno-label">solar hose coil · 100′ black</text>
+        <line x1="380" y1="48" x2="420" y2="65" class="leader"/>
+
+        <!-- Solar panel for lights on roof crest -->
+        <rect x="225" y="48" width="40" height="11" fill="#1A1714" stroke="#0E0B08" stroke-width="0.5" transform="rotate(4 245 53)"/>
+        <text x="160" y="42" class="anno-label">solar panel</text>
+        <line x1="195" y1="45" x2="228" y2="50" class="leader"/>
+
+        <!-- Cladding on this side: only the partial wall section at the back (north end = right) -->
+        <!-- Open zone from front to ~5' back -->
+        <polygon points="540,84 720,115 720,370 540,370" fill="url(#claddingFront)"/>
+        <g stroke="#8B5A2B" stroke-width="0.35" opacity="0.6">
+          <line x1="540" y1="104" x2="720" y2="135"/>
+          <line x1="540" y1="124" x2="720" y2="155"/>
+          <line x1="540" y1="144" x2="720" y2="175"/>
+          <line x1="540" y1="164" x2="720" y2="195"/>
+          <line x1="540" y1="184" x2="720" y2="215"/>
+          <line x1="540" y1="204" x2="720" y2="235"/>
+          <line x1="540" y1="224" x2="720" y2="255"/>
+          <line x1="540" y1="244" x2="720" y2="275"/>
+          <line x1="540" y1="264" x2="720" y2="295"/>
+          <line x1="540" y1="284" x2="720" y2="315"/>
+          <line x1="540" y1="304" x2="720" y2="335"/>
+          <line x1="540" y1="324" x2="720" y2="355"/>
+        </g>
+
+        <!-- Open framing visible in front portion (exposed studs) -->
+        <g stroke="#3F2412" stroke-width="2" opacity="0.7">
+          <line x1="220" y1="80" x2="220" y2="370"/>
+          <line x1="260" y1="80" x2="260" y2="370"/>
+          <line x1="300" y1="80" x2="300" y2="370"/>
+          <line x1="340" y1="80" x2="340" y2="370"/>
+          <line x1="380" y1="80" x2="380" y2="370"/>
+          <line x1="420" y1="80" x2="420" y2="370"/>
+          <line x1="460" y1="80" x2="460" y2="370"/>
+          <line x1="500" y1="80" x2="500" y2="370"/>
+        </g>
+        <text x="280" y="160" class="anno-label">exposed framing</text>
+        <text x="280" y="174" class="dim-label">(no inside cladding)</text>
+        <line x1="320" y1="165" x2="340" y2="170" class="leader"/>
+
+        <!-- Corner braces -->
+        <polygon points="202,85 202,130 245,85" fill="#3F2412" stroke="#15110D" stroke-width="0.5"/>
+        <polygon points="720,123 720,165 678,123" fill="#3F2412" stroke="#15110D" stroke-width="0.5"/>
+
+        <!-- ===== PROPANE HEATER mounted on cladded partial wall (north end) ===== -->
+        <rect x="600" y="200" width="44" height="60" fill="#3F2412" stroke="#1A1714" stroke-width="1"/>
+        <rect x="606" y="210" width="32" height="20" fill="#1A1714"/>
+        <circle cx="622" cy="220" r="5" fill="#5A5751"/>
+        <line x1="610" y1="240" x2="634" y2="240" stroke="#5A5751" stroke-width="0.5"/>
+        <line x1="610" y1="248" x2="634" y2="248" stroke="#5A5751" stroke-width="0.5"/>
+        <!-- vent at top -->
+        <rect x="612" y="195" width="20" height="5" fill="#1A1714"/>
+        <text x="555" y="200" class="anno-label">propane heater</text>
+        <text x="555" y="213" class="dim-label">tankless, exterior</text>
+        <line x1="595" y1="205" x2="600" y2="215" class="leader"/>
+
+        <!-- Propane tank below -->
+        <ellipse cx="670" cy="345" rx="14" ry="20" fill="#3F2412" stroke="#1A1714" stroke-width="0.8"/>
+        <ellipse cx="670" cy="328" rx="14" ry="4" fill="#5A4030"/>
+        <rect x="666" y="322" width="8" height="6" fill="#1A1714"/>
+        <text x="700" y="345" class="anno-label">20 lb tank</text>
+        <line x1="697" y1="342" x2="685" y2="342" class="leader"/>
+
+        <!-- Front / Back labels -->
+        <text x="190" y="395" class="anno-label" text-anchor="middle">FRONT (south)</text>
+        <text x="730" y="395" class="anno-label" text-anchor="middle">BACK (north)</text>
+
+        <!-- Dimensions -->
+        <line x1="60" y1="55" x2="60" y2="370" class="dim-line"/>
+        <line x1="55" y1="55" x2="65" y2="55" class="dim-line"/>
+        <line x1="55" y1="370" x2="65" y2="370" class="dim-line"/>
+        <text x="48" y="200" class="dim-label" text-anchor="middle" transform="rotate(-90 48 200)">8′-0″ front</text>
+
+        <line x1="850" y1="95" x2="850" y2="370" class="dim-line"/>
+        <line x1="845" y1="95" x2="855" y2="95" class="dim-line"/>
+        <line x1="845" y1="370" x2="855" y2="370" class="dim-line"/>
+        <text x="862" y="230" class="dim-label" text-anchor="middle" transform="rotate(90 862 230)">7′-0″ back</text>
+
+        <line x1="180" y1="425" x2="742" y2="425" class="dim-line"/>
+        <line x1="180" y1="420" x2="180" y2="430" class="dim-line"/>
+        <line x1="742" y1="420" x2="742" y2="430" class="dim-line"/>
+        <text x="461" y="441" class="dim-label" text-anchor="middle">8′-0″ depth</text>
+
+        <line x1="190" y1="58" x2="190" y2="38" class="dim-line"/>
+        <line x1="190" y1="98" x2="190" y2="118" class="dim-line"/>
+        <text x="100" y="78" class="anno-label">1′-0″ fall</text>
+        <line x1="135" y1="74" x2="178" y2="78" class="leader"/>
+      </svg>
+      <div class="drawing-title-block"><strong>A1.1b</strong> &nbsp; Side elevation — east face, propane heater on partial wall</div>
     </div>
   </section>
 
@@ -898,84 +1134,117 @@
       <span class="num">A2.0</span>
       Framing
     </div>
-    <div class="eyebrow">Drawings · 06</div>
+    <div class="eyebrow">Drawings · 03</div>
     <h2 class="section-title">Framing <em>diagram.</em></h2>
-    <p class="lede">Four posts, two doubled beams running the long axis, six rafters spanning between, eleven slats running back across the top of the rafters. The polycarbonate sheets sit on the slats. That's the whole roof system.</p>
+    <p class="lede">Four posts, doubled beams along the long axis, six rafters running front-to-back with the slope built in, 2×4 purlins on top. Black corrugated metal panels screw straight to the purlins. Wall studs sit between the posts — they carry the cladding on the outside face and are left visible inside.</p>
 
     <div class="drawing">
       <div class="drawing-scale">Iso · NTS</div>
-      <svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg">
-        <!-- Ground -->
-        <line x1="80" y1="440" x2="820" y2="440" class="stroke-concrete" stroke-width="0.8"/>
+      <svg viewBox="0 0 900 540" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <pattern id="corrugatedIso" patternUnits="userSpaceOnUse" width="12" height="5" patternTransform="skewX(-25)">
+            <rect width="12" height="5" fill="#1A1714"/>
+            <ellipse cx="3" cy="2.5" rx="3" ry="1.2" fill="#2A2520"/>
+            <ellipse cx="9" cy="2.5" rx="3" ry="1.2" fill="#2A2520"/>
+          </pattern>
+        </defs>
+
+        <!-- Existing concrete pad (iso) -->
+        <polygon points="120,470 780,470 820,490 80,490" fill="url(#concreteFill)" stroke="#15110D" stroke-width="0.6"/>
+        <text x="450" y="514" class="dim-label" text-anchor="middle">EXISTING CONCRETE PAD — anchor straight in</text>
 
         <!-- Back posts -->
-        <g class="fill-walnut">
-          <rect x="240" y="120" width="20" height="320"/>
-          <rect x="640" y="120" width="20" height="320"/>
-        </g>
+        <rect x="240" y="155" width="20" height="295" fill="#3F2412" stroke="#15110D" stroke-width="0.4"/>
+        <rect x="640" y="155" width="20" height="295" fill="#3F2412" stroke="#15110D" stroke-width="0.4"/>
         <!-- Front posts -->
-        <g class="fill-walnut">
-          <rect x="180" y="160" width="22" height="280"/>
-          <rect x="700" y="160" width="22" height="280"/>
+        <rect x="180" y="180" width="22" height="280" fill="#3F2412" stroke="#15110D" stroke-width="0.4"/>
+        <rect x="700" y="180" width="22" height="280" fill="#3F2412" stroke="#15110D" stroke-width="0.4"/>
+
+        <!-- Doubled beam on left (visible) -->
+        <polygon points="180,180 700,180 700,205 180,205" fill="#3F2412" stroke="#15110D" stroke-width="0.5"/>
+        <line x1="180" y1="193" x2="700" y2="193" stroke="#C18854" stroke-width="0.3" opacity="0.5"/>
+        <text x="730" y="200" class="anno-label">2× 2×8 DF beam (doubled, both long sides)</text>
+
+        <!-- Doubled beam on right side (back, sloping up-right) -->
+        <polygon points="240,155 640,155 640,180 240,180" fill="#3F2412" stroke="#15110D" stroke-width="0.5"/>
+        <line x1="240" y1="168" x2="640" y2="168" stroke="#C18854" stroke-width="0.3" opacity="0.5"/>
+
+        <!-- Connecting receding beams -->
+        <polygon points="180,180 240,155 240,180" fill="#2A1808" stroke="#15110D" stroke-width="0.5"/>
+        <polygon points="700,180 700,205 640,180 640,155" fill="#2A1808" stroke="#15110D" stroke-width="0.5"/>
+
+        <!-- Wall studs (visible between posts) -->
+        <g stroke="#5A3520" stroke-width="2" opacity="0.85">
+          <!-- Back wall studs (sloping up to back) -->
+          <line x1="280" y1="155" x2="280" y2="450"/>
+          <line x1="320" y1="155" x2="320" y2="450"/>
+          <line x1="360" y1="155" x2="360" y2="450"/>
+          <line x1="400" y1="155" x2="400" y2="450"/>
+          <line x1="440" y1="155" x2="440" y2="450"/>
+          <line x1="480" y1="155" x2="480" y2="450"/>
+          <line x1="520" y1="155" x2="520" y2="450"/>
+          <line x1="560" y1="155" x2="560" y2="450"/>
+          <line x1="600" y1="155" x2="600" y2="450"/>
         </g>
+        <text x="80" y="380" class="anno-label">2×4 studs @ 16″ o.c.</text>
+        <text x="80" y="394" class="dim-label">cladding on outside only</text>
+        <line x1="170" y1="382" x2="278" y2="380" class="leader"/>
 
-        <!-- Back doubled beam -->
-        <rect x="220" y="100" width="460" height="14" class="fill-walnut"/>
-        <rect x="220" y="86" width="460" height="14" class="fill-walnut"/>
-        <line x1="220" y1="100" x2="680" y2="100" class="stroke-honey" stroke-width="0.4"/>
-        <text x="700" y="96" class="anno-label">2× 2×8 doubled beam (back)</text>
-
-        <!-- Front doubled beam -->
-        <rect x="160" y="140" width="560" height="14" class="fill-walnut"/>
-        <rect x="160" y="126" width="560" height="14" class="fill-walnut"/>
-        <line x1="160" y1="140" x2="720" y2="140" class="stroke-honey" stroke-width="0.4"/>
-        <text x="120" y="170" class="anno-label">2× 2×8 doubled beam (front)</text>
-        <line x1="155" y1="165" x2="160" y2="155" class="leader"/>
-
-        <!-- Rafters spanning front-back -->
-        <g>
-          <line x1="200" y1="146" x2="250" y2="106" class="stroke-walnut" stroke-width="6"/>
-          <line x1="280" y1="146" x2="330" y2="106" class="stroke-walnut" stroke-width="6"/>
-          <line x1="360" y1="146" x2="410" y2="106" class="stroke-walnut" stroke-width="6"/>
-          <line x1="440" y1="146" x2="490" y2="106" class="stroke-walnut" stroke-width="6"/>
-          <line x1="520" y1="146" x2="570" y2="106" class="stroke-walnut" stroke-width="6"/>
-          <line x1="600" y1="146" x2="650" y2="106" class="stroke-walnut" stroke-width="6"/>
-          <line x1="680" y1="146" x2="710" y2="106" class="stroke-walnut" stroke-width="6"/>
+        <!-- RAFTERS (front-to-back, with slope) -->
+        <g stroke="#15110D" stroke-width="0.5" fill="#3F2412">
+          <polygon points="195,178 250,153 256,153 201,178"/>
+          <polygon points="290,178 345,153 351,153 296,178"/>
+          <polygon points="385,178 440,153 446,153 391,178"/>
+          <polygon points="480,178 535,153 541,153 486,178"/>
+          <polygon points="575,178 630,153 636,153 581,178"/>
+          <polygon points="670,178 725,153 731,153 676,178"/>
         </g>
-        <text x="720" y="120" class="anno-label">7× 2×6 rafters @ 22″ o.c.</text>
+        <text x="80" y="160" class="anno-label">6× 2×6 rafters @ 22″ o.c.</text>
+        <line x1="160" y1="157" x2="195" y2="170" class="leader"/>
 
-        <!-- Top slats running perpendicular (shown as lighter lines) -->
-        <g class="stroke-walnut" stroke-width="2.5" opacity="0.85">
-          <line x1="195" y1="138" x2="710" y2="98"/>
-          <line x1="195" y1="130" x2="710" y2="90"/>
-          <line x1="195" y1="122" x2="710" y2="82"/>
-          <line x1="195" y1="114" x2="710" y2="74"/>
+        <!-- PURLINS -->
+        <g stroke="#15110D" stroke-width="0.4" fill="#5A3520">
+          <polygon points="183,167 705,167 705,172 183,172"/>
+          <polygon points="195,150 723,150 723,155 195,155"/>
+          <polygon points="207,133 741,133 741,138 207,138"/>
+          <polygon points="219,116 759,116 759,121 219,121"/>
         </g>
-        <text x="720" y="80" class="anno-label">2×2 slats @ 12″ o.c.</text>
+        <text x="750" y="125" class="anno-label">2×4 purlins @ 24″ o.c.</text>
 
-        <!-- Corner brace, visible -->
-        <line x1="200" y1="170" x2="232" y2="148" class="stroke-walnut" stroke-width="5"/>
-        <line x1="700" y1="170" x2="670" y2="148" class="stroke-walnut" stroke-width="5"/>
-        <text x="80" y="220" class="anno-label">Corner brace, 2×6 cut at 45°</text>
-        <line x1="135" y1="215" x2="200" y2="180" class="leader"/>
+        <!-- BLACK CORRUGATED METAL -->
+        <polygon points="175,108 770,108 770,165 175,165" fill="url(#corrugatedIso)" stroke="#0E0B08" stroke-width="0.5" opacity="0.95"/>
+        <line x1="350" y1="108" x2="350" y2="165" stroke="#0E0B08" stroke-width="0.4"/>
+        <line x1="525" y1="108" x2="525" y2="165" stroke="#0E0B08" stroke-width="0.4"/>
+        <line x1="700" y1="108" x2="700" y2="165" stroke="#0E0B08" stroke-width="0.4"/>
+        <text x="780" y="105" class="anno-label">black corrugated tin</text>
+        <line x1="775" y1="103" x2="700" y2="115" class="leader"/>
 
-        <!-- Post base anchors -->
-        <g class="fill-concrete">
-          <rect x="178" y="440" width="26" height="6"/>
-          <rect x="238" y="440" width="24" height="6"/>
-          <rect x="638" y="440" width="24" height="6"/>
-          <rect x="698" y="440" width="26" height="6"/>
+        <!-- Drip edge at back -->
+        <line x1="170" y1="108" x2="775" y2="108" stroke="#0E0B08" stroke-width="3"/>
+
+        <!-- Corner braces visible -->
+        <polygon points="202,180 202,225 240,180" fill="#3F2412" stroke="#15110D" stroke-width="0.4"/>
+        <polygon points="700,180 700,225 662,180" fill="#3F2412" stroke="#15110D" stroke-width="0.4"/>
+        <text x="80" y="218" class="anno-label">2×6 corner brace (4×)</text>
+        <line x1="160" y1="215" x2="205" y2="208" class="leader"/>
+
+        <!-- Post bases -->
+        <g fill="#8E867B" stroke="#15110D" stroke-width="0.4">
+          <rect x="178" y="460" width="26" height="8"/>
+          <rect x="238" y="450" width="24" height="6"/>
+          <rect x="638" y="450" width="24" height="6"/>
+          <rect x="698" y="460" width="26" height="8"/>
         </g>
-        <text x="190" y="465" class="dim-label">POST BASE</text>
-        <text x="190" y="478" class="dim-label">SIMPSON ABU66Z</text>
+        <text x="80" y="464" class="anno-label">Simpson ABU66Z, epoxy anchor</text>
+        <line x1="170" y1="462" x2="180" y2="464" class="leader"/>
 
         <!-- Dimensions -->
-        <line x1="160" y1="490" x2="722" y2="490" class="dim-line"/>
-        <line x1="160" y1="485" x2="160" y2="495" class="dim-line"/>
-        <line x1="722" y1="485" x2="722" y2="495" class="dim-line"/>
-        <text x="441" y="498" class="dim-label" text-anchor="middle" style="background: var(--paper-warm);">11′-0″ between front post centers</text>
+        <line x1="180" y1="494" x2="722" y2="494" class="dim-line"/>
+        <line x1="180" y1="489" x2="180" y2="499" class="dim-line"/>
+        <line x1="722" y1="489" x2="722" y2="499" class="dim-line"/>
+        <text x="451" y="507" class="dim-label" text-anchor="middle">11′-0″ between front post centers</text>
       </svg>
-      <div class="drawing-title-block"><strong>A2.0</strong> &nbsp; Framing diagram — exploded isometric</div>
+      <div class="drawing-title-block"><strong>A2.0</strong> &nbsp; Framing iso — exposed structure inside</div>
     </div>
   </section>
 
@@ -985,202 +1254,333 @@
       <span class="num">A2.1</span>
       Details
     </div>
-    <div class="eyebrow">Drawings · 07</div>
+    <div class="eyebrow">Drawings · 04</div>
     <h2 class="section-title">Three <em>connections</em> that matter.</h2>
-    <p class="lede">Get these three right and the structure will outlast you. Get them wrong and you'll be re-doing things in a wet spring four years from now.</p>
+    <p class="lede">Get these three right and the structure outlasts you. Get them wrong and you'll be re-doing work in a wet spring four years from now.</p>
 
     <div class="drawing">
-      <div class="drawing-scale">Details · Scale varies</div>
-      <svg viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg">
+      <div class="drawing-scale">Details · scale varies</div>
+      <svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg">
         <!-- DETAIL 1: POST BASE -->
-        <g transform="translate(0, 0)">
-          <text x="40" y="30" class="anno-label">① Post base — anchor to concrete</text>
+        <g transform="translate(0, 10)">
+          <text x="40" y="22" class="anno-label" font-size="13">① Post base to existing slab</text>
 
-          <!-- Post -->
-          <rect x="100" y="80" width="60" height="180" class="fill-walnut"/>
-          <line x1="100" y1="80" x2="100" y2="260" class="stroke-honey" stroke-width="0.4"/>
+          <rect x="100" y="90" width="60" height="180" fill="#3F2412" stroke="#15110D" stroke-width="0.6"/>
+          <line x1="115" y1="90" x2="115" y2="270" stroke="#2A1808" stroke-width="0.4"/>
+          <line x1="145" y1="90" x2="145" y2="270" stroke="#2A1808" stroke-width="0.4"/>
 
-          <!-- Anchor -->
-          <rect x="90" y="260" width="80" height="10" class="fill-walnut"/>
-          <rect x="118" y="270" width="24" height="20" class="fill-walnut"/>
-          <line x1="130" y1="290" x2="130" y2="320" class="stroke-walnut" stroke-width="3"/>
+          <rect x="92" y="270" width="76" height="10" fill="#8E867B" stroke="#15110D" stroke-width="0.5"/>
+          <rect x="116" y="280" width="28" height="22" fill="#8E867B" stroke="#15110D" stroke-width="0.5"/>
+          <line x1="130" y1="302" x2="130" y2="335" stroke="#5A5751" stroke-width="3"/>
 
-          <!-- Concrete -->
-          <pattern id="conc1" patternUnits="userSpaceOnUse" width="4" height="4">
-            <circle cx="2" cy="2" r="0.6" class="fill-concrete"/>
-          </pattern>
-          <rect x="40" y="290" width="200" height="50" fill="url(#conc1)"/>
-          <rect x="40" y="290" width="200" height="50" class="stroke-ink" stroke-width="0.6" fill="none"/>
+          <rect x="40" y="305" width="200" height="50" fill="url(#concreteFill)" stroke="#15110D" stroke-width="0.6"/>
+          <ellipse cx="130" cy="328" rx="6" ry="22" fill="#C18854" opacity="0.3"/>
 
-          <!-- Labels -->
-          <text x="190" y="170" class="dim-label">6×6 D-fir post</text>
-          <line x1="185" y1="166" x2="165" y2="160" class="leader"/>
+          <text x="180" y="180" class="dim-label">6×6 DF post</text>
+          <line x1="175" y1="176" x2="165" y2="170" class="leader"/>
 
-          <text x="190" y="265" class="dim-label">Simpson ABU66Z</text>
-          <text x="190" y="278" class="dim-label">standoff base</text>
-          <line x1="185" y1="270" x2="170" y2="265" class="leader"/>
+          <text x="180" y="275" class="dim-label">Simpson ABU66Z</text>
+          <text x="180" y="288" class="dim-label">standoff post base</text>
+          <line x1="175" y1="280" x2="170" y2="275" class="leader"/>
 
-          <text x="190" y="320" class="dim-label">⅝″ anchor bolt</text>
-          <text x="190" y="333" class="dim-label">epoxy-set, 6″ embed</text>
-          <line x1="185" y1="320" x2="135" y2="315" class="leader"/>
+          <text x="180" y="325" class="dim-label">⅝″ epoxy anchor,</text>
+          <text x="180" y="338" class="dim-label">5″ embed (existing slab)</text>
+          <line x1="175" y1="325" x2="138" y2="328" class="leader"/>
 
-          <text x="80" y="320" class="dim-label">¾″ standoff (rot gap)</text>
-          <line x1="115" y1="316" x2="130" y2="275" class="leader"/>
+          <text x="40" y="368" class="dim-label">EXISTING SLAB — verify ≥4″ thick</text>
+
+          <line x1="92" y1="272" x2="92" y2="280" stroke="#15110D" stroke-width="0.4"/>
+          <text x="40" y="278" class="dim-label">¾″ gap</text>
         </g>
 
         <!-- DETAIL 2: BEAM SANDWICH -->
-        <g transform="translate(310, 0)">
-          <text x="40" y="30" class="anno-label">② Beam-to-post sandwich</text>
+        <g transform="translate(310, 10)">
+          <text x="40" y="22" class="anno-label" font-size="13">② Beam-to-post sandwich</text>
 
-          <!-- Post -->
-          <rect x="120" y="120" width="50" height="160" class="fill-walnut"/>
+          <rect x="120" y="130" width="50" height="180" fill="#3F2412" stroke="#15110D" stroke-width="0.6"/>
+          <line x1="135" y1="130" x2="135" y2="310" stroke="#2A1808" stroke-width="0.4"/>
+          <line x1="155" y1="130" x2="155" y2="310" stroke="#2A1808" stroke-width="0.4"/>
 
-          <!-- Two 2x8 beams sandwiching -->
-          <rect x="60" y="100" width="180" height="50" class="fill-walnut"/>
-          <rect x="60" y="100" width="180" height="50" class="stroke-honey" stroke-width="0.4" fill="none"/>
-          <line x1="60" y1="125" x2="240" y2="125" class="stroke-honey" stroke-width="0.4"/>
+          <rect x="60" y="110" width="180" height="56" fill="#3F2412" stroke="#15110D" stroke-width="0.6"/>
+          <line x1="60" y1="138" x2="240" y2="138" stroke="#C18854" stroke-width="0.4" opacity="0.5"/>
 
-          <!-- Hidden post edge dashed through beams -->
-          <line x1="120" y1="100" x2="120" y2="150" class="stroke-ink" stroke-width="0.5" stroke-dasharray="2 2"/>
-          <line x1="170" y1="100" x2="170" y2="150" class="stroke-ink" stroke-width="0.5" stroke-dasharray="2 2"/>
+          <line x1="120" y1="110" x2="120" y2="166" stroke="#15110D" stroke-width="0.4" stroke-dasharray="2 2"/>
+          <line x1="170" y1="110" x2="170" y2="166" stroke="#15110D" stroke-width="0.4" stroke-dasharray="2 2"/>
 
-          <!-- Through-bolts -->
-          <g class="fill-ink">
-            <circle cx="105" cy="115" r="3"/>
-            <circle cx="105" cy="138" r="3"/>
-            <circle cx="195" cy="115" r="3"/>
-            <circle cx="195" cy="138" r="3"/>
+          <g fill="#1A1714">
+            <circle cx="100" cy="124" r="3"/>
+            <circle cx="100" cy="150" r="3"/>
+            <circle cx="190" cy="124" r="3"/>
+            <circle cx="190" cy="150" r="3"/>
           </g>
 
-          <!-- Labels -->
-          <text x="20" y="85" class="dim-label">2× 2×8 beam (one each side)</text>
-          <line x1="50" y1="92" x2="80" y2="100" class="leader"/>
+          <text x="20" y="100" class="dim-label">2× 2×8, one each face</text>
+          <line x1="60" y1="103" x2="80" y2="110" class="leader"/>
 
-          <text x="245" y="118" class="dim-label">½″ × 7″ carriage</text>
-          <text x="245" y="131" class="dim-label">bolts, 4 ea joint</text>
-          <line x1="240" y1="125" x2="200" y2="125" class="leader"/>
+          <text x="248" y="120" class="dim-label">½″ × 7″ carriage</text>
+          <text x="248" y="133" class="dim-label">bolt, 4 per joint</text>
+          <line x1="245" y1="125" x2="195" y2="125" class="leader"/>
 
-          <text x="20" y="290" class="dim-label">Beams flush with</text>
-          <text x="20" y="303" class="dim-label">top of post</text>
-          <line x1="55" y1="290" x2="100" y2="200" class="leader"/>
+          <text x="40" y="335" class="dim-label">Beams flush at top of post</text>
+          <line x1="100" y1="332" x2="120" y2="166" class="leader"/>
         </g>
 
         <!-- DETAIL 3: CORNER BRACE -->
-        <g transform="translate(620, 0)">
-          <text x="20" y="30" class="anno-label">③ Corner brace at 45°</text>
+        <g transform="translate(620, 10)">
+          <text x="20" y="22" class="anno-label" font-size="13">③ Corner brace, 45°</text>
 
-          <!-- Post -->
-          <rect x="40" y="80" width="50" height="200" class="fill-walnut"/>
+          <rect x="40" y="90" width="50" height="230" fill="#3F2412" stroke="#15110D" stroke-width="0.6"/>
+          <line x1="55" y1="90" x2="55" y2="320" stroke="#2A1808" stroke-width="0.4"/>
+          <line x1="75" y1="90" x2="75" y2="320" stroke="#2A1808" stroke-width="0.4"/>
 
-          <!-- Beam -->
-          <rect x="40" y="80" width="220" height="40" class="fill-walnut"/>
+          <rect x="40" y="90" width="230" height="40" fill="#3F2412" stroke="#15110D" stroke-width="0.6"/>
+          <line x1="90" y1="111" x2="270" y2="111" stroke="#C18854" stroke-width="0.4" opacity="0.5"/>
 
-          <!-- Brace -->
-          <polygon points="90,120 90,180 150,120" class="fill-walnut"/>
-          <line x1="90" y1="180" x2="150" y2="120" class="stroke-honey" stroke-width="0.4"/>
+          <polygon points="90,130 90,190 150,130" fill="#3F2412" stroke="#15110D" stroke-width="0.5"/>
+          <line x1="90" y1="190" x2="150" y2="130" stroke="#2A1808" stroke-width="0.4"/>
 
-          <!-- Lag bolts shown as dots -->
-          <g class="fill-ink">
-            <circle cx="98" cy="170" r="2"/>
-            <circle cx="108" cy="160" r="2"/>
-            <circle cx="140" cy="132" r="2"/>
-            <circle cx="130" cy="142" r="2"/>
+          <g fill="#1A1714">
+            <circle cx="98" cy="178" r="2"/>
+            <circle cx="108" cy="168" r="2"/>
+            <circle cx="142" cy="138" r="2"/>
+            <circle cx="132" cy="148" r="2"/>
           </g>
 
-          <!-- Angle indicator -->
-          <path d="M 90 150 A 30 30 0 0 0 110 130" class="stroke-walnut" stroke-width="0.6" fill="none"/>
-          <text x="110" y="155" class="dim-label">45°</text>
+          <path d="M 90 160 A 30 30 0 0 0 110 140" stroke="#C18854" stroke-width="0.5" fill="none"/>
+          <text x="112" y="160" class="dim-label">45°</text>
 
-          <!-- Labels -->
-          <text x="160" y="195" class="dim-label">2×6 cut both ends</text>
-          <text x="160" y="208" class="dim-label">at 45°, ~30″ long</text>
-          <line x1="155" y1="195" x2="130" y2="155" class="leader"/>
+          <text x="160" y="200" class="dim-label">2×6, both ends cut 45°,</text>
+          <text x="160" y="213" class="dim-label">~30″ along long edge</text>
+          <line x1="155" y1="200" x2="130" y2="170" class="leader"/>
 
-          <text x="160" y="240" class="dim-label">⅜″ × 4″ lag bolts</text>
-          <text x="160" y="253" class="dim-label">2 each end</text>
-          <line x1="155" y1="240" x2="115" y2="170" class="leader"/>
+          <text x="160" y="245" class="dim-label">⅜″ × 4″ lag bolt</text>
+          <text x="160" y="258" class="dim-label">2 each end</text>
+          <line x1="155" y1="245" x2="115" y2="175" class="leader"/>
         </g>
       </svg>
       <div class="drawing-title-block"><strong>A2.1</strong> &nbsp; Three connection details</div>
     </div>
   </section>
 
-  <!-- ===== SHOPPING LIST ===== -->
+  <!-- ===== WATER SCHEMATIC ===== -->
+  <section class="sheet">
+    <div class="sheet-marker">
+      <span class="num">A2.2</span>
+      Water
+    </div>
+    <div class="eyebrow">Drawings · 05</div>
+    <h2 class="section-title">How the <em>water</em> works.</h2>
+    <p class="lede">Cold from the garden hose splits two ways: half goes direct to the cold side of the mixing valve, half runs through the black hose coiled on the roof and into the propane heater. The heater finishes the job to a steady setpoint. Tempering valve at the fixture, set to 105°F.</p>
+
+    <div class="drawing">
+      <div class="drawing-scale">Schematic · not to scale</div>
+      <svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg">
+        <!-- Sun -->
+        <g transform="translate(80, 60)">
+          <circle r="22" fill="#C18854" opacity="0.8"/>
+          <g stroke="#C18854" stroke-width="1.5">
+            <line x1="-32" y1="0" x2="-26" y2="0"/>
+            <line x1="32" y1="0" x2="26" y2="0"/>
+            <line x1="0" y1="-32" x2="0" y2="-26"/>
+            <line x1="0" y1="32" x2="0" y2="26"/>
+            <line x1="-22" y1="-22" x2="-18" y2="-18"/>
+            <line x1="22" y1="22" x2="18" y2="18"/>
+            <line x1="-22" y1="22" x2="-18" y2="18"/>
+            <line x1="22" y1="-22" x2="18" y2="-18"/>
+          </g>
+        </g>
+
+        <!-- Roof / coil -->
+        <rect x="180" y="50" width="320" height="14" fill="#1A1714"/>
+        <g transform="translate(340, 57)">
+          <ellipse rx="60" ry="6" fill="none" stroke="#4D5B47" stroke-width="2"/>
+          <ellipse rx="46" ry="4.5" fill="none" stroke="#4D5B47" stroke-width="1.5"/>
+          <ellipse rx="32" ry="3.5" fill="none" stroke="#4D5B47" stroke-width="1.2"/>
+          <ellipse rx="18" ry="2.5" fill="none" stroke="#4D5B47" stroke-width="0.8"/>
+        </g>
+        <text x="340" y="38" class="anno-label" text-anchor="middle">Solar coil — 100′ black hose on tin roof</text>
+
+        <!-- Garden hose from house -->
+        <text x="40" y="180" class="anno-label">House bib</text>
+        <rect x="40" y="186" width="30" height="14" fill="#4D5B47" stroke="#15110D" stroke-width="0.5" rx="2"/>
+        <line x1="70" y1="193" x2="150" y2="193" stroke="#4D5B47" stroke-width="3"/>
+        <text x="100" y="184" class="dim-label">garden hose · cold</text>
+
+        <!-- Y-splitter -->
+        <polygon points="150,185 170,193 150,201" fill="#5A4030" stroke="#15110D" stroke-width="0.5"/>
+        <text x="156" y="220" class="dim-label">Y-split</text>
+
+        <!-- Branch up to roof coil -->
+        <line x1="170" y1="190" x2="170" y2="80" stroke="#4D5B47" stroke-width="2.5"/>
+        <line x1="170" y1="80" x2="280" y2="80" stroke="#4D5B47" stroke-width="2.5"/>
+        <polygon points="280,80 290,76 290,84" fill="#4D5B47"/>
+
+        <!-- Out of coil -->
+        <line x1="400" y1="80" x2="500" y2="80" stroke="#C18854" stroke-width="2.5"/>
+        <line x1="500" y1="80" x2="500" y2="200" stroke="#C18854" stroke-width="2.5"/>
+        <polygon points="500,200 496,210 504,210" fill="#C18854"/>
+        <text x="430" y="74" class="anno-label">pre-heated → 90–110°F (summer)</text>
+
+        <!-- Propane heater -->
+        <rect x="470" y="210" width="60" height="80" fill="#3F2412" stroke="#1A1714" stroke-width="1" rx="2"/>
+        <rect x="478" y="222" width="44" height="22" fill="#1A1714"/>
+        <circle cx="500" cy="233" r="6" fill="#5A5751"/>
+        <line x1="482" y1="256" x2="518" y2="256" stroke="#5A5751" stroke-width="0.5"/>
+        <line x1="482" y1="266" x2="518" y2="266" stroke="#5A5751" stroke-width="0.5"/>
+        <line x1="482" y1="276" x2="518" y2="276" stroke="#5A5751" stroke-width="0.5"/>
+        <rect x="485" y="200" width="30" height="6" fill="#1A1714"/>
+        <text x="500" y="305" class="anno-label" text-anchor="middle">Propane heater</text>
+        <text x="500" y="318" class="dim-label" text-anchor="middle">tankless · on-demand</text>
+
+        <!-- Propane tank -->
+        <ellipse cx="580" cy="280" rx="18" ry="26" fill="#3F2412" stroke="#1A1714" stroke-width="0.8"/>
+        <ellipse cx="580" cy="258" rx="18" ry="5" fill="#5A4030"/>
+        <rect x="574" y="250" width="12" height="6" fill="#1A1714"/>
+        <line x1="562" y1="270" x2="530" y2="270" stroke="#5A5751" stroke-width="1.5"/>
+        <text x="580" y="320" class="anno-label" text-anchor="middle">20 lb tank</text>
+
+        <!-- Hot out of heater -->
+        <line x1="500" y1="290" x2="500" y2="330" stroke="#A82820" stroke-width="2.5"/>
+        <line x1="500" y1="330" x2="700" y2="330" stroke="#A82820" stroke-width="2.5"/>
+        <polygon points="700,330 695,326 695,334" fill="#A82820"/>
+        <text x="540" y="346" class="dim-label">HOT (~135°F to mixing valve)</text>
+
+        <!-- Cold branch direct (from Y) -->
+        <line x1="170" y1="200" x2="170" y2="350" stroke="#4D5B47" stroke-width="2.5"/>
+        <line x1="170" y1="350" x2="700" y2="350" stroke="#4D5B47" stroke-width="2.5"/>
+        <polygon points="700,350 695,346 695,354" fill="#4D5B47"/>
+        <text x="220" y="366" class="dim-label">COLD (direct to mixing valve)</text>
+
+        <!-- Mixing valve -->
+        <rect x="700" y="320" width="50" height="40" fill="#5A5751" stroke="#15110D" stroke-width="1" rx="2"/>
+        <circle cx="725" cy="340" r="9" fill="#C18854" stroke="#15110D" stroke-width="0.5"/>
+        <text x="725" y="343" class="dim-label" text-anchor="middle" fill="#15110D">TMV</text>
+        <text x="710" y="313" class="anno-label">Mixing valve · 105°F</text>
+
+        <!-- Tempered out -->
+        <line x1="750" y1="340" x2="820" y2="340" stroke="#C18854" stroke-width="2.5"/>
+        <polygon points="820,340 815,336 815,344" fill="#C18854"/>
+        <text x="755" y="332" class="dim-label">TEMPERED</text>
+
+        <!-- Shower head -->
+        <g transform="translate(835, 340)">
+          <circle r="10" fill="#C18854" stroke="#8B5A2B" stroke-width="0.5"/>
+          <g stroke="#A8C5D0" stroke-width="0.6" opacity="0.8">
+            <line x1="-3" y1="9" x2="-12" y2="30"/>
+            <line x1="0" y1="10" x2="0" y2="32"/>
+            <line x1="3" y1="9" x2="12" y2="30"/>
+          </g>
+          <text x="-12" y="50" class="dim-label">SHOWER</text>
+        </g>
+
+        <!-- Legend at bottom -->
+        <g transform="translate(40, 395)">
+          <line x1="0" y1="0" x2="20" y2="0" stroke="#4D5B47" stroke-width="2.5"/>
+          <text x="26" y="3" class="dim-label">COLD</text>
+          <line x1="90" y1="0" x2="110" y2="0" stroke="#C18854" stroke-width="2.5"/>
+          <text x="116" y="3" class="dim-label">SOLAR PRE-HEAT / TEMPERED</text>
+          <line x1="320" y1="0" x2="340" y2="0" stroke="#A82820" stroke-width="2.5"/>
+          <text x="346" y="3" class="dim-label">HOT (heater output)</text>
+        </g>
+      </svg>
+      <div class="drawing-title-block"><strong>A2.2</strong> &nbsp; Water schematic — solar pre-heat + propane finishing</div>
+    </div>
+
+    <div class="tip">
+      <strong>Why this works ·</strong>The roof coil isn't enough on its own — Vancouver doesn't deliver shower-hot water from a hose every day. But it does the easy half of the work for free in summer, and the propane heater only has to finish the lift the rest of the time. Result: propane consumption drops by 50–70% in July–August, and the system still works on a January morning.
+    </div>
+  </section>
+
+  <!-- ===== MATERIALS ===== -->
   <section class="sheet">
     <div class="sheet-marker">
       <span class="num">A3.0</span>
       Materials
     </div>
-    <div class="eyebrow">What to buy · 08</div>
+    <div class="eyebrow">What to buy · 06</div>
     <h2 class="section-title">The <em>shopping list.</em></h2>
-    <p class="lede">Quantities include a small waste allowance. Prices below are mid-2025 Vancouver retail and will drift — use them as guidance for ratios between materials, not as gospel.</p>
+    <p class="lede">Quantities include a small waste allowance. Lumber is dimensioned for Doug fir from a Vancouver yard. Metal roof comes from a roofing supplier — order ahead, cut to length.</p>
 
     <div class="list-section">
-      <h3>Structure — lumber</h3>
+      <h3>Frame — structural lumber</h3>
       <div class="list-grid">
         <div>
-          <div class="list-item"><div class="name">6×6 Doug fir, 8 ft <span class="detail">Posts</span></div><div class="qty">4 pcs</div></div>
-          <div class="list-item"><div class="name">2×8 Doug fir, 12 ft <span class="detail">Long beams (doubled)</span></div><div class="qty">4 pcs</div></div>
-          <div class="list-item"><div class="name">2×6 Doug fir, 10 ft <span class="detail">Rafters</span></div><div class="qty">7 pcs</div></div>
+          <div class="list-item"><div class="name">6×6 Doug fir, 8 ft <span class="detail">Posts (2 cut to 7′ for back of mono-slope)</span></div><div class="qty">4 pcs</div></div>
+          <div class="list-item"><div class="name">2×8 Doug fir, 12 ft <span class="detail">Long-side doubled beams</span></div><div class="qty">4 pcs</div></div>
+          <div class="list-item"><div class="name">2×6 Doug fir, 10 ft <span class="detail">Rafters (6× front-to-back)</span></div><div class="qty">6 pcs</div></div>
+        </div>
+        <div>
+          <div class="list-item"><div class="name">2×4 Doug fir, 12 ft <span class="detail">Purlins (4× perpendicular to rafters)</span></div><div class="qty">4 pcs</div></div>
           <div class="list-item"><div class="name">2×6 Doug fir, 8 ft <span class="detail">Corner braces</span></div><div class="qty">4 pcs</div></div>
         </div>
-        <div>
-          <div class="list-item"><div class="name">2×2 cedar or fir, 14 ft <span class="detail">Roof slats over rafters</span></div><div class="qty">11 pcs</div></div>
-          <div class="list-item"><div class="name">2×4 SPF, 8 ft <span class="detail">Wall framing — studs &amp; plates</span></div><div class="qty">48 pcs</div></div>
-          <div class="list-item"><div class="name">2×4 PT, 12 ft <span class="detail">Bottom plates (in contact w/ pad)</span></div><div class="qty">4 pcs</div></div>
-          <div class="list-item"><div class="name">½″ exterior plywood, 4×8 <span class="detail">Sheathing behind cladding</span></div><div class="qty">7 sheets</div></div>
-        </div>
       </div>
     </div>
 
     <div class="list-section">
-      <h3>Cladding &amp; roof</h3>
+      <h3>Walls &amp; cladding — outside only</h3>
       <div class="list-grid">
         <div>
-          <div class="list-item"><div class="name">1×6 T&G cedar or fir, 10 ft <span class="detail">Horizontal cladding</span></div><div class="qty">~50 pcs / 500 lf</div></div>
-          <div class="list-item"><div class="name">1×4 cedar, 8 ft <span class="detail">Corner trim &amp; edge boards</span></div><div class="qty">8 pcs</div></div>
-          <div class="list-item"><div class="name">Tyvek wrap, 9 ft × 100 ft roll</div><div class="qty">1 roll</div></div>
+          <div class="list-item"><div class="name">2×4 SPF, 8 ft <span class="detail">Wall studs (left exposed inside)</span></div><div class="qty">26 pcs</div></div>
+          <div class="list-item"><div class="name">2×4 PT, 10 ft <span class="detail">Bottom plates (on existing slab)</span></div><div class="qty">3 pcs</div></div>
+          <div class="list-item"><div class="name">2×4 SPF, 10 ft <span class="detail">Top plates</span></div><div class="qty">3 pcs</div></div>
         </div>
         <div>
-          <div class="list-item"><div class="name">8mm twin-wall polycarbonate, 4 ft × 12 ft <span class="detail">Roof sheets, clear</span></div><div class="qty">3 sheets</div></div>
-          <div class="list-item"><div class="name">Polycarbonate H-profile connector, 12 ft</div><div class="qty">2 pcs</div></div>
-          <div class="list-item"><div class="name">Polycarbonate end-cap tape, 4 ft</div><div class="qty">6 pcs</div></div>
+          <div class="list-item"><div class="name">1×6 fir T&amp;G, 10 ft <span class="detail">Horizontal cladding — exterior face, 3 walls</span></div><div class="qty">~50 pcs / 500 lf</div></div>
+          <div class="list-item"><div class="name">1×4 fir, 8 ft <span class="detail">Corner trim, edge boards</span></div><div class="qty">6 pcs</div></div>
+          <div class="list-item"><div class="name">Tyvek wrap, 3 ft × 100 ft roll <span class="detail">Behind cladding, on stud face</span></div><div class="qty">1 roll</div></div>
         </div>
       </div>
     </div>
 
     <div class="list-section">
-      <h3>Concrete pad</h3>
+      <h3>Roof — black corrugated tin</h3>
       <div class="list-grid">
         <div>
-          <div class="list-item"><div class="name">¾″ minus drainage gravel <span class="detail">4″ compacted base, 88 sf</span></div><div class="qty">~1.5 yd³</div></div>
-          <div class="list-item"><div class="name">Bagged concrete mix, 30 kg <span class="detail">4″ slab, 88 sf</span></div><div class="qty">~32 bags</div></div>
-          <div class="list-item"><div class="name">6×6 W2.9 welded wire mesh, 5 ft × 10 ft</div><div class="qty">2 sheets</div></div>
+          <div class="list-item"><div class="name">Corrugated metal panel, 26″ × 10 ft <span class="detail">Pre-finished matte black, 29-ga steel</span></div><div class="qty">5 panels</div></div>
+          <div class="list-item"><div class="name">Drip edge / eave trim, black, 10 ft</div><div class="qty">2 pcs</div></div>
+          <div class="list-item"><div class="name">Gable / rake trim, black, 10 ft</div><div class="qty">2 pcs</div></div>
         </div>
         <div>
-          <div class="list-item"><div class="name">2×4 PT, 12 ft <span class="detail">Form boards</span></div><div class="qty">4 pcs</div></div>
-          <div class="list-item"><div class="name">Vapour barrier, 6 mil poly</div><div class="qty">1 roll</div></div>
-          <div class="list-item"><div class="name">River rock, 1–2″ <span class="detail">Perimeter band, 12″ wide</span></div><div class="qty">~0.5 yd³</div></div>
+          <div class="list-item"><div class="name">Foam closure strips <span class="detail">Profiled to corrugation</span></div><div class="qty">2 pkgs</div></div>
+          <div class="list-item"><div class="name">Butyl roof seam tape, 3″ × 30 ft</div><div class="qty">1 roll</div></div>
         </div>
       </div>
     </div>
 
     <div class="list-section">
-      <h3>Plumbing, electrical, fit-out</h3>
+      <h3>Water — propane &amp; solar</h3>
+      <div class="list-grid">
+        <div>
+          <div class="list-item"><div class="name">Propane tankless heater <span class="detail">Outdoor-rated, e.g. Eccotemp L10 or Camplux 16L</span></div><div class="qty">1</div></div>
+          <div class="list-item"><div class="name">20 lb propane tank + regulator + hose</div><div class="qty">1 set</div></div>
+          <div class="list-item"><div class="name">Black garden hose, ¾″ × 100 ft <span class="detail">Solar pre-heat coil on roof</span></div><div class="qty">1</div></div>
+          <div class="list-item"><div class="name">Garden hose, ¾″ × 50 ft <span class="detail">From house bib to pavilion</span></div><div class="qty">1</div></div>
+          <div class="list-item"><div class="name">Brass garden-hose Y-splitter, ball valves</div><div class="qty">1</div></div>
+          <div class="list-item"><div class="name">Brass garden-hose to ½″ NPT adapters</div><div class="qty">4</div></div>
+        </div>
+        <div>
+          <div class="list-item"><div class="name">Thermostatic mixing valve <span class="detail">ASSE 1017, ½″ NPT, e.g. Caleffi 521</span></div><div class="qty">1</div></div>
+          <div class="list-item"><div class="name">Black iron pipe ¾″ — shower riser kit <span class="detail">Riser, elbow, arm, flange</span></div><div class="qty">1 set</div></div>
+          <div class="list-item"><div class="name">Copper rain showerhead, 8″</div><div class="qty">1</div></div>
+          <div class="list-item"><div class="name">¾″ PEX-A, 15 ft <span class="detail">Heater to mixing valve to fixture</span></div><div class="qty">1</div></div>
+          <div class="list-item"><div class="name">PEX fittings, ¾″ to garden-hose</div><div class="qty">1 kit</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="list-section">
+      <h3>Drain, plunge, lights &amp; finish</h3>
       <div class="list-grid">
         <div>
           <div class="list-item"><div class="name">Stock tank, 5½′ × 3½′ × 2′ <span class="detail">Cold plunge</span></div><div class="qty">1</div></div>
-          <div class="list-item"><div class="name">Linear shower drain, 24″</div><div class="qty">1</div></div>
-          <div class="list-item"><div class="name">Black iron pipe ¾″ — shower riser kit</div><div class="qty">1 set</div></div>
-          <div class="list-item"><div class="name">Copper rain showerhead, 8″</div><div class="qty">1</div></div>
-          <div class="list-item"><div class="name">Thermostatic mixing valve <span class="detail">ASSE 1017, e.g. Caleffi 521</span></div><div class="qty">1</div></div>
+          <div class="list-item"><div class="name">Surface-mount linear drain, 24″</div><div class="qty">1</div></div>
+          <div class="list-item"><div class="name">2″ ABS pipe + fittings <span class="detail">Drain to outfall</span></div><div class="qty">~15 ft</div></div>
         </div>
         <div>
-          <div class="list-item"><div class="name">PEX-A tubing, ½″ — red &amp; blue</div><div class="qty">100 ft ea</div></div>
-          <div class="list-item"><div class="name">PEX fittings, ½″ (ells, tees, valves)</div><div class="qty">1 kit</div></div>
-          <div class="list-item"><div class="name">String lights, outdoor S14, 24 ft</div><div class="qty">1 set</div></div>
-          <div class="list-item"><div class="name">Exterior wood stain — walnut</div><div class="qty">2 gal</div></div>
-          <div class="list-item"><div class="name">Exterior wood stain — honey</div><div class="qty">2 gal</div></div>
+          <div class="list-item"><div class="name">Solar string lights, S14 <span class="detail">Self-contained panel + battery</span></div><div class="qty">1 set</div></div>
+          <div class="list-item"><div class="name">Exterior wood stain — walnut <span class="detail">Frame</span></div><div class="qty">2 gal</div></div>
+          <div class="list-item"><div class="name">Exterior wood stain — honey <span class="detail">Cladding</span></div><div class="qty">2 gal</div></div>
+          <div class="list-item"><div class="name">River rock, 1–2″ <span class="detail">12″ perimeter band</span></div><div class="qty">~0.5 yd³</div></div>
         </div>
       </div>
     </div>
@@ -1192,26 +1592,28 @@
       <span class="num">A3.1</span>
       Hardware
     </div>
-    <div class="eyebrow">What to buy · 09</div>
+    <div class="eyebrow">What to buy · 07</div>
     <h2 class="section-title">Anchors, bolts, <em>and the small stuff.</em></h2>
 
     <div class="list-section">
       <div class="list-grid">
         <div>
           <h3>Anchors &amp; connectors</h3>
-          <div class="list-item"><div class="name">Simpson ABU66Z post base, hot-dip galv.</div><div class="qty">4</div></div>
-          <div class="list-item"><div class="name">⅝″ × 7″ wedge anchor or epoxy anchor</div><div class="qty">4</div></div>
-          <div class="list-item"><div class="name">Simpson H1 hurricane tie</div><div class="qty">14</div></div>
-          <div class="list-item"><div class="name">⅜″ × 4″ lag bolts + washers <span class="detail">corner braces</span></div><div class="qty">32</div></div>
-          <div class="list-item"><div class="name">½″ × 7″ carriage bolts + washers + nuts <span class="detail">beam-to-post</span></div><div class="qty">16</div></div>
+          <div class="list-item"><div class="name">Simpson ABU66Z post base, HDG</div><div class="qty">4</div></div>
+          <div class="list-item"><div class="name">⅝″ × 5″ epoxy anchor <span class="detail">Hilti HIT-HY 200 or equivalent</span></div><div class="qty">4</div></div>
+          <div class="list-item"><div class="name">Simpson H1 hurricane tie</div><div class="qty">12</div></div>
+          <div class="list-item"><div class="name">⅜″ × 4″ lag bolts + washers <span class="detail">Corner braces</span></div><div class="qty">32</div></div>
+          <div class="list-item"><div class="name">½″ × 7″ carriage bolts + washers + nuts <span class="detail">Beam-to-post</span></div><div class="qty">16</div></div>
+          <div class="list-item"><div class="name">¼″ × 3″ wedge anchors <span class="detail">Bottom plates to slab</span></div><div class="qty">12</div></div>
         </div>
         <div>
           <h3>Fasteners</h3>
           <div class="list-item"><div class="name">3″ exterior structural screws, 5 lb box</div><div class="qty">1 box</div></div>
           <div class="list-item"><div class="name">2½″ exterior screws, 5 lb box</div><div class="qty">2 boxes</div></div>
-          <div class="list-item"><div class="name">1¼″ stainless finish nails for T&G</div><div class="qty">1 box</div></div>
-          <div class="list-item"><div class="name">Polycarbonate roofing screws w/ neoprene washer</div><div class="qty">50 pcs</div></div>
-          <div class="list-item"><div class="name">16d framing nails</div><div class="qty">5 lb</div></div>
+          <div class="list-item"><div class="name">1¼″ stainless finish nails, T&amp;G</div><div class="qty">1 box</div></div>
+          <div class="list-item"><div class="name">Metal roofing screws, color-matched black <span class="detail">1½″, hex head, neoprene washer</span></div><div class="qty">~150 pcs</div></div>
+          <div class="list-item"><div class="name">Heavy-duty wall brackets, black <span class="detail">Mounting the propane heater</span></div><div class="qty">2</div></div>
+          <div class="list-item"><div class="name">Stainless lag screws, ¼″ × 2½″ <span class="detail">Solar panel + heater mounting</span></div><div class="qty">12</div></div>
         </div>
       </div>
     </div>
@@ -1221,302 +1623,252 @@
   <section class="sheet">
     <div class="sheet-marker">
       <span class="num">A4.0</span>
-      Build Sequence
+      Build
     </div>
-    <div class="eyebrow">The build · 10</div>
-    <h2 class="section-title">Six phases, <em>five weekends.</em></h2>
-    <p class="lede">The order matters. Pad before frame, frame before roof, roof before walls (so you stay dry while you work), walls before plumbing rough-in, plumbing before tile and fit-out. Trust the sequence.</p>
+    <div class="eyebrow">The build · 08</div>
+    <h2 class="section-title">Five phases, <em>in order.</em></h2>
+    <p class="lede">Frame first, and only after the frame is plumb, square, and bolted does anything else go up. Roof before walls so you stay dry while you finish the rest. Water and fit-out last.</p>
 
-    <!-- PHASE 1 -->
+    <!-- PHASE 1 — Frame -->
     <div class="phase">
       <div class="phase-header">
         <div class="phase-num">01</div>
-        <div class="phase-title">Site &amp; concrete pad</div>
-        <div class="phase-meta"><strong>Weekend 1</strong>12 hours · 2 people</div>
+        <div class="phase-title">Heavy timber frame</div>
       </div>
       <div class="phase-body">
-        <p class="phase-intro">The least glamorous and most important weekend. A flat, well-drained pad is the difference between a structure that lasts twenty years and one that's racking in two.</p>
+        <p class="phase-intro">Lay out on the existing slab, drill in your anchors, raise four 6×6 posts, then drop the doubled 2×8 beams across the top.</p>
 
         <div class="substeps">
           <div class="substep">
-            <div class="step-label">1.1 · Mark out</div>
-            <h5>Lay out the footprint</h5>
-            <p>String lines and batter boards. Pad goes 11′-0″ × 8′-0″ outside-of-form. Square the corners with the 3-4-5 method or a long diagonal check (13′-7½″ across the 11×8). Mark for the river-rock band, an extra 12″ all around.</p>
+            <div class="step-label">1.1 · Layout</div>
+            <h5>Mark the four post positions</h5>
+            <p>Sweep the existing slab clean. Snap chalk lines at 11′-0″ × 8′-0″, square the rectangle with a diagonal check (13′-7½″ across the corners). Mark the center of each post base.</p>
           </div>
           <div class="substep">
-            <div class="step-label">1.2 · Excavate</div>
-            <h5>Dig down 8 inches</h5>
-            <p>Strip topsoil, dig out 8″ across the whole pad area. Get the bottom roughly flat with a slope of about ¼″ per foot toward the future drain location. The rest of the slope is in the slab itself.</p>
+            <div class="step-label">1.2 · Anchors</div>
+            <h5>Drill &amp; epoxy the anchor bolts</h5>
+            <p>Hammer drill ⅝″ holes 5″ deep at each post position. Blow out the dust, inject Hilti HIT-HY 200 epoxy, drop in ⅝″ anchor rods. Let cure per spec (~1 hour). Then bolt down the four Simpson ABU66Z standoff bases.</p>
           </div>
           <div class="substep">
-            <div class="step-label">1.3 · Base</div>
-            <h5>Compacted gravel base</h5>
-            <p>Lay 4″ of ¾″ minus crushed gravel. Rake flat, wet down lightly, run a plate compactor over it in two passes at right angles. A well-compacted base is what keeps your slab from cracking.</p>
+            <div class="step-label">1.3 · Posts</div>
+            <h5>Raise the four 6×6 posts</h5>
+            <p>Pre-stain all four sides before raising — easier on the ground. Two posts at full 8′-0″ (front), two cut to 7′-0″ (back) for the mono-slope. Set in bases, plumb both directions, brace temporarily with diagonal 2×4s.</p>
           </div>
           <div class="substep">
-            <div class="step-label">1.4 · Forms</div>
-            <h5>Set forms &amp; vapour barrier</h5>
-            <p>2×4 PT forms staked every 3 ft. Drop in 6 mil poly. Lay welded wire mesh on small chairs (or stones) so it sits in the middle of the slab thickness. Mark anchor-bolt positions on the form tops — you'll set them in wet concrete.</p>
+            <div class="step-label">1.4 · Beams</div>
+            <h5>Sandwich the doubled beams</h5>
+            <p>Two 2×8s flank each long-side pair of posts — one inside, one outside, flush with post tops. They run continuous, sloping front-high to back-low. Clamp, drill four ½″ holes per post, drive carriage bolts through.</p>
           </div>
           <div class="substep">
-            <div class="step-label">1.5 · Pour</div>
-            <h5>Mix &amp; pour</h5>
-            <p>Mix in batches, fill systematically from one corner. Screed across the forms with a straight 2×4. Bull-float, edge, and set your anchor bolts at exactly the post locations (measure twice). Wait until the slab is firm, then float and trowel smooth.</p>
+            <div class="step-label">1.5 · Square</div>
+            <h5>Diagonal-check before final torque</h5>
+            <p>Measure both corner-to-corner diagonals. Match within ⅛″ or push the long one in by tapping the bottom of a post sideways. Only then crank everything down to spec.</p>
           </div>
           <div class="substep">
-            <div class="step-label">1.6 · Cure</div>
-            <h5>Walk away</h5>
-            <p>Cover with plastic, mist daily for three days. Don't load it for a week. Pull forms after 24 hours. While it's curing, head to the lumberyard and pre-stain the frame timbers — that's the next weekend's work prepped.</p>
+            <div class="step-label">1.6 · Braces</div>
+            <h5>Corner braces, all four corners</h5>
+            <p>2×6 cut both ends at 45°, roughly 30″ on the long edge. Snug into the corner of post-and-beam, lag-bolt two ⅜″ × 4″ at each end. These triangulate the frame against racking. Stain to match.</p>
           </div>
         </div>
 
         <div class="tip">
-          <strong>Pro tip ·</strong>Set your anchor bolts using a paper template cut to match the post-base footprint. Tape it to the wet concrete, push the bolts through, peel paper off when the concrete sets. Your post bases will land within ⅛″ of each other.
+          <strong>Pro tip ·</strong>Pre-drill every bolt hole oversized by ¹⁄₁₆″. Doug fir is hard, and you'll snap an impact driver before getting a ½″ bolt through a dry 6×6 otherwise.
         </div>
       </div>
     </div>
 
-    <!-- PHASE 2 -->
+    <!-- PHASE 2 — Roof -->
     <div class="phase">
       <div class="phase-header">
         <div class="phase-num">02</div>
-        <div class="phase-title">Heavy timber frame</div>
-        <div class="phase-meta"><strong>Weekend 2</strong>10 hours · 2 people essential</div>
+        <div class="phase-title">Black tin roof</div>
       </div>
       <div class="phase-body">
-        <p class="phase-intro">The most satisfying phase. By Sunday afternoon you'll be standing inside something that looks like the finished pavilion. Don't rush the squaring — everything downstream depends on this.</p>
+        <p class="phase-intro">Mono-slope, matte black corrugated steel — matching the sauna. Rafters take the slope. Purlins on top. Panels screw down to the purlins.</p>
 
         <div class="substeps">
           <div class="substep">
-            <div class="step-label">2.1 · Bases</div>
-            <h5>Bolt down the four post bases</h5>
-            <p>Simpson ABU66Z standoff bases over the anchor bolts. The standoff lifts the post ¾″ above the concrete — critical for keeping the end grain dry. Snug the nuts; don't crank yet.</p>
-          </div>
-          <div class="substep">
-            <div class="step-label">2.2 · Posts</div>
-            <h5>Raise the four 6×6 posts</h5>
-            <p>Pre-stain all four sides before raising (much easier on the ground). Set in bases, plumb in both directions with the 4-ft level, brace temporarily with diagonal 2×4s screwed to stakes. Repeat for all four. Get them plumb and stay obsessive about it.</p>
-          </div>
-          <div class="substep">
-            <div class="step-label">2.3 · Beams</div>
-            <h5>Sandwich the doubled beams</h5>
-            <p>Two 2×8s flank each long-side pair of posts — one on the inside face, one on the outside. They run continuous from end to end, flush with the post tops. Clamp first, drill four ½″ holes per post, drive carriage bolts through, washer-and-nut on the inside.</p>
-          </div>
-          <div class="substep">
-            <div class="step-label">2.4 · Square</div>
-            <h5>Diagonal-check the frame</h5>
-            <p>Measure both diagonals corner-post to corner-post. If they match, you're square. If they don't, push the long diagonal in by tapping the bottom of one post sideways before the bolts are fully torqued. Then crank everything down.</p>
-          </div>
-          <div class="substep">
-            <div class="step-label">2.5 · Rafters</div>
+            <div class="step-label">2.1 · Rafters</div>
             <h5>Drop in the rafters</h5>
-            <p>Seven 2×6 rafters spanning the short dimension, 22″ on center. Notch the bottom 1½″ deep × 7¼″ wide to seat over the doubled beams (called a "bird's mouth" cut). Tie down with H1 hurricane ties — two screws each side. Let the rafters overhang 12″ at front and back.</p>
+            <p>Six 2×6 rafters spanning the 8′ depth, 22″ on center. Notch the bottom 1½″ × 5½″ at each end to seat over the doubled beams (a bird's-mouth cut). Tie down with Simpson H1 hurricane ties — two screws per side. Let rafters overhang 6″ at front and back.</p>
           </div>
           <div class="substep">
-            <div class="step-label">2.6 · Braces</div>
-            <h5>Corner braces, all four corners</h5>
-            <p>2×6 cut both ends at 45°, roughly 30″ long. Snug into the corner of post-and-beam, lag-bolt two ⅜″ × 4″ bolts at each end. These are doing real work — they triangulate the frame against racking. Stain to match.</p>
+            <div class="step-label">2.2 · Purlins</div>
+            <h5>Lay the purlins</h5>
+            <p>2×4 purlins perpendicular to the rafters, 24″ on center. Four runs across the 8′ depth. Two 2½″ screws at each rafter intersection. Pre-stain dark walnut — they'll be visible from below.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">2.3 · Drip edge</div>
+            <h5>Install drip edge at the low end</h5>
+            <p>Black aluminum drip edge runs along the back (low) edge, screwed to the last purlin. Catches water off the back of the panels and throws it clear of the rear wall.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">2.4 · First panel</div>
+            <h5>Set the first panel square</h5>
+            <p>Start at the side opposite prevailing wind (in Vancouver, start east, lap west) so laps shed wind-driven rain. Panel overhangs the front edge 2″ and the back edge 1½″. Once the first panel is true, the rest follow.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">2.5 · Lap &amp; screw</div>
+            <h5>Subsequent panels — one corrugation overlap</h5>
+            <p>Each panel overlaps the previous by one full corrugation. Screw down with metal roofing screws + neoprene washers, at the bottom of every other corrugation, every 18″ along each purlin. Snug — not so tight you deform the washer.</p>
+          </div>
+          <div class="substep">
+            <div class="step-label">2.6 · Trim out</div>
+            <h5>Foam closures &amp; rake trim</h5>
+            <p>Foam closure strips into the bottom corrugations at the top edge. Black rake trim along the side edges. A bead of butyl seam tape under each lap joint if you want belt-and-suspenders for wind-driven rain.</p>
           </div>
         </div>
 
         <div class="tip">
-          <strong>Pro tip ·</strong>Pre-drill every bolt hole oversized by ¹⁄₁₆″. Doug fir is hard and you'll snap your driver before you get a ½″ bolt through a dry 6×6. A countersink for the bolt head also keeps things cleaner.
+          <strong>Pro tip ·</strong>Don't walk on the panels. Lay a sheet of plywood across two purlins as a kneeler. Standing on metal between purlins dents it permanently — and dents catch water exactly where you don't want them.
         </div>
       </div>
     </div>
 
-    <!-- PHASE 3 -->
+    <!-- PHASE 3 — Walls & cladding -->
     <div class="phase">
       <div class="phase-header">
         <div class="phase-num">03</div>
-        <div class="phase-title">Lattice &amp; polycarbonate roof</div>
-        <div class="phase-meta"><strong>Weekend 3</strong>6 hours · solo OK</div>
+        <div class="phase-title">Walls &amp; cladding</div>
       </div>
       <div class="phase-body">
-        <p class="phase-intro">A two-layer roof. The lower layer is open 2×2 lattice for the shadow play — it's what gives this whole thing its character. The upper layer is twin-wall polycarbonate, because this is Vancouver and we have feelings about rain.</p>
+        <p class="phase-intro">Three walls — full rear, full left, partial right behind the shower. Open south face stays open. Cladding goes on the outside only; inside is left as visible stud framing. The honest, sauna-adjacent look.</p>
 
         <div class="substeps">
           <div class="substep">
-            <div class="step-label">3.1 · Slope</div>
-            <h5>Confirm your roof slope</h5>
-            <p>The frame as built is flat. To shed water, you need 1½–2″ of fall from front to back. Either rip a tapered shim along the top of the rear beam, or — easier — packing strips that lift the front edge of the lattice slightly. Aim for ~10° max.</p>
+            <div class="step-label">3.1 · Frame walls</div>
+            <h5>Build each wall as a stud panel</h5>
+            <p>Bottom plate PT, top plate SPF, studs at 16″ o.c. Match the height to the beam underside (~7′-10″ at the front, less at the back). Build flat on the slab first, then lift and stand between posts.</p>
           </div>
           <div class="substep">
-            <div class="step-label">3.2 · Slats</div>
-            <h5>Lay the 2×2 lattice slats</h5>
-            <p>Eleven slats running perpendicular to the rafters (so, the long way across the 11′ direction), spaced 12″ on center. Pre-stain. Screw down with two 2½″ screws at each rafter intersection. Let them overhang the side rafters by 2–3″ for a clean shadow line.</p>
+            <div class="step-label">3.2 · Anchor &amp; toenail</div>
+            <h5>Fasten walls down &amp; in</h5>
+            <p>Wedge-anchor the PT bottom plate to the existing slab — ¼″ × 3″ anchors every 24″. Toenail wall studs at the ends into the posts with 3″ structural screws. Plumb each wall as you go.</p>
           </div>
           <div class="substep">
-            <div class="step-label">3.3 · Caps</div>
-            <h5>Tape the polycarbonate channels</h5>
-            <p>Twin-wall polycarbonate has open flutes at the ends. Tape the top edge with solid aluminum tape and the bottom edge with vented breather tape. This stops bugs and water sitting in the channels.</p>
+            <div class="step-label">3.3 · Wrap</div>
+            <h5>Tyvek on the outside face of the studs</h5>
+            <p>Staple Tyvek across the outside face of each wall, taped at seams. The wrap is the only thing between the stud cavity and weather — there's no plywood sheathing. The pavilion's main corner braces and hurricane ties handle lateral loads instead.</p>
           </div>
           <div class="substep">
-            <div class="step-label">3.4 · Lay sheets</div>
-            <h5>Drop the polycarbonate</h5>
-            <p>Three 4×12 sheets cover the 11′ × 10′ roof area with 12″ overhangs front/back. UV-protected side up (it's marked). Flutes must run down-slope so condensation drains. Overlap or H-channel between sheets.</p>
+            <div class="step-label">3.4 · Cladding</div>
+            <h5>Horizontal fir T&amp;G boards</h5>
+            <p>1×6 fir T&amp;G, tongue up, groove down. Start at the bottom and level the first row religiously — every row above follows. Blind-nail through the tongue with stainless 1¼″ finish nails directly into the studs. No fasteners show.</p>
           </div>
           <div class="substep">
-            <div class="step-label">3.5 · Fasten</div>
-            <h5>Screw down — but not too tight</h5>
-            <p>Polycarbonate-specific screws with neoprene washers, every 18″ along each slat. Pre-drill the polycarbonate ³⁄₁₆″ oversize — the material expands and contracts a lot, and if you pin it tight it'll buckle in summer or crack in winter.</p>
+            <div class="step-label">3.5 · Corners</div>
+            <h5>Trim the corners</h5>
+            <p>Where two walls meet, run 1×4 fir corner trim over the cladding edges, caulked behind. The exposed end-grain of the cladding is the weak point in wet weather — corner boards hide and seal it.</p>
           </div>
           <div class="substep">
-            <div class="step-label">3.6 · Trim</div>
-            <h5>Edge flashing</h5>
-            <p>Bend a piece of pre-finished aluminum flashing over the front edge to keep wind from getting under the sheets. Caulk the back edge to the rear wall top plate (we'll get there in phase 4).</p>
+            <div class="step-label">3.6 · Finish</div>
+            <h5>Stain</h5>
+            <p>Two coats of honey-toned exterior stain on the cladding outside, dry to dry, 8 hr between. Walnut on the frame should already be on from phase 1 — touch up any nicks. The inside studs get one coat of clear penetrating sealer (they'll see splash).</p>
           </div>
         </div>
 
         <div class="tip">
-          <strong>Pro tip ·</strong>Walk the lattice with weight only over rafters, never between. A 2×2 on edge will support you for a step but not a stand. Lay a sheet of plywood across two rafters as a working platform.
+          <strong>Pro tip ·</strong>Fir T&amp;G is half the price of cedar and stains beautifully — it just needs the stain to seal it against rot. Skip the stain step at your peril; bare fir in Vancouver weather is dead in three winters.
         </div>
       </div>
     </div>
 
-    <!-- PHASE 4 -->
+    <!-- PHASE 4 — Water -->
     <div class="phase">
       <div class="phase-header">
         <div class="phase-num">04</div>
-        <div class="phase-title">Walls &amp; cladding</div>
-        <div class="phase-meta"><strong>Weekend 4</strong>12 hours · solo OK</div>
+        <div class="phase-title">Water — propane, solar &amp; the drain</div>
       </div>
       <div class="phase-body">
-        <p class="phase-intro">Three walls — solid rear, full left, partial right. This is the weekend you turn a pergola into a room. Plan your cuts so the horizontal cladding lines wrap continuously around the inside corner.</p>
+        <p class="phase-intro">Cold comes from a garden hose off the house bib. Half the cold runs through a black hose coiled on the roof for solar pre-heat, then feeds the propane heater. Hot from the heater + cold direct, mixed at a tempering valve at the fixture. Drain sits on top of the existing slab.</p>
 
         <div class="substeps">
           <div class="substep">
-            <div class="step-label">4.1 · Frame</div>
-            <h5>Wall framing — 2×4 studs</h5>
-            <p>Build each wall as a stud panel on the ground: bottom plate PT, top plate SPF, studs at 16″ o.c. Match the height to the beam underside (~7′-10″). Lift and stand each panel between posts, toenail into post sides and into the slab through the PT bottom plate.</p>
+            <div class="step-label">4.1 · Drain</div>
+            <h5>Surface-mount the linear drain</h5>
+            <p>Linear drain sits on the slab along the back of the shower zone, against the rear wall. The 2″ ABS line runs along the slab base behind the partial right wall, exits at the back corner, and outfalls to grade in the alley or your existing storm drain.</p>
           </div>
           <div class="substep">
-            <div class="step-label">4.2 · Sheath</div>
-            <h5>Plywood sheathing &amp; wrap</h5>
-            <p>½″ exterior plywood across the outside face of each wall — locks the wall against racking. Then Tyvek house wrap, taped at all seams. The wrap is what keeps wind-driven Vancouver rain from getting behind your cladding.</p>
+            <div class="step-label">4.2 · Cold supply</div>
+            <h5>Garden hose from house bib</h5>
+            <p>50 ft of ¾″ garden hose from the house bib runs along the fence line or ground (or buried in conduit if you want it tidier) into the pavilion. Enters near the west wall at slab level. Brass Y-splitter immediately inside: one branch up to the roof, one branch direct to the mixing valve cold inlet.</p>
           </div>
           <div class="substep">
-            <div class="step-label">4.3 · Strapping</div>
-            <h5>Optional rain screen</h5>
-            <p>For longest life, run vertical ¾″ × 1½″ strapping over the Tyvek every 16″ before the cladding. This gives a drainage gap behind the boards. Skip if budget is tight, but you lose 5–10 years of cladding life.</p>
+            <div class="step-label">4.3 · Solar coil</div>
+            <h5>Lay 100′ of black hose on the roof</h5>
+            <p>Spiral 100 ft of ¾″ black garden hose flat on top of the corrugated metal panels, secured every 18″ with stainless zip-ties through small holes in the high ridges (caulk after). Inlet at the south (high, sun-facing) end of the coil, outlet at the north feeding down to the propane heater. Black hose + black tin = 90–110°F output on a sunny summer day.</p>
           </div>
           <div class="substep">
-            <div class="step-label">4.4 · Cladding</div>
-            <h5>Horizontal T&G boards</h5>
-            <p>1×6 cedar or fir, tongue up, groove down. Start at the bottom, level the first row religiously — every row after follows. Blind-nail through the tongue with stainless 1¼″ finish nails so no fasteners show. Stagger butt joints on stud lines.</p>
+            <div class="step-label">4.4 · Propane heater</div>
+            <h5>Mount the tankless heater</h5>
+            <p>Heavy-duty black wall brackets on the exterior face of the partial right wall, near the rear. Heater outlet ~4 ft off the slab. Vent clearance per manufacturer (typically 12″ above, 6″ each side). Hose-thread inlet from the solar coil; hose-thread outlet runs as ¾″ PEX-A back inside the wall cavity to the mixing valve. Propane tank sits on the slab beside it in a small screen of slatted wood matching the plunge.</p>
           </div>
           <div class="substep">
-            <div class="step-label">4.5 · Corners</div>
-            <h5>Inside &amp; outside corners</h5>
-            <p>Where two walls meet, run 1×4 corner trim over the cladding edges. Caulk behind it. The exposed end-grain of the cladding is the weak point in wet weather — corner boards hide that and seal it.</p>
+            <div class="step-label">4.5 · Mixing valve &amp; fixture</div>
+            <h5>Black-pipe shower on the east wall</h5>
+            <p>Thermostatic mixing valve inside the partial right wall cavity — hot in from the heater, cold in from the Y-splitter, tempered out at 105°F. From there ¾″ PEX-A to the shower fixture. Black iron pipe floor flange anchored to the slab against the east wall, 80″ vertical riser, 90° elbow with a 12″ horizontal arm extending west, copper rain head at the west end pointing down. You stand under the head facing east — back to the plunge, facing the sauna wall.</p>
           </div>
           <div class="substep">
-            <div class="step-label">4.6 · Finish</div>
-            <h5>Stain</h5>
-            <p>Two coats of honey-toned exterior stain on the cladding, dry to dry. Wait at least 8 hours between coats. The dark walnut stain on the frame should already be on — touch up any nicks from construction.</p>
+            <div class="step-label">4.6 · Plunge &amp; lights</div>
+            <h5>Set the plunge &amp; hang the solar string</h5>
+            <p>Stock tank on a 2×4 base lifting it ~3″ off the slab. Clad the outside in vertical 1×4 fir stained dark walnut. Plumb the drain to the same line as the shower. Fill manually via the cold hose, or tee in a dedicated cold tap. Solar string lights: panel zip-tied to the south-facing high edge of the roof in full sun, cable draped along the underside of the purlins. They auto-on at dusk.</p>
           </div>
         </div>
 
         <div class="tip">
-          <strong>Pro tip ·</strong>If you can't get T&G in the species you want, shiplap is the next best thing and easier to install. The crisp shadow line at every board edge actually reads more like the reference image than a tight T&G joint.
+          <strong>Pro tip ·</strong>The propane heater needs to draw water at a minimum flow rate (~0.6 gpm typical) to fire. If solar pre-heat overshoots and the water arrives too hot, the heater won't fire and the tempering valve handles the mix on its own. That's fine. The whole system is self-balancing.
+        </div>
+
+        <div class="tip">
+          <strong>Winter note ·</strong>The solar coil, garden hoses, and tempering valve all live outside and will freeze. From November to March, drain the system: disconnect the hose at the house bib, open the valve at the lowest point, let everything bleed. The propane heater has its own winterization steps in its manual. The pavilion stays usable in winter only if you're comfortable with quick cold-water rinses.
         </div>
       </div>
     </div>
 
-    <!-- PHASE 5 -->
+    <!-- PHASE 5 — Fit-out -->
     <div class="phase">
       <div class="phase-header">
         <div class="phase-num">05</div>
-        <div class="phase-title">Plumbing, drain &amp; lights</div>
-        <div class="phase-meta"><strong>Weekend 5</strong>10 hours · plumber if uncertain</div>
-      </div>
-      <div class="phase-body">
-        <p class="phase-intro">The shower drain and supply lines are best roughed in before the pad pour — but if you didn't, you can surface-mount everything with black iron pipe and chase the supply through a shallow channel. This is the weekend the building becomes useful.</p>
-
-        <div class="substeps">
-          <div class="substep">
-            <div class="step-label">5.1 · Drain</div>
-            <h5>Connect the drain</h5>
-            <p>Linear drain at the low point of the shower zone. Run a 2″ ABS line under the pad (if pre-poured) or trench around the outside to your existing storm drain. Vent if your local code requires it — a 1¼″ AAV up inside the partial right wall works.</p>
-          </div>
-          <div class="substep">
-            <div class="step-label">5.2 · Supply</div>
-            <h5>Hot &amp; cold supply lines</h5>
-            <p>½″ PEX-A from your house — red for hot, blue for cold. Bury 24″ deep below frost line for the run from the house. Pop up inside the partial right wall, leave 18″ of pigtail at shower height.</p>
-          </div>
-          <div class="substep">
-            <div class="step-label">5.3 · Valve</div>
-            <h5>Install the mixing valve</h5>
-            <p>Thermostatic mixing valve (Caleffi 521 or equivalent) inside the wall cavity, hot and cold in, tempered out. Set to 105°F. This is your anti-scald — non-negotiable if you ever hook up solar pre-heat later.</p>
-          </div>
-          <div class="substep">
-            <div class="step-label">5.4 · Fixture</div>
-            <h5>Build the black-pipe shower</h5>
-            <p>¾″ black iron pipe assembled with elbows: floor flange, 80″ riser, 90° to a 12″ horizontal arm, then the copper rain head. Thread-seal every joint. Spray-paint matte black where the pipe was scratched. Anchor the floor flange to the pad with concrete screws.</p>
-          </div>
-          <div class="substep">
-            <div class="step-label">5.5 · Plunge</div>
-            <h5>Set the plunge tub</h5>
-            <p>Stock tank on a level pad of its own (3″ above main pad helps with overflow). Clad the outside in vertical 1×4 boards matching the frame stain. Drain plumbed to the same line as the shower. Fill manually from the cold supply, or plumb in a dedicated cold tap.</p>
-          </div>
-          <div class="substep">
-            <div class="step-label">5.6 · Lights</div>
-            <h5>String lights &amp; GFCI outlet</h5>
-            <p>Outdoor S14 string lights along the underside of the lattice — staple the cable along a rafter, drape between. One GFCI-protected exterior outlet on the partial right wall, run from the house circuit. If you don't have an outdoor circuit, a licensed electrician for this part.</p>
-          </div>
-        </div>
-
-        <div class="tip">
-          <strong>Pro tip ·</strong>Pressure-test the supply lines for 24 hours before closing up the wall cavity. PEX joints fail at the connections, never in the middle of a run — and you want any leak to be obvious now, not three months from now when it has soaked your sheathing.
-        </div>
-      </div>
-    </div>
-
-    <!-- PHASE 6 -->
-    <div class="phase">
-      <div class="phase-header">
-        <div class="phase-num">06</div>
         <div class="phase-title">Fit-out &amp; ritual</div>
-        <div class="phase-meta"><strong>Weekend 6</strong>6 hours · enjoy</div>
       </div>
       <div class="phase-body">
-        <p class="phase-intro">The pieces that turn a building into a place. Bench, hooks, the river rock band, the small things you'll forget you needed until you stand inside the finished thing for the first time.</p>
+        <p class="phase-intro">The pieces that turn a building into a place. Step bench, river rock band, hooks. The small things you'll forget you needed until you stand inside the finished thing for the first time.</p>
 
         <div class="substeps">
           <div class="substep">
-            <div class="step-label">6.1 · Step</div>
+            <div class="step-label">5.1 · Step</div>
             <h5>Build the step bench</h5>
-            <p>A simple box of 2×4 frame clad in 1×6 boards matching the plunge cladding. Sized to land at half the plunge height — 12″ tall, 18″ × 24″ footprint. Position so it's a comfortable step in and a usable bench when you're not getting in.</p>
+            <p>A simple box of 2×4 frame clad in 1×4 boards matching the plunge cladding. 12″ tall, 18″ × 24″ footprint. Position alongside the plunge so it's a comfortable step in and a usable bench when you're not getting in.</p>
           </div>
           <div class="substep">
-            <div class="step-label">6.2 · Rock</div>
-            <h5>River rock perimeter</h5>
-            <p>Spread the 1–2″ river rock in the 12″ collar around the pad. About 0.5 yd³ for the full perimeter. It catches splash, deters mud, and makes the building feel like it sits in a landscape rather than on top of one.</p>
+            <div class="step-label">5.2 · Rock</div>
+            <h5>River rock perimeter band</h5>
+            <p>Spread 1–2″ river rock in a 12″ band around the slab perimeter. Catches splash, deters mud, blurs the hard edge between the new building and the old pad it sits on.</p>
           </div>
           <div class="substep">
-            <div class="step-label">6.3 · Hooks</div>
+            <div class="step-label">5.3 · Hooks</div>
             <h5>Towel hooks &amp; the small stuff</h5>
-            <p>Two or three matte-black hooks on the inside face of the left wall, about 60″ off the pad. A small open shelf for soap and salt. A peg for the bath thermometer. These details cost almost nothing and matter every time.</p>
+            <p>Two or three matte-black hooks on a stud face of the left wall, ~60″ off the slab. A small open shelf for soap and salt. A peg for the bath thermometer. These details cost almost nothing and matter every time.</p>
           </div>
           <div class="substep">
-            <div class="step-label">6.4 · Stain</div>
-            <h5>Final stain touch-ups</h5>
-            <p>Walk the whole structure and touch up every nick from construction. The frame's dark walnut should be saturated and even. The cladding's honey tone should be uniform front-to-back. Don't skip the cut ends of the rafter tails.</p>
+            <div class="step-label">5.4 · Stain touch-ups</div>
+            <h5>Final pass on the finish</h5>
+            <p>Walk the whole structure. Walnut on the frame should be saturated and even. Honey on cladding should be uniform front-to-back. Don't skip the cut ends of the rafter tails — that's where weather gets in first.</p>
           </div>
           <div class="substep">
-            <div class="step-label">6.5 · Test</div>
+            <div class="step-label">5.5 · Test</div>
             <h5>Run a full cycle</h5>
-            <p>Fill the plunge, get the shower hot, sit on the bench. Find what's missing. A hook in the wrong place, a step that wobbles, a slat that vibrates in the wind. Fix those before you call it done.</p>
+            <p>Open the house bib, fire the propane heater, fill the plunge cold, get the shower hot, sit on the bench. Find what's missing — a hook in the wrong place, a step that wobbles, a purlin that ticks in the wind. Fix those before you call it done.</p>
           </div>
           <div class="substep">
-            <div class="step-label">6.6 · Use</div>
+            <div class="step-label">5.6 · Use</div>
             <h5>Use it tonight</h5>
-            <p>This is the most important step. Buildings that don't get used in their first week tend not to get used. Make a fire in a portable pit nearby, light the string lights, run the shower hot, and step into the cold. You're done.</p>
+            <p>The most important step. Buildings that don't get used in their first week tend not to get used. Light the strings, run the sauna, run the shower hot, step into the cold. You're done.</p>
           </div>
         </div>
 
         <div class="tip">
-          <strong>Pro tip ·</strong>Buy a single good bath sheet — a proper thick cotton or linen one — and keep it in a sealed bin inside the pavilion. The ritual works better when the towel is right there waiting.
+          <strong>Pro tip ·</strong>Buy one good bath sheet — proper thick cotton or linen — and keep it in a sealed bin inside the pavilion. The ritual works better when the towel is right there waiting.
         </div>
       </div>
     </div>
@@ -1527,8 +1879,8 @@
     <div class="mark">✦</div>
     <p class="closing-text">The point isn't the building. <em>The point is the ten minutes after the sauna.</em></p>
     <div class="colophon">
-      Onsen · Build Set Rev. 03 · 14 Sheets · Vancouver BC<br>
-      Drawings &amp; specifications · For your own backyard
+      Onsen · Build Plan Rev. 05 · 9 Sheets · Vancouver BC<br>
+      Drawings &amp; specifications · For the alley pad, next to the sauna · Off-grid
     </div>
   </section>
 
